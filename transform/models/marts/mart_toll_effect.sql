@@ -1,40 +1,15 @@
 -- Headline result: difference-in-differences on taxi speeds, with a 95% confidence interval.
 --
--- For every day, gap = ln(speed of the segment / speed of trips outside the zone).
+-- For every day, gap = ln(speed of the segment / speed of the control group).
 -- Effect = mean daily gap in the treated year - mean daily gap in the baseline year,
 -- using only calendar months available in both years. Anything that hits the whole city
 -- (weather, fuel prices, a general traffic trend) cancels out in the gap.
-with scoped as (
-    select pickup_date, 'all hours' as scope, segment,
-           sum(distance_mi) as distance_mi, sum(duration_min) as duration_min
-    from {{ ref('fct_trips_hourly') }}
-    group by all
-    union all
-    select pickup_date, toll_period || ' hours' as scope, segment,
-           sum(distance_mi), sum(duration_min)
-    from {{ ref('fct_trips_hourly') }}
-    group by all
-),
-
-speeds as (
-    select pickup_date, scope, segment, distance_mi / (duration_min / 60) as speed_mph
-    from scoped
-    where duration_min > 0
-),
-
-gaps as (
-    select
-        s.pickup_date,
-        year(s.pickup_date)  as year,
-        month(s.pickup_date) as month,
-        s.scope,
-        s.segment,
-        ln(s.speed_mph / c.speed_mph) as log_gap
-    from speeds as s
-    join speeds as c
-        on c.pickup_date = s.pickup_date and c.scope = s.scope and c.segment = 'outside_zone'
-    where s.segment <> 'outside_zone'
-      and not (s.pickup_date >= date '2025-01-01' and s.pickup_date < date '{{ var("toll_start") }}')
+-- The placebo (2024 vs 2023, no toll in either year) should be close to 0.
+with gaps as (
+    select *, year(pickup_date) as year, month(pickup_date) as month
+    from {{ ref('int_daily_speed_gaps') }}
+    -- 1-4 January 2025 were before the toll
+    where not (pickup_date >= date '2025-01-01' and pickup_date < date '{{ var("toll_start") }}')
 ),
 
 comparisons (comparison, treated_year, baseline_year) as (
@@ -52,7 +27,7 @@ tagged as (
 ),
 
 common_months as (
-    select comparison, scope, segment, month
+    select comparison, scope, segment, control_group, month
     from tagged
     group by all
     having count(distinct side) = 2
@@ -60,13 +35,13 @@ common_months as (
 
 stats as (
     select
-        t.comparison, t.scope, t.segment, t.side,
-        count(*)            as days,
-        avg(t.log_gap)      as mean_gap,
-        var_samp(t.log_gap) as var_gap,
-        count(distinct t.month) as months
+        t.comparison, t.scope, t.segment, t.control_group, t.side,
+        count(*)                as days,
+        count(distinct t.month) as months,
+        avg(t.log_gap)          as mean_gap,
+        var_samp(t.log_gap)     as var_gap
     from tagged as t
-    join common_months as m using (comparison, scope, segment, month)
+    join common_months as m using (comparison, scope, segment, control_group, month)
     group by all
 ),
 
@@ -75,6 +50,7 @@ did as (
         tr.comparison,
         tr.scope,
         tr.segment,
+        tr.control_group,
         tr.months                                         as months_compared,
         tr.days                                           as treated_days,
         ba.days                                           as baseline_days,
@@ -83,7 +59,8 @@ did as (
     from stats as tr
     join stats as ba
         on  ba.comparison = tr.comparison and ba.scope = tr.scope
-        and ba.segment = tr.segment and ba.side = 'baseline'
+        and ba.segment = tr.segment and ba.control_group = tr.control_group
+        and ba.side = 'baseline'
     where tr.side = 'treated'
 )
 
@@ -91,6 +68,8 @@ select
     comparison,
     scope,
     segment,
+    control_group,
+    control_group = 'all trips outside the zone' as is_main_estimate,
     months_compared,
     treated_days,
     baseline_days,

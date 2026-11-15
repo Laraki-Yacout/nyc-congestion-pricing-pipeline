@@ -1,4 +1,5 @@
-"""Run the whole pipeline: get the data, build and test the dbt models, export the marts.
+"""Run the whole pipeline: get the data, build and test the dbt models, export the marts
+and redraw the README charts.
 
     python scripts/run_pipeline.py            # real TLC data (~3 GB download)
     python scripts/run_pipeline.py --sample   # small synthetic data, runs in a couple of minutes
@@ -36,9 +37,10 @@ def main() -> None:
     data_dir = ROOT / "data" / ("sample" if args.sample else "")
     raw_dir = data_dir / "raw"
     export_dir = data_dir / "exports" if args.sample else ROOT / "exports"
+    charts_dir = data_dir / "docs" if args.sample else ROOT / "docs"
     started = time.time()
 
-    step("1/3 Data")
+    step("1/4 Data")
     if args.skip_download:
         print("Skipped, using the files already in", raw_dir)
     elif args.sample:
@@ -47,7 +49,7 @@ def main() -> None:
         run_python("ingestion/download_tlc_data.py", "--start", args.start, "--end", args.end,
                    "--raw-dir", str(raw_dir))
 
-    step("2/3 dbt build (models + tests)")
+    step("2/4 dbt build (models + tests)")
     os.environ["NYC_DUCKDB_PATH"] = str(data_dir / "warehouse.duckdb")
     os.environ["NYC_DUCKDB_MEMORY"] = args.memory
     # dbt is installed next to the Python interpreter (.venv/Scripts on Windows, .venv/bin elsewhere)
@@ -62,9 +64,13 @@ def main() -> None:
     if build.returncode != 0:
         raise SystemExit("dbt build failed, see the log above.")
 
-    step("3/3 Export")
+    step("3/4 Export")
     run_python("scripts/export_marts.py", "--database", os.environ["NYC_DUCKDB_PATH"],
                "--out", str(export_dir))
+
+    step("4/4 Charts")
+    run_python("scripts/make_charts.py", "--exports", str(export_dir), "--raw-dir", str(raw_dir),
+               "--out", str(charts_dir))
 
     print(f"\nDone in {(time.time() - started) / 60:.1f} min. Exports are in {export_dir}")
 

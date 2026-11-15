@@ -46,10 +46,21 @@ models:
                 field: zone_id
 
   - name: mart_toll_effect
-    description: Difference-in-differences estimate of the toll's effect on taxi speeds.
+    description: >
+      Difference-in-differences estimate of the toll's effect on taxi speeds, by comparison,
+      time of day, segment and control group (is_main_estimate flags the main control).
     columns:
       - name: speed_effect_pct
         tests: [not_null]
+      - name: control_group
+        tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - all trips outside the zone
+                  - outside the zone, no airport trips
+                  - outside the zone, Manhattan only
+                  - outside the zone, trips under 3 miles
 
   - name: mart_toll_effect_monthly
     description: Month-by-month speed effect compared with the same month of the baseline year.

@@ -52,13 +52,13 @@ jobs:
       - name: Run the pipeline
         run: python scripts/run_pipeline.py --memory 10GB
 
-      - name: Publish the exports
+      - name: Publish the exports and charts
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add exports
+          git add exports docs
           if git diff --cached --quiet; then
-            echo "No change in the exports"
+            echo "No change in the exports or charts"
             exit 0
           fi
           git commit -m "Refresh exports (data up to $(jq -r .last_month exports/summary.json))"

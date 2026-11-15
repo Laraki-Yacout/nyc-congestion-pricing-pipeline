@@ -1,5 +1,5 @@
-"""Download NYC yellow taxi trip records (one Parquet file per month) and the
-taxi zone lookup table published by the NYC Taxi & Limousine Commission (TLC).
+"""Download NYC yellow taxi trip records (one Parquet file per month), the taxi zone
+lookup table and the zone shapes published by the NYC Taxi & Limousine Commission (TLC).
 
 Files that are already on disk are skipped, so the script can be re-run safely.
 Months that the TLC has not published yet are reported and skipped.
@@ -72,6 +72,9 @@ def main() -> None:
     print("Taxi zone lookup")
     if not download(f"{BASE_URL}/misc/taxi_zone_lookup.csv", args.raw_dir / "taxi_zone_lookup.csv"):
         raise SystemExit("Error: the taxi zone lookup could not be found.")
+    # Zone shapes, only used to draw the map in docs/ (the pipeline works without them)
+    if not download(f"{BASE_URL}/misc/taxi_zones.zip", args.raw_dir / "taxi_zones.zip"):
+        print("  taxi zone shapes not found, the map will be skipped")
 
     print(f"Yellow taxi trips, {args.start} to {args.end}")
     missing = []

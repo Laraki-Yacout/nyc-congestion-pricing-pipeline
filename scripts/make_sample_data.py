@@ -8,9 +8,12 @@ after 5 January 2025), so the analysis can be checked against a known answer.
 """
 
 import argparse
+import tempfile
+import zipfile
 from pathlib import Path
 
 import duckdb
+import shapefile  # pyshp
 
 N_ZONES = 263
 CRZ_ZONES = 40  # zones 1..40 play the role of the Congestion Relief Zone
@@ -44,11 +47,34 @@ def write_zones(con: duckdb.DuckDBPyConnection, path: Path) -> None:
                 end as Borough,
                 case when i <= {N_ZONES} then 'Sample zone ' || i
                      when i = 264 then 'N/A' else 'Outside of NYC' end as Zone,
-                case when i <= 69 then 'Yellow Zone' when i <= {N_ZONES} then 'Boro Zone'
-                     else 'N/A' end as service_zone
+                case when i in (132, 138) then 'Airports' when i <= 69 then 'Yellow Zone'
+                     when i <= {N_ZONES} then 'Boro Zone' else 'N/A' end as service_zone
             from range(1, 266) t(i)
         ) to '{path.as_posix()}' (header, delimiter ',')
     """)
+
+
+def write_zone_shapes(path: Path) -> None:
+    """Fake zone shapes on a grid, with the same fields as the real taxi_zones.zip."""
+    with tempfile.TemporaryDirectory() as tmp:
+        base = Path(tmp) / "taxi_zones"
+        with shapefile.Writer(str(base), shapeType=shapefile.POLYGON) as shp:
+            shp.field("LocationID", "N", 4)
+            shp.field("zone", "C", 40)
+            shp.field("borough", "C", 20)
+            for i in range(1, N_ZONES + 1):
+                # Manhattan as a narrow strip on the left, the other boroughs on a grid
+                if i <= 69:
+                    x, y = (i - 1) % 3, (i - 1) // 3
+                    borough = "Manhattan"
+                else:
+                    x, y = 4 + (i - 70) % 12, (i - 70) // 12
+                    borough = "Brooklyn"
+                shp.poly([[[x, y], [x, y + 1], [x + 1, y + 1], [x + 1, y], [x, y]]])
+                shp.record(i, f"Sample zone {i}", borough)
+        with zipfile.ZipFile(path, "w") as archive:
+            for part in Path(tmp).iterdir():
+                archive.write(part, f"taxi_zones/{part.name}")
 
 
 def write_month(con: duckdb.DuckDBPyConnection, month: str, trips: int, path: Path) -> None:
@@ -150,6 +176,7 @@ def main() -> None:
     con.execute("select setseed(0.42)")
 
     write_zones(con, args.raw_dir / "taxi_zone_lookup.csv")
+    write_zone_shapes(args.raw_dir / "taxi_zones.zip")
     months = month_range(args.start, args.end)
     for month in months:
         write_month(con, month, args.trips_per_month,
