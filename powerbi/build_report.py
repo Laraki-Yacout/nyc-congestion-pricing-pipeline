@@ -104,6 +104,7 @@ MEASURES = {
         ("Average speed (mph)", ["DIVIDE(SUM(fct_trips_hourly[distance_mi]), SUM(fct_trips_hourly[duration_min]) / 60)"], "0.0"),
         ("Average trip time (min)", ["DIVIDE(SUM(fct_trips_hourly[duration_min]), [Total trips])"], "0.0"),
         ("Congestion fees paid", ["SUM(fct_trips_hourly[cbd_fee])"], '"$"#,0'),
+        ("Congestion fees (since the toll)", ["VAR Fees = [Congestion fees paid]", "RETURN IF(Fees > 0, Fees)"], '"$"#,0'),
         ("Trips vs previous year", ["VAR Previous = CALCULATE([Total trips], DATEADD(dim_date[date], -1, YEAR))",
                                     "RETURN DIVIDE([Total trips] - Previous, Previous)"], PCT),
         ("Data up to", ['FORMAT(CALCULATE(MAX(fct_trips_hourly[pickup_date]), ALL(fct_trips_hourly)), "mmm yyyy")'], None),
@@ -155,13 +156,27 @@ def column(table: str, name: str, dtype: str) -> dict:
     return col
 
 
+CALCULATED = {
+    "dim_date": [{"name": "month_start", "type": "calculated", "dataType": "dateTime", "formatString": "mmm yyyy",
+                  "expression": "DATE(YEAR(dim_date[date]), MONTH(dim_date[date]), 1)", "isHidden": True}],
+    "mart_toll_effect": [{"name": "control_label", "type": "calculated", "dataType": "string",
+                          "expression": "\n".join([
+                              'SWITCH(mart_toll_effect[control_group],',
+                              '    "all trips outside the zone", "All trips outside",',
+                              '    "outside the zone, no airport trips", "No airport trips",',
+                              '    "outside the zone, Manhattan only", "Manhattan only",',
+                              '    "outside the zone, trips under 3 miles", "Short trips (main)",',
+                              '    mart_toll_effect[control_group])'])}],
+}
+
+
 def build_model() -> dict:
     tables = []
     all_tables = dict(TABLES)
     all_tables["dim_segment"] = [("segment", "string"), ("segment_label", "string"), ("sort_order", "int64")]
     for table, columns in all_tables.items():
         expression = m_segments() if table == "dim_segment" else m_csv(table)
-        entry = {"name": table, "columns": [column(table, n, d) for n, d in columns],
+        entry = {"name": table, "columns": [column(table, n, d) for n, d in columns] + CALCULATED.get(table, []),
                  "partitions": [{"name": table, "mode": "import", "source": {"type": "m", "expression": expression}}],
                  "annotations": [{"name": "PBI_ResultType", "value": "Table"}]}
         if table == "dim_date":
@@ -252,8 +267,8 @@ class Page:
                     "drillFilterOtherVisuals": True})
 
     def title(self, title, subtitle):
-        self.text("title", 16, 12, 1000, 56, [
-            {"textRuns": [{"value": title, "textStyle": {"fontWeight": "bold", "fontSize": "20pt", "color": C["text"]}}]},
+        self.text("title", 16, 6, 1000, 70, [
+            {"textRuns": [{"value": title, "textStyle": {"fontWeight": "bold", "fontSize": "18pt", "color": C["text"]}}]},
             {"textRuns": [{"value": subtitle, "textStyle": {"fontSize": "10pt", "color": C["grey"]}}]}], "Page title")
 
     def footer(self, text):
@@ -269,7 +284,7 @@ class Page:
             "visualContainerObjects": container(None, alt), "drillFilterOtherVisuals": True})
 
     def chart(self, name, x, y, w, h, kind, title, alt, category, values, series=None, color=C["navy"],
-              sort=None, labels=True, legend=False):
+              sort=None, labels=True, legend=False, continuous=False):
         state = {"Category": {"projections": [category]}, "Y": {"projections": values}}
         if series:
             state["Series"] = {"projections": [series]}
@@ -278,7 +293,8 @@ class Page:
             query["sortDefinition"] = {"sort": [sort], "isDefaultSort": True}
         objects = {
             "categoryAxis": [{"properties": {"showAxisTitle": lit("false"), "fontSize": lit("9D"),
-                                             "labelColor": solid(C["grey"])}}],
+                                             "labelColor": solid(C["grey"]), "maxMarginFactor": lit("40L"),
+                                             **({"axisType": s("Continuous")} if continuous else {})}}],
             "valueAxis": [{"properties": {"showAxisTitle": lit("false"), "fontSize": lit("9D"),
                                           "labelColor": solid(C["grey"]), "gridlineColor": solid(C["grid"])}}],
             "legend": [{"properties": {"show": lit("true" if series or legend else "false"), "position": s("Top"),
@@ -315,21 +331,21 @@ def build_pages(definition: Path) -> list[str]:
     p = Page(pages, "toll_effect", "Did the toll speed up traffic?")
     p.title("Did Manhattan's congestion toll speed up traffic?",
             "Yellow taxis as traffic sensors: speed inside the toll zone compared with the rest of the city, before and after 5 Jan 2025")
-    p.card("data_up_to", 1064, 14, 200, "fct_trips_hourly", "Data up to", "Last month of data", C["grey"], "14D", h=58)
-    p.card("kpi_effect_2025", 16, 80, 302, "mart_toll_effect", "Speed gain in the zone, 2025",
+    p.card("data_up_to", 1064, 8, 200, "fct_trips_hourly", "Data up to", "Last month of data", C["grey"], "14D", h=66)
+    p.card("kpi_effect_2025", 16, 84, 302, "mart_toll_effect", "Speed gain in the zone, 2025",
            "Difference-in-differences estimate for 2025, all hours", C["orange"])
-    p.card("kpi_effect_peak", 330, 80, 302, "mart_toll_effect", "Peak hours, 2025",
+    p.card("kpi_effect_peak", 330, 84, 302, "mart_toll_effect", "Peak hours, 2025",
            "Estimate for 2025, peak toll hours")
-    p.card("kpi_effect_2026", 644, 80, 302, "mart_toll_effect", "2026 so far", "Estimate for 2026 so far")
-    p.card("kpi_placebo", 958, 80, 306, "mart_toll_effect", "Placebo, 2024 vs 2023",
+    p.card("kpi_effect_2026", 644, 84, 302, "mart_toll_effect", "2026 so far", "Estimate for 2026 so far")
+    p.card("kpi_placebo", 958, 84, 306, "mart_toll_effect", "Placebo, 2024 vs 2023",
            "Placebo estimate with no toll, should be close to zero", C["grey"])
-    p.chart("monthly_gap", 16, 180, 820, 300, "lineChart",
+    p.chart("monthly_gap", 16, 184, 820, 296, "lineChart",
             "Speed inside the zone, as a % of short trips outside it (monthly)",
             "Monthly speed ratio between trips within the zone and trips outside it",
             pc("mart_toll_effect_monthly", "month_start", displayName="Month"),
             [pm("mart_toll_effect_monthly", "Zone speed vs rest of city")],
             sort={"field": column_ref("mart_toll_effect_monthly", "month_start"), "direction": "Ascending"})
-    p.chart("effect_by_time", 848, 180, 416, 300, "clusteredColumnChart",
+    p.chart("effect_by_time", 848, 184, 416, 296, "clusteredColumnChart",
             "Estimated speed gain by time of day, 2025 vs 2024",
             "Difference-in-differences estimate for all hours, peak and overnight hours",
             pc("mart_toll_effect", "scope", displayName="Time of day"),
@@ -338,7 +354,7 @@ def build_pages(definition: Path) -> list[str]:
     p.chart("robustness", 16, 492, 620, 196, "clusteredBarChart",
             "Robustness: 2025 estimate with each control group",
             "2025 estimate with each of the four control groups, simple and trend-adjusted",
-            pc("mart_toll_effect", "control_group", displayName="Control group"),
+            pc("mart_toll_effect", "control_label", displayName="Control group"),
             [pm("mart_toll_effect", "Effect 2025 with this control"), pm("mart_toll_effect", "Trend-adjusted, 2025")],
             color=C["steel"], legend=True)
     p.chart("speed_by_hour", 648, 492, 616, 196, "lineChart",
@@ -353,30 +369,32 @@ def build_pages(definition: Path) -> list[str]:
     # Page 2: the business view
     q = Page(pages, "taxi_activity", "Taxi activity")
     q.title("NYC yellow taxi activity", "Trips, revenue and congestion fees, by month and by relation to the toll zone")
-    q.slicer("year_filter", 1064, 14, 200, 50, "dim_date", "year", "Year")
-    q.card("kpi_trips", 16, 80, 302, "fct_trips_hourly", "Total trips", "Number of valid trips")
-    q.card("kpi_revenue", 330, 80, 302, "fct_trips_hourly", "Revenue", "Total amount paid by passengers")
-    q.card("kpi_fare", 644, 80, 302, "fct_trips_hourly", "Average fare", "Average metered fare per trip")
-    q.card("kpi_fees", 958, 80, 306, "fct_trips_hourly", "Congestion fees paid",
+    q.slicer("year_filter", 1064, 10, 200, 56, "dim_date", "year", "Year")
+    q.card("kpi_trips", 16, 84, 302, "fct_trips_hourly", "Total trips", "Number of valid trips")
+    q.card("kpi_revenue", 330, 84, 302, "fct_trips_hourly", "Revenue", "Total amount paid by passengers")
+    q.card("kpi_fare", 644, 84, 302, "fct_trips_hourly", "Average fare", "Average metered fare per trip")
+    q.card("kpi_fees", 958, 84, 306, "fct_trips_hourly", "Congestion fees paid",
            "Congestion fees paid by taxi passengers", C["orange"])
-    q.chart("trips_by_month", 16, 180, 820, 300, "columnChart", "Trips per month by relation to the toll zone",
+    q.chart("trips_by_month", 16, 184, 820, 296, "columnChart", "Trips per month by relation to the toll zone",
             "Monthly trips stacked by segment",
-            pc("dim_date", "year_month", displayName="Month"), [pm("fct_trips_hourly", "Total trips")],
+            pc("dim_date", "month_start", displayName="Month"), [pm("fct_trips_hourly", "Total trips")],
             series=pc("dim_segment", "segment_label", displayName="Segment"),
-            sort={"field": column_ref("dim_date", "year_month"), "direction": "Ascending"}, labels=False)
-    q.chart("speed_by_segment", 848, 180, 416, 300, "clusteredBarChart", "Average speed by segment (mph)",
-            "Average speed for each segment",
-            pc("dim_segment", "segment_label", displayName="Segment"), [pm("fct_trips_hourly", "Average speed (mph)")],
-            sort={"field": column_ref("dim_segment", "segment_label"), "direction": "Ascending"})
-    q.chart("top_zones", 16, 492, 620, 196, "clusteredBarChart", "Top 10 pickup zones",
+            sort={"field": column_ref("dim_date", "month_start"), "direction": "Ascending"}, labels=False,
+            continuous=True)
+    q.chart("top_zones", 848, 184, 416, 296, "clusteredBarChart", "Top 10 pickup zones (trips)",
             "Ten pickup zones with the most trips",
             pc("dim_zones", "zone_name", displayName="Zone"), [pm("fct_zone_monthly", "Top 10 pickup zones")],
             sort={"field": measure_ref("fct_zone_monthly", "Top 10 pickup zones"), "direction": "Descending"})
-    q.chart("fees_by_month", 648, 492, 444, 196, "columnChart", "Congestion fees paid by taxi passengers, by month",
-            "Monthly congestion fees paid by taxi passengers",
-            pc("dim_date", "year_month", displayName="Month"), [pm("fct_trips_hourly", "Congestion fees paid")],
-            color=C["orange"], sort={"field": column_ref("dim_date", "year_month"), "direction": "Ascending"},
-            labels=False)
+    q.chart("speed_by_segment", 16, 492, 444, 196, "clusteredBarChart", "Average speed by segment (mph)",
+            "Average speed for each segment",
+            pc("dim_segment", "segment_label", displayName="Segment"), [pm("fct_trips_hourly", "Average speed (mph)")],
+            sort={"field": column_ref("dim_segment", "segment_label"), "direction": "Ascending"})
+    q.chart("fees_by_month", 472, 492, 620, 196, "columnChart",
+            "Congestion fees paid by taxi passengers, by month (since 5 Jan 2025)",
+            "Monthly congestion fees paid by taxi passengers since the toll started",
+            pc("dim_date", "month_start", displayName="Month"), [pm("fct_trips_hourly", "Congestion fees (since the toll)")],
+            color=C["orange"], sort={"field": column_ref("dim_date", "month_start"), "direction": "Ascending"},
+            labels=False, continuous=True)
     q.card("kpi_quality", 1104, 492, 160, "mart_data_quality", "Rows kept after checks",
            "Share of raw rows kept after the quality checks", C["grey"], "18D", h=196)
     q.footer(SOURCE_NOTE)

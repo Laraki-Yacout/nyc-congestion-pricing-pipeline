@@ -1,1413 +1,6 @@
 {
-  "compatibilityLevel": 1567,
+  "compatibilityLevel": 1606,
   "model": {
-    "culture": "en-US",
-    "defaultPowerBIDataSourceVersion": "powerBI_V3",
-    "sourceQueryCulture": "en-US",
-    "dataAccessOptions": {
-      "legacyRedirects": true,
-      "returnErrorValuesAsNull": true
-    },
-    "tables": [
-      {
-        "name": "fct_trips_hourly",
-        "columns": [
-          {
-            "name": "pickup_date",
-            "dataType": "dateTime",
-            "sourceColumn": "pickup_date",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "formatString": "yyyy-mm-dd",
-            "isHidden": true
-          },
-          {
-            "name": "pickup_hour",
-            "dataType": "int64",
-            "sourceColumn": "pickup_hour",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "segment",
-            "dataType": "string",
-            "sourceColumn": "segment",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "isHidden": true
-          },
-          {
-            "name": "toll_period",
-            "dataType": "string",
-            "sourceColumn": "toll_period",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "trips",
-            "dataType": "int64",
-            "sourceColumn": "trips",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "isHidden": true
-          },
-          {
-            "name": "distance_mi",
-            "dataType": "double",
-            "sourceColumn": "distance_mi",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "isHidden": true
-          },
-          {
-            "name": "duration_min",
-            "dataType": "double",
-            "sourceColumn": "duration_min",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "isHidden": true
-          },
-          {
-            "name": "fare_amount",
-            "dataType": "double",
-            "sourceColumn": "fare_amount",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "isHidden": true
-          },
-          {
-            "name": "tip_amount",
-            "dataType": "double",
-            "sourceColumn": "tip_amount",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "isHidden": true
-          },
-          {
-            "name": "total_amount",
-            "dataType": "double",
-            "sourceColumn": "total_amount",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "isHidden": true
-          },
-          {
-            "name": "cbd_fee",
-            "dataType": "double",
-            "sourceColumn": "cbd_fee",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "isHidden": true
-          }
-        ],
-        "partitions": [
-          {
-            "name": "fct_trips_hourly",
-            "mode": "import",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = Csv.Document(Web.Contents(SourceUrl, [RelativePath = \"fct_trips_hourly.csv\"]),",
-                "        [Delimiter = \",\", Columns = 11, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
-                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
-                "    EmptyAsNull = Table.TransformColumns(Headers, {}, each if _ = \"\" then null else _),",
-                "    Typed = Table.TransformColumnTypes(EmptyAsNull, {{\"pickup_date\", type date}, {\"pickup_hour\", Int64.Type}, {\"segment\", type text}, {\"toll_period\", type text}, {\"trips\", Int64.Type}, {\"distance_mi\", type number}, {\"duration_min\", type number}, {\"fare_amount\", type number}, {\"tip_amount\", type number}, {\"total_amount\", type number}, {\"cbd_fee\", type number}}, \"en-US\")",
-                "in",
-                "    Typed"
-              ]
-            }
-          }
-        ],
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
-          }
-        ],
-        "measures": [
-          {
-            "name": "Total trips",
-            "expression": "SUM(fct_trips_hourly[trips])",
-            "formatString": "#,0"
-          },
-          {
-            "name": "Revenue",
-            "expression": "SUM(fct_trips_hourly[total_amount])",
-            "formatString": "\"$\"#,0"
-          },
-          {
-            "name": "Average fare",
-            "expression": "DIVIDE(SUM(fct_trips_hourly[fare_amount]), [Total trips])",
-            "formatString": "\"$\"#,0.00"
-          },
-          {
-            "name": "Average speed (mph)",
-            "expression": "DIVIDE(SUM(fct_trips_hourly[distance_mi]), SUM(fct_trips_hourly[duration_min]) / 60)",
-            "formatString": "0.0"
-          },
-          {
-            "name": "Average trip time (min)",
-            "expression": "DIVIDE(SUM(fct_trips_hourly[duration_min]), [Total trips])",
-            "formatString": "0.0"
-          },
-          {
-            "name": "Congestion fees paid",
-            "expression": "SUM(fct_trips_hourly[cbd_fee])",
-            "formatString": "\"$\"#,0"
-          },
-          {
-            "name": "Trips vs previous year",
-            "expression": [
-              "VAR Previous = CALCULATE([Total trips], DATEADD(dim_date[date], -1, YEAR))",
-              "RETURN DIVIDE([Total trips] - Previous, Previous)"
-            ],
-            "formatString": "+0.0%;-0.0%;0.0%"
-          },
-          {
-            "name": "Data up to",
-            "expression": "FORMAT(CALCULATE(MAX(fct_trips_hourly[pickup_date]), ALL(fct_trips_hourly)), \"mmm yyyy\")"
-          }
-        ]
-      },
-      {
-        "name": "fct_zone_monthly",
-        "columns": [
-          {
-            "name": "month_start",
-            "dataType": "dateTime",
-            "sourceColumn": "month_start",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "formatString": "yyyy-mm-dd",
-            "isHidden": true
-          },
-          {
-            "name": "zone_id",
-            "dataType": "int64",
-            "sourceColumn": "zone_id",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "isHidden": true
-          },
-          {
-            "name": "trips",
-            "dataType": "int64",
-            "sourceColumn": "trips",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "isHidden": true
-          },
-          {
-            "name": "distance_mi",
-            "dataType": "double",
-            "sourceColumn": "distance_mi",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "isHidden": true
-          },
-          {
-            "name": "duration_min",
-            "dataType": "double",
-            "sourceColumn": "duration_min",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "isHidden": true
-          },
-          {
-            "name": "total_amount",
-            "dataType": "double",
-            "sourceColumn": "total_amount",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "isHidden": true
-          },
-          {
-            "name": "cbd_fee",
-            "dataType": "double",
-            "sourceColumn": "cbd_fee",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "isHidden": true
-          }
-        ],
-        "partitions": [
-          {
-            "name": "fct_zone_monthly",
-            "mode": "import",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = Csv.Document(Web.Contents(SourceUrl, [RelativePath = \"fct_zone_monthly.csv\"]),",
-                "        [Delimiter = \",\", Columns = 7, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
-                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
-                "    EmptyAsNull = Table.TransformColumns(Headers, {}, each if _ = \"\" then null else _),",
-                "    Typed = Table.TransformColumnTypes(EmptyAsNull, {{\"month_start\", type date}, {\"zone_id\", Int64.Type}, {\"trips\", Int64.Type}, {\"distance_mi\", type number}, {\"duration_min\", type number}, {\"total_amount\", type number}, {\"cbd_fee\", type number}}, \"en-US\")",
-                "in",
-                "    Typed"
-              ]
-            }
-          }
-        ],
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
-          }
-        ],
-        "measures": [
-          {
-            "name": "Zone trips",
-            "expression": "SUM(fct_zone_monthly[trips])",
-            "formatString": "#,0"
-          },
-          {
-            "name": "Top 10 pickup zones",
-            "expression": [
-              "VAR ZoneRank = RANKX(ALLSELECTED(dim_zones[zone_name]), [Zone trips], , DESC, Skip)",
-              "RETURN IF(NOT ISBLANK([Zone trips]) && ZoneRank <= 10, [Zone trips])"
-            ],
-            "formatString": "#,0"
-          }
-        ]
-      },
-      {
-        "name": "dim_date",
-        "columns": [
-          {
-            "name": "date",
-            "dataType": "dateTime",
-            "sourceColumn": "date",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "formatString": "yyyy-mm-dd",
-            "isKey": true
-          },
-          {
-            "name": "year",
-            "dataType": "int64",
-            "sourceColumn": "year",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "month",
-            "dataType": "int64",
-            "sourceColumn": "month",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "isHidden": true
-          },
-          {
-            "name": "year_month",
-            "dataType": "string",
-            "sourceColumn": "year_month",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "month_name",
-            "dataType": "string",
-            "sourceColumn": "month_name",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "iso_dow",
-            "dataType": "int64",
-            "sourceColumn": "iso_dow",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "isHidden": true
-          },
-          {
-            "name": "day_name",
-            "dataType": "string",
-            "sourceColumn": "day_name",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "is_weekend",
-            "dataType": "boolean",
-            "sourceColumn": "is_weekend",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "is_after_toll",
-            "dataType": "boolean",
-            "sourceColumn": "is_after_toll",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          }
-        ],
-        "partitions": [
-          {
-            "name": "dim_date",
-            "mode": "import",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = Csv.Document(Web.Contents(SourceUrl, [RelativePath = \"dim_date.csv\"]),",
-                "        [Delimiter = \",\", Columns = 9, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
-                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
-                "    EmptyAsNull = Table.TransformColumns(Headers, {}, each if _ = \"\" then null else _),",
-                "    Typed = Table.TransformColumnTypes(EmptyAsNull, {{\"date\", type date}, {\"year\", Int64.Type}, {\"month\", Int64.Type}, {\"year_month\", type text}, {\"month_name\", type text}, {\"iso_dow\", Int64.Type}, {\"day_name\", type text}, {\"is_weekend\", type logical}, {\"is_after_toll\", type logical}}, \"en-US\")",
-                "in",
-                "    Typed"
-              ]
-            }
-          }
-        ],
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
-          }
-        ],
-        "dataCategory": "Time"
-      },
-      {
-        "name": "dim_zones",
-        "columns": [
-          {
-            "name": "zone_id",
-            "dataType": "int64",
-            "sourceColumn": "zone_id",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "borough",
-            "dataType": "string",
-            "sourceColumn": "borough",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "zone_name",
-            "dataType": "string",
-            "sourceColumn": "zone_name",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "service_zone",
-            "dataType": "string",
-            "sourceColumn": "service_zone",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "trips_from_after_toll",
-            "dataType": "int64",
-            "sourceColumn": "trips_from_after_toll",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "trips_to_after_toll",
-            "dataType": "int64",
-            "sourceColumn": "trips_to_after_toll",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "share_charged_from",
-            "dataType": "double",
-            "sourceColumn": "share_charged_from",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "formatString": "0.0%"
-          },
-          {
-            "name": "share_charged_to",
-            "dataType": "double",
-            "sourceColumn": "share_charged_to",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "formatString": "0.0%"
-          },
-          {
-            "name": "is_crz",
-            "dataType": "boolean",
-            "sourceColumn": "is_crz",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          }
-        ],
-        "partitions": [
-          {
-            "name": "dim_zones",
-            "mode": "import",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = Csv.Document(Web.Contents(SourceUrl, [RelativePath = \"dim_zones.csv\"]),",
-                "        [Delimiter = \",\", Columns = 9, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
-                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
-                "    EmptyAsNull = Table.TransformColumns(Headers, {}, each if _ = \"\" then null else _),",
-                "    Typed = Table.TransformColumnTypes(EmptyAsNull, {{\"zone_id\", Int64.Type}, {\"borough\", type text}, {\"zone_name\", type text}, {\"service_zone\", type text}, {\"trips_from_after_toll\", Int64.Type}, {\"trips_to_after_toll\", Int64.Type}, {\"share_charged_from\", type number}, {\"share_charged_to\", type number}, {\"is_crz\", type logical}}, \"en-US\")",
-                "in",
-                "    Typed"
-              ]
-            }
-          }
-        ],
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
-          }
-        ]
-      },
-      {
-        "name": "mart_toll_effect",
-        "columns": [
-          {
-            "name": "comparison",
-            "dataType": "string",
-            "sourceColumn": "comparison",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "method",
-            "dataType": "string",
-            "sourceColumn": "method",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "scope",
-            "dataType": "string",
-            "sourceColumn": "scope",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "segment",
-            "dataType": "string",
-            "sourceColumn": "segment",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "control_group",
-            "dataType": "string",
-            "sourceColumn": "control_group",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "is_main_estimate",
-            "dataType": "boolean",
-            "sourceColumn": "is_main_estimate",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "months_compared",
-            "dataType": "int64",
-            "sourceColumn": "months_compared",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "treated_days",
-            "dataType": "int64",
-            "sourceColumn": "treated_days",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "baseline_days",
-            "dataType": "int64",
-            "sourceColumn": "baseline_days",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "speed_effect_pct",
-            "dataType": "double",
-            "sourceColumn": "speed_effect_pct",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "formatString": "0.0%"
-          },
-          {
-            "name": "ci95_low_pct",
-            "dataType": "double",
-            "sourceColumn": "ci95_low_pct",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "formatString": "0.0%"
-          },
-          {
-            "name": "ci95_high_pct",
-            "dataType": "double",
-            "sourceColumn": "ci95_high_pct",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "formatString": "0.0%"
-          },
-          {
-            "name": "is_significant",
-            "dataType": "boolean",
-            "sourceColumn": "is_significant",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          }
-        ],
-        "partitions": [
-          {
-            "name": "mart_toll_effect",
-            "mode": "import",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = Csv.Document(Web.Contents(SourceUrl, [RelativePath = \"mart_toll_effect.csv\"]),",
-                "        [Delimiter = \",\", Columns = 13, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
-                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
-                "    EmptyAsNull = Table.TransformColumns(Headers, {}, each if _ = \"\" then null else _),",
-                "    Typed = Table.TransformColumnTypes(EmptyAsNull, {{\"comparison\", type text}, {\"method\", type text}, {\"scope\", type text}, {\"segment\", type text}, {\"control_group\", type text}, {\"is_main_estimate\", type logical}, {\"months_compared\", Int64.Type}, {\"treated_days\", Int64.Type}, {\"baseline_days\", Int64.Type}, {\"speed_effect_pct\", type number}, {\"ci95_low_pct\", type number}, {\"ci95_high_pct\", type number}, {\"is_significant\", type logical}}, \"en-US\")",
-                "in",
-                "    Typed"
-              ]
-            }
-          }
-        ],
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
-          }
-        ],
-        "measures": [
-          {
-            "name": "Speed gain in the zone, 2025",
-            "expression": [
-              "CALCULATE(",
-              "    AVERAGE(mart_toll_effect[speed_effect_pct]),",
-              "    mart_toll_effect[segment] = \"within_zone\",",
-              "    mart_toll_effect[comparison] = \"2025 vs 2024\",",
-              "    mart_toll_effect[scope] = \"all hours\",",
-              "    mart_toll_effect[is_main_estimate] = TRUE()",
-              ")"
-            ],
-            "formatString": "+0.0%;-0.0%;0.0%"
-          },
-          {
-            "name": "Peak hours, 2025",
-            "expression": [
-              "CALCULATE(",
-              "    AVERAGE(mart_toll_effect[speed_effect_pct]),",
-              "    mart_toll_effect[segment] = \"within_zone\",",
-              "    mart_toll_effect[comparison] = \"2025 vs 2024\",",
-              "    mart_toll_effect[scope] = \"peak hours\",",
-              "    mart_toll_effect[is_main_estimate] = TRUE()",
-              ")"
-            ],
-            "formatString": "+0.0%;-0.0%;0.0%"
-          },
-          {
-            "name": "2026 so far",
-            "expression": [
-              "CALCULATE(",
-              "    AVERAGE(mart_toll_effect[speed_effect_pct]),",
-              "    mart_toll_effect[segment] = \"within_zone\",",
-              "    mart_toll_effect[comparison] = \"2026 vs 2024\",",
-              "    mart_toll_effect[scope] = \"all hours\",",
-              "    mart_toll_effect[is_main_estimate] = TRUE()",
-              ")"
-            ],
-            "formatString": "+0.0%;-0.0%;0.0%"
-          },
-          {
-            "name": "Placebo, 2024 vs 2023",
-            "expression": [
-              "CALCULATE(",
-              "    AVERAGE(mart_toll_effect[speed_effect_pct]),",
-              "    mart_toll_effect[segment] = \"within_zone\",",
-              "    mart_toll_effect[comparison] = \"placebo: 2024 vs 2023\",",
-              "    mart_toll_effect[scope] = \"all hours\",",
-              "    mart_toll_effect[is_main_estimate] = TRUE()",
-              ")"
-            ],
-            "formatString": "+0.0%;-0.0%;0.0%"
-          },
-          {
-            "name": "Effect 2025 vs 2024",
-            "expression": [
-              "CALCULATE(",
-              "    AVERAGE(mart_toll_effect[speed_effect_pct]),",
-              "    mart_toll_effect[segment] = \"within_zone\",",
-              "    mart_toll_effect[comparison] = \"2025 vs 2024\",",
-              "    mart_toll_effect[is_main_estimate] = TRUE()",
-              ")"
-            ],
-            "formatString": "+0.0%;-0.0%;0.0%"
-          },
-          {
-            "name": "Effect 2025 with this control",
-            "expression": [
-              "CALCULATE(",
-              "    AVERAGE(mart_toll_effect[speed_effect_pct]),",
-              "    mart_toll_effect[segment] = \"within_zone\",",
-              "    mart_toll_effect[comparison] = \"2025 vs 2024\",",
-              "    mart_toll_effect[scope] = \"all hours\"",
-              ")"
-            ],
-            "formatString": "+0.0%;-0.0%;0.0%"
-          },
-          {
-            "name": "Trend-adjusted, 2025",
-            "expression": [
-              "CALCULATE(",
-              "    AVERAGE(mart_toll_effect[speed_effect_pct]),",
-              "    mart_toll_effect[segment] = \"within_zone\",",
-              "    mart_toll_effect[comparison] = \"2025 vs 2024, trend-adjusted\",",
-              "    mart_toll_effect[scope] = \"all hours\"",
-              ")"
-            ],
-            "formatString": "+0.0%;-0.0%;0.0%"
-          }
-        ]
-      },
-      {
-        "name": "mart_toll_effect_monthly",
-        "columns": [
-          {
-            "name": "month_start",
-            "dataType": "dateTime",
-            "sourceColumn": "month_start",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "formatString": "yyyy-mm-dd"
-          },
-          {
-            "name": "segment",
-            "dataType": "string",
-            "sourceColumn": "segment",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "control_group",
-            "dataType": "string",
-            "sourceColumn": "control_group",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "trips",
-            "dataType": "int64",
-            "sourceColumn": "trips",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "speed_mph",
-            "dataType": "double",
-            "sourceColumn": "speed_mph",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "control_speed_mph",
-            "dataType": "double",
-            "sourceColumn": "control_speed_mph",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "speed_ratio",
-            "dataType": "double",
-            "sourceColumn": "speed_ratio",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "formatString": "0.0%"
-          },
-          {
-            "name": "baseline_year",
-            "dataType": "int64",
-            "sourceColumn": "baseline_year",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "baseline_speed_ratio",
-            "dataType": "double",
-            "sourceColumn": "baseline_speed_ratio",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "speed_effect_pct",
-            "dataType": "double",
-            "sourceColumn": "speed_effect_pct",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "formatString": "0.0%"
-          },
-          {
-            "name": "trips_change_pct",
-            "dataType": "double",
-            "sourceColumn": "trips_change_pct",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "formatString": "0.0%"
-          },
-          {
-            "name": "period",
-            "dataType": "string",
-            "sourceColumn": "period",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          }
-        ],
-        "partitions": [
-          {
-            "name": "mart_toll_effect_monthly",
-            "mode": "import",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = Csv.Document(Web.Contents(SourceUrl, [RelativePath = \"mart_toll_effect_monthly.csv\"]),",
-                "        [Delimiter = \",\", Columns = 12, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
-                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
-                "    EmptyAsNull = Table.TransformColumns(Headers, {}, each if _ = \"\" then null else _),",
-                "    Typed = Table.TransformColumnTypes(EmptyAsNull, {{\"month_start\", type date}, {\"segment\", type text}, {\"control_group\", type text}, {\"trips\", Int64.Type}, {\"speed_mph\", type number}, {\"control_speed_mph\", type number}, {\"speed_ratio\", type number}, {\"baseline_year\", Int64.Type}, {\"baseline_speed_ratio\", type number}, {\"speed_effect_pct\", type number}, {\"trips_change_pct\", type number}, {\"period\", type text}}, \"en-US\")",
-                "in",
-                "    Typed"
-              ]
-            }
-          }
-        ],
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
-          }
-        ],
-        "measures": [
-          {
-            "name": "Zone speed vs rest of city",
-            "expression": "CALCULATE(AVERAGE(mart_toll_effect_monthly[speed_ratio]), mart_toll_effect_monthly[segment] = \"within_zone\")",
-            "formatString": "0.0%"
-          }
-        ]
-      },
-      {
-        "name": "mart_speed_by_hour",
-        "columns": [
-          {
-            "name": "year",
-            "dataType": "int64",
-            "sourceColumn": "year",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "day_type",
-            "dataType": "string",
-            "sourceColumn": "day_type",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "pickup_hour",
-            "dataType": "int64",
-            "sourceColumn": "pickup_hour",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "segment",
-            "dataType": "string",
-            "sourceColumn": "segment",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "trips",
-            "dataType": "int64",
-            "sourceColumn": "trips",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "speed_mph",
-            "dataType": "double",
-            "sourceColumn": "speed_mph",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          }
-        ],
-        "partitions": [
-          {
-            "name": "mart_speed_by_hour",
-            "mode": "import",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = Csv.Document(Web.Contents(SourceUrl, [RelativePath = \"mart_speed_by_hour.csv\"]),",
-                "        [Delimiter = \",\", Columns = 6, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
-                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
-                "    EmptyAsNull = Table.TransformColumns(Headers, {}, each if _ = \"\" then null else _),",
-                "    Typed = Table.TransformColumnTypes(EmptyAsNull, {{\"year\", Int64.Type}, {\"day_type\", type text}, {\"pickup_hour\", Int64.Type}, {\"segment\", type text}, {\"trips\", Int64.Type}, {\"speed_mph\", type number}}, \"en-US\")",
-                "in",
-                "    Typed"
-              ]
-            }
-          }
-        ],
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
-          }
-        ],
-        "measures": [
-          {
-            "name": "Weekday speed in the zone (mph)",
-            "expression": [
-              "CALCULATE(",
-              "    AVERAGE(mart_speed_by_hour[speed_mph]),",
-              "    mart_speed_by_hour[segment] = \"within_zone\",",
-              "    mart_speed_by_hour[day_type] = \"weekday\",",
-              "    KEEPFILTERS(mart_speed_by_hour[year] IN {2024, 2025})",
-              ")"
-            ],
-            "formatString": "0.0"
-          }
-        ]
-      },
-      {
-        "name": "mart_data_quality",
-        "columns": [
-          {
-            "name": "file_month",
-            "dataType": "dateTime",
-            "sourceColumn": "file_month",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "formatString": "yyyy-mm-dd"
-          },
-          {
-            "name": "status",
-            "dataType": "string",
-            "sourceColumn": "status",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          },
-          {
-            "name": "trips",
-            "dataType": "int64",
-            "sourceColumn": "trips",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ]
-          }
-        ],
-        "partitions": [
-          {
-            "name": "mart_data_quality",
-            "mode": "import",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = Csv.Document(Web.Contents(SourceUrl, [RelativePath = \"mart_data_quality.csv\"]),",
-                "        [Delimiter = \",\", Columns = 3, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
-                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
-                "    EmptyAsNull = Table.TransformColumns(Headers, {}, each if _ = \"\" then null else _),",
-                "    Typed = Table.TransformColumnTypes(EmptyAsNull, {{\"file_month\", type date}, {\"status\", type text}, {\"trips\", Int64.Type}}, \"en-US\")",
-                "in",
-                "    Typed"
-              ]
-            }
-          }
-        ],
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
-          }
-        ],
-        "measures": [
-          {
-            "name": "Rows kept after checks",
-            "expression": "DIVIDE(CALCULATE(SUM(mart_data_quality[trips]), mart_data_quality[status] = \"kept\"), SUM(mart_data_quality[trips]))",
-            "formatString": "0.0%"
-          }
-        ]
-      },
-      {
-        "name": "dim_segment",
-        "columns": [
-          {
-            "name": "segment",
-            "dataType": "string",
-            "sourceColumn": "segment",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "isHidden": true
-          },
-          {
-            "name": "segment_label",
-            "dataType": "string",
-            "sourceColumn": "segment_label",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "sortByColumn": "sort_order"
-          },
-          {
-            "name": "sort_order",
-            "dataType": "int64",
-            "sourceColumn": "sort_order",
-            "summarizeBy": "none",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "isHidden": true
-          }
-        ],
-        "partitions": [
-          {
-            "name": "dim_segment",
-            "mode": "import",
-            "source": {
-              "type": "m",
-              "expression": [
-                "let",
-                "    Source = #table(type table [segment = text, segment_label = text, sort_order = Int64.Type], {{\"within_zone\", \"Within the zone\", 1}, {\"into_zone\", \"Into the zone\", 2}, {\"out_of_zone\", \"Out of the zone\", 3}, {\"outside_zone\", \"Outside the zone\", 4}})",
-                "in",
-                "    Source"
-              ]
-            }
-          }
-        ],
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
-          }
-        ]
-      }
-    ],
-    "relationships": [
-      {
-        "name": "524656e3-ca0e-518b-b886-d0093d21db33",
-        "fromTable": "fct_trips_hourly",
-        "fromColumn": "pickup_date",
-        "toTable": "dim_date",
-        "toColumn": "date"
-      },
-      {
-        "name": "8a436399-4547-5de0-beca-c74e1b8d971b",
-        "fromTable": "fct_trips_hourly",
-        "fromColumn": "segment",
-        "toTable": "dim_segment",
-        "toColumn": "segment"
-      },
-      {
-        "name": "c4c48b2b-bbe6-5261-9524-37f2000b3098",
-        "fromTable": "fct_zone_monthly",
-        "fromColumn": "month_start",
-        "toTable": "dim_date",
-        "toColumn": "date"
-      },
-      {
-        "name": "001fcb78-9e04-5a15-8cde-94625dd99b09",
-        "fromTable": "fct_zone_monthly",
-        "fromColumn": "zone_id",
-        "toTable": "dim_zones",
-        "toColumn": "zone_id"
-      }
-    ],
-    "expressions": [
-      {
-        "name": "SourceUrl",
-        "kind": "m",
-        "expression": "\"https://raw.githubusercontent.com/Laraki-Yacout/nyc-congestion-pricing-pipeline/main/exports/\" meta [IsParameterQuery=true, Type=\"Text\", IsParameterQueryRequired=true]",
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Text"
-          }
-        ]
-      }
-    ],
     "annotations": [
       {
         "name": "PBI_ProTooling",
@@ -1420,6 +13,1771 @@
       {
         "name": "PBI_QueryOrder",
         "value": "[\"SourceUrl\", \"fct_trips_hourly\", \"fct_zone_monthly\", \"dim_date\", \"dim_zones\", \"mart_toll_effect\", \"mart_toll_effect_monthly\", \"mart_speed_by_hour\", \"mart_data_quality\", \"dim_segment\"]"
+      }
+    ],
+    "culture": "en-US",
+    "cultures": [
+      {
+        "name": "en-US",
+        "linguisticMetadata": {
+          "content": {
+            "Entities": {
+              "dim_date.month_start": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "dim_date",
+                    "ConceptualProperty": "month_start"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Month": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "dim_date.year": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "dim_date",
+                    "ConceptualProperty": "year"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Year": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "dim_segment.segment_label": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "dim_segment",
+                    "ConceptualProperty": "segment_label"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Segment": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "dim_zones.zone_name": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "dim_zones",
+                    "ConceptualProperty": "zone_name"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Zone": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "mart_speed_by_hour.pickup_hour": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "mart_speed_by_hour",
+                    "ConceptualProperty": "pickup_hour"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Hour": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "mart_speed_by_hour.year": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "mart_speed_by_hour",
+                    "ConceptualProperty": "year"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Year": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "mart_toll_effect.control_label": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "mart_toll_effect",
+                    "ConceptualProperty": "control_label"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Control group": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "mart_toll_effect.scope": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "mart_toll_effect",
+                    "ConceptualProperty": "scope"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Time of day": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "mart_toll_effect_monthly.month_start": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "mart_toll_effect_monthly",
+                    "ConceptualProperty": "month_start"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Month": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              }
+            },
+            "Language": "en-US",
+            "Version": "2.0.0"
+          },
+          "contentType": "json"
+        }
+      }
+    ],
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "expressions": [
+      {
+        "name": "SourceUrl",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Text"
+          }
+        ],
+        "expression": "\"https://raw.githubusercontent.com/Laraki-Yacout/nyc-congestion-pricing-pipeline/main/exports/\" meta [IsParameterQuery=true, Type=\"Text\", IsParameterQueryRequired=true]",
+        "kind": "m",
+        "lineageTag": "df3f652c-4617-4c1d-9f66-9b5c72ccad28"
+      }
+    ],
+    "relationships": [
+      {
+        "name": "524656e3-ca0e-518b-b886-d0093d21db33",
+        "fromColumn": "pickup_date",
+        "fromTable": "fct_trips_hourly",
+        "toColumn": "date",
+        "toTable": "dim_date"
+      },
+      {
+        "name": "8a436399-4547-5de0-beca-c74e1b8d971b",
+        "fromColumn": "segment",
+        "fromTable": "fct_trips_hourly",
+        "toColumn": "segment",
+        "toTable": "dim_segment"
+      },
+      {
+        "name": "c4c48b2b-bbe6-5261-9524-37f2000b3098",
+        "fromColumn": "month_start",
+        "fromTable": "fct_zone_monthly",
+        "toColumn": "date",
+        "toTable": "dim_date"
+      },
+      {
+        "name": "001fcb78-9e04-5a15-8cde-94625dd99b09",
+        "fromColumn": "zone_id",
+        "fromTable": "fct_zone_monthly",
+        "toColumn": "zone_id",
+        "toTable": "dim_zones"
+      }
+    ],
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "fct_trips_hourly",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "pickup_date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "yyyy-mm-dd",
+            "isHidden": true,
+            "lineageTag": "7d8aaf05-d3de-4d54-9e5f-8e9d2fa783aa",
+            "sourceColumn": "pickup_date",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "pickup_hour",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "lineageTag": "8d060d1b-7459-4e01-8ae4-9028ba1fd492",
+            "sourceColumn": "pickup_hour",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "segment",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isHidden": true,
+            "lineageTag": "18ccca71-b266-4185-afe1-31302d82b091",
+            "sourceColumn": "segment",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "toll_period",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c66b342e-c11c-4eff-81dc-89420d2ce929",
+            "sourceColumn": "toll_period",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "trips",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "isHidden": true,
+            "lineageTag": "1e2317a5-a1c5-498c-b08f-16f45dd28456",
+            "sourceColumn": "trips",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "distance_mi",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "45447353-d570-421c-95c7-e192a32feb04",
+            "sourceColumn": "distance_mi",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "duration_min",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "fd50e6e9-1cfb-4318-843e-c0aebd4d6b1e",
+            "sourceColumn": "duration_min",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "fare_amount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "736d22ba-f7e1-4934-9f7a-43da9d6a1dc8",
+            "sourceColumn": "fare_amount",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "tip_amount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "55adee86-312f-4d18-9711-7d55f847ba1d",
+            "sourceColumn": "tip_amount",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "total_amount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "03be2c27-187b-4ece-9798-1ad257816159",
+            "sourceColumn": "total_amount",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "cbd_fee",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "f272256e-afb3-4320-9682-717e9cbd8cf6",
+            "sourceColumn": "cbd_fee",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "003307c2-4e9b-48dd-9ba6-2cfc710b063b",
+        "measures": [
+          {
+            "name": "Total trips",
+            "expression": "SUM(fct_trips_hourly[trips])",
+            "formatString": "#,0",
+            "lineageTag": "4c73b167-0ddc-4314-a431-f18fa6222edf"
+          },
+          {
+            "name": "Revenue",
+            "expression": "SUM(fct_trips_hourly[total_amount])",
+            "formatString": "\"$\"#,0",
+            "lineageTag": "a83d95af-0eeb-4977-aa4e-a8a8b1edbfcb"
+          },
+          {
+            "name": "Average fare",
+            "expression": "DIVIDE(SUM(fct_trips_hourly[fare_amount]), [Total trips])",
+            "formatString": "\"$\"#,0.00",
+            "lineageTag": "aa197b33-8db5-4c3e-9352-87e34382ab20"
+          },
+          {
+            "name": "Average speed (mph)",
+            "expression": "DIVIDE(SUM(fct_trips_hourly[distance_mi]), SUM(fct_trips_hourly[duration_min]) / 60)",
+            "formatString": "0.0",
+            "lineageTag": "aeb5c63c-427c-4358-a47a-08a74bdec5db"
+          },
+          {
+            "name": "Average trip time (min)",
+            "expression": "DIVIDE(SUM(fct_trips_hourly[duration_min]), [Total trips])",
+            "formatString": "0.0",
+            "lineageTag": "ffa75fde-301c-4d52-8e90-c83c331c4588"
+          },
+          {
+            "name": "Congestion fees paid",
+            "expression": "SUM(fct_trips_hourly[cbd_fee])",
+            "formatString": "\"$\"#,0",
+            "lineageTag": "5cafbd02-4892-4d33-aa9a-afdab6b2f28f"
+          },
+          {
+            "name": "Congestion fees (since the toll)",
+            "expression": [
+              "VAR Fees = [Congestion fees paid]",
+              "RETURN IF(Fees > 0, Fees)"
+            ],
+            "formatString": "\"$\"#,0",
+            "lineageTag": "2bd790d8-cef3-49f0-9d1f-8db8f079bf1d"
+          },
+          {
+            "name": "Trips vs previous year",
+            "expression": [
+              "VAR Previous = CALCULATE([Total trips], DATEADD(dim_date[date], -1, YEAR))",
+              "RETURN DIVIDE([Total trips] - Previous, Previous)"
+            ],
+            "formatString": "+0.0%;-0.0%;0.0%",
+            "lineageTag": "94c779ff-1213-472d-b4bc-6d217ca471d7"
+          },
+          {
+            "name": "Data up to",
+            "expression": "FORMAT(CALCULATE(MAX(fct_trips_hourly[pickup_date]), ALL(fct_trips_hourly)), \"mmm yyyy\")",
+            "lineageTag": "8a1b7572-c999-4b8a-9813-0e59581f3578"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "fct_trips_hourly",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(SourceUrl, [RelativePath = \"fct_trips_hourly.csv\"]),",
+                "        [Delimiter = \",\", Columns = 11, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    EmptyAsNull = Table.TransformColumns(Headers, {}, each if _ = \"\" then null else _),",
+                "    Typed = Table.TransformColumnTypes(EmptyAsNull, {{\"pickup_date\", type date}, {\"pickup_hour\", Int64.Type}, {\"segment\", type text}, {\"toll_period\", type text}, {\"trips\", Int64.Type}, {\"distance_mi\", type number}, {\"duration_min\", type number}, {\"fare_amount\", type number}, {\"tip_amount\", type number}, {\"total_amount\", type number}, {\"cbd_fee\", type number}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "fct_zone_monthly",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "month_start",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "yyyy-mm-dd",
+            "isHidden": true,
+            "lineageTag": "ac9c1bbd-e766-44d7-bed8-9bb6a7db90d1",
+            "sourceColumn": "month_start",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "zone_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "isHidden": true,
+            "lineageTag": "db98774e-ba7f-4b60-9f17-5aeb9a3b2ace",
+            "sourceColumn": "zone_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "trips",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "isHidden": true,
+            "lineageTag": "36defb8d-e12a-4b05-9f8d-9ed11569ed44",
+            "sourceColumn": "trips",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "distance_mi",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "f9830aac-90f7-47e1-9a1f-ee87e2d9753b",
+            "sourceColumn": "distance_mi",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "duration_min",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "2f4a0a22-c2d6-4cd8-b794-d4ce77b2aaf9",
+            "sourceColumn": "duration_min",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "total_amount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "f4588458-742f-45a4-9cef-cb3e3207308f",
+            "sourceColumn": "total_amount",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "cbd_fee",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "isHidden": true,
+            "lineageTag": "6bae7272-e468-419c-b071-05d01fbf1f81",
+            "sourceColumn": "cbd_fee",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "4af8a275-61e4-4044-b55f-b4bbe0c4abd6",
+        "measures": [
+          {
+            "name": "Zone trips",
+            "expression": "SUM(fct_zone_monthly[trips])",
+            "formatString": "#,0",
+            "lineageTag": "dee7ceba-a30a-4284-92ef-f0626676150e"
+          },
+          {
+            "name": "Top 10 pickup zones",
+            "expression": [
+              "VAR ZoneRank = RANKX(ALLSELECTED(dim_zones[zone_name]), [Zone trips], , DESC, Skip)",
+              "RETURN IF(NOT ISBLANK([Zone trips]) && ZoneRank <= 10, [Zone trips])"
+            ],
+            "formatString": "#,0",
+            "lineageTag": "f3d6193c-20ca-4c6e-b700-0c89035dc743"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "fct_zone_monthly",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(SourceUrl, [RelativePath = \"fct_zone_monthly.csv\"]),",
+                "        [Delimiter = \",\", Columns = 7, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    EmptyAsNull = Table.TransformColumns(Headers, {}, each if _ = \"\" then null else _),",
+                "    Typed = Table.TransformColumnTypes(EmptyAsNull, {{\"month_start\", type date}, {\"zone_id\", Int64.Type}, {\"trips\", Int64.Type}, {\"distance_mi\", type number}, {\"duration_min\", type number}, {\"total_amount\", type number}, {\"cbd_fee\", type number}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_date",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "yyyy-mm-dd",
+            "isKey": true,
+            "lineageTag": "fd19420d-c534-43e2-b962-b681d7ff7bdf",
+            "sourceColumn": "date",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "lineageTag": "991960e4-8eed-4458-8bc9-76f2e99f4335",
+            "sourceColumn": "year",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "isHidden": true,
+            "lineageTag": "ff748185-b69a-4baf-a8e5-7bbd88147d1c",
+            "sourceColumn": "month",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "year_month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a9e991e1-6d7c-4065-a06c-9d7f11273a37",
+            "sourceColumn": "year_month",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "month_name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "8a44f335-7b54-405a-b23a-9529c53197c4",
+            "sourceColumn": "month_name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "iso_dow",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "isHidden": true,
+            "lineageTag": "775ede05-67db-48c3-a919-6e8fc67e2375",
+            "sourceColumn": "iso_dow",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "day_name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "ee45b41d-af74-4fa2-b5e3-80ec9e9a9355",
+            "sourceColumn": "day_name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "is_weekend",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "boolean",
+            "lineageTag": "7afb3ee6-f093-4ff7-ad4e-0da048666ca0",
+            "sourceColumn": "is_weekend",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "is_after_toll",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "boolean",
+            "lineageTag": "2dedf70e-f19c-498f-b25f-751e09195a15",
+            "sourceColumn": "is_after_toll",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "month_start",
+            "dataType": "dateTime",
+            "expression": "DATE(YEAR(dim_date[date]), MONTH(dim_date[date]), 1)",
+            "formatString": "mmm yyyy",
+            "isHidden": true,
+            "lineageTag": "4bd46c74-1bc4-4cbe-8266-c0eb1be06dc2",
+            "type": "calculated"
+          }
+        ],
+        "dataCategory": "Time",
+        "lineageTag": "3850331d-eb58-4e2c-be12-495b3a549a0b",
+        "partitions": [
+          {
+            "name": "dim_date",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(SourceUrl, [RelativePath = \"dim_date.csv\"]),",
+                "        [Delimiter = \",\", Columns = 9, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    EmptyAsNull = Table.TransformColumns(Headers, {}, each if _ = \"\" then null else _),",
+                "    Typed = Table.TransformColumnTypes(EmptyAsNull, {{\"date\", type date}, {\"year\", Int64.Type}, {\"month\", Int64.Type}, {\"year_month\", type text}, {\"month_name\", type text}, {\"iso_dow\", Int64.Type}, {\"day_name\", type text}, {\"is_weekend\", type logical}, {\"is_after_toll\", type logical}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_zones",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "zone_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "lineageTag": "1ff0a744-8656-4c36-899d-1d6701a00e23",
+            "sourceColumn": "zone_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "borough",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "dec4d36e-9d19-43eb-8929-94bf325aa23b",
+            "sourceColumn": "borough",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "zone_name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "edea20c9-6b49-4122-9c3c-8ed1d6bf3270",
+            "sourceColumn": "zone_name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "service_zone",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "962bc527-f10d-46e4-b6b0-01dee95a05cc",
+            "sourceColumn": "service_zone",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "trips_from_after_toll",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "lineageTag": "e3b7847b-c1e7-4291-84c5-afabe422ebcb",
+            "sourceColumn": "trips_from_after_toll",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "trips_to_after_toll",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "lineageTag": "1f09509c-e572-474e-b5bb-c54252fe8360",
+            "sourceColumn": "trips_to_after_toll",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "share_charged_from",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "formatString": "0.0%",
+            "lineageTag": "a1e235ad-6ce1-4f55-b5cd-dcc1e1be1d32",
+            "sourceColumn": "share_charged_from",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "share_charged_to",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "formatString": "0.0%",
+            "lineageTag": "503059c8-7e35-48e7-9e04-0b1237b185b0",
+            "sourceColumn": "share_charged_to",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "is_crz",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "boolean",
+            "lineageTag": "ec154ac2-e84c-4f40-b648-dae76866bb38",
+            "sourceColumn": "is_crz",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "767ec283-804b-406b-8601-01b7eeb5f15e",
+        "partitions": [
+          {
+            "name": "dim_zones",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(SourceUrl, [RelativePath = \"dim_zones.csv\"]),",
+                "        [Delimiter = \",\", Columns = 9, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    EmptyAsNull = Table.TransformColumns(Headers, {}, each if _ = \"\" then null else _),",
+                "    Typed = Table.TransformColumnTypes(EmptyAsNull, {{\"zone_id\", Int64.Type}, {\"borough\", type text}, {\"zone_name\", type text}, {\"service_zone\", type text}, {\"trips_from_after_toll\", Int64.Type}, {\"trips_to_after_toll\", Int64.Type}, {\"share_charged_from\", type number}, {\"share_charged_to\", type number}, {\"is_crz\", type logical}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "mart_toll_effect",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "comparison",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f5e8f2f3-40dd-475e-a704-47af8655c2fe",
+            "sourceColumn": "comparison",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "method",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "134812be-0c3c-43d1-a781-71ea03e0a922",
+            "sourceColumn": "method",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "scope",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c972b8b1-b3e7-457a-bc27-df8558d05fe7",
+            "sourceColumn": "scope",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "segment",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "fda942f7-8896-47c0-af9f-8b3534b96102",
+            "sourceColumn": "segment",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "control_group",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "53a4d29e-eaf6-40d8-ab45-49f78fc72264",
+            "sourceColumn": "control_group",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "is_main_estimate",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "boolean",
+            "lineageTag": "a23d87b5-d1d0-4fe9-a4d8-132a000967c2",
+            "sourceColumn": "is_main_estimate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "months_compared",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "lineageTag": "36eb505f-edb8-4d30-af30-58d6c54afe52",
+            "sourceColumn": "months_compared",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "treated_days",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "lineageTag": "1cb04aab-797b-423b-940b-931b4441dbb5",
+            "sourceColumn": "treated_days",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "baseline_days",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "lineageTag": "d63f4015-df97-41c2-b458-f0830a0799be",
+            "sourceColumn": "baseline_days",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "speed_effect_pct",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "formatString": "0.0%",
+            "lineageTag": "f0ea5a35-1d7e-42be-8501-6d019e9e20f6",
+            "sourceColumn": "speed_effect_pct",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ci95_low_pct",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "formatString": "0.0%",
+            "lineageTag": "d1f16516-76ab-4a0e-bf32-d1a33117f324",
+            "sourceColumn": "ci95_low_pct",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ci95_high_pct",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "formatString": "0.0%",
+            "lineageTag": "037576fb-ea55-4dc2-bb8e-decefde15014",
+            "sourceColumn": "ci95_high_pct",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "is_significant",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "boolean",
+            "lineageTag": "7ceaa578-9f9c-4fda-8966-9594f686c7cc",
+            "sourceColumn": "is_significant",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "control_label",
+            "dataType": "string",
+            "expression": [
+              "SWITCH(mart_toll_effect[control_group],",
+              "    \"all trips outside the zone\", \"All trips outside\",",
+              "    \"outside the zone, no airport trips\", \"No airport trips\",",
+              "    \"outside the zone, Manhattan only\", \"Manhattan only\",",
+              "    \"outside the zone, trips under 3 miles\", \"Short trips (main)\",",
+              "    mart_toll_effect[control_group])"
+            ],
+            "lineageTag": "fb02a8a9-7765-43d5-b8c3-1043ddbe4fb4",
+            "type": "calculated"
+          }
+        ],
+        "lineageTag": "e4703336-7be1-477f-a28c-2e6b5b7b07c4",
+        "measures": [
+          {
+            "name": "Speed gain in the zone, 2025",
+            "expression": [
+              "CALCULATE(",
+              "    AVERAGE(mart_toll_effect[speed_effect_pct]),",
+              "    mart_toll_effect[segment] = \"within_zone\",",
+              "    mart_toll_effect[comparison] = \"2025 vs 2024\",",
+              "    mart_toll_effect[scope] = \"all hours\",",
+              "    mart_toll_effect[is_main_estimate] = TRUE()",
+              ")"
+            ],
+            "formatString": "+0.0%;-0.0%;0.0%",
+            "lineageTag": "78a76ef6-6be3-4b31-8c87-16a8880299ee"
+          },
+          {
+            "name": "Peak hours, 2025",
+            "expression": [
+              "CALCULATE(",
+              "    AVERAGE(mart_toll_effect[speed_effect_pct]),",
+              "    mart_toll_effect[segment] = \"within_zone\",",
+              "    mart_toll_effect[comparison] = \"2025 vs 2024\",",
+              "    mart_toll_effect[scope] = \"peak hours\",",
+              "    mart_toll_effect[is_main_estimate] = TRUE()",
+              ")"
+            ],
+            "formatString": "+0.0%;-0.0%;0.0%",
+            "lineageTag": "03d8df05-4f60-419e-9af1-7c5c6b032032"
+          },
+          {
+            "name": "2026 so far",
+            "expression": [
+              "CALCULATE(",
+              "    AVERAGE(mart_toll_effect[speed_effect_pct]),",
+              "    mart_toll_effect[segment] = \"within_zone\",",
+              "    mart_toll_effect[comparison] = \"2026 vs 2024\",",
+              "    mart_toll_effect[scope] = \"all hours\",",
+              "    mart_toll_effect[is_main_estimate] = TRUE()",
+              ")"
+            ],
+            "formatString": "+0.0%;-0.0%;0.0%",
+            "lineageTag": "e778009d-1dc9-4653-b346-d2398ffe3a77"
+          },
+          {
+            "name": "Placebo, 2024 vs 2023",
+            "expression": [
+              "CALCULATE(",
+              "    AVERAGE(mart_toll_effect[speed_effect_pct]),",
+              "    mart_toll_effect[segment] = \"within_zone\",",
+              "    mart_toll_effect[comparison] = \"placebo: 2024 vs 2023\",",
+              "    mart_toll_effect[scope] = \"all hours\",",
+              "    mart_toll_effect[is_main_estimate] = TRUE()",
+              ")"
+            ],
+            "formatString": "+0.0%;-0.0%;0.0%",
+            "lineageTag": "98007e87-f209-418a-8adf-5d52b288577b"
+          },
+          {
+            "name": "Effect 2025 vs 2024",
+            "expression": [
+              "CALCULATE(",
+              "    AVERAGE(mart_toll_effect[speed_effect_pct]),",
+              "    mart_toll_effect[segment] = \"within_zone\",",
+              "    mart_toll_effect[comparison] = \"2025 vs 2024\",",
+              "    mart_toll_effect[is_main_estimate] = TRUE()",
+              ")"
+            ],
+            "formatString": "+0.0%;-0.0%;0.0%",
+            "lineageTag": "5033e1d5-4f1e-49df-9414-35473eedfd4e"
+          },
+          {
+            "name": "Effect 2025 with this control",
+            "expression": [
+              "CALCULATE(",
+              "    AVERAGE(mart_toll_effect[speed_effect_pct]),",
+              "    mart_toll_effect[segment] = \"within_zone\",",
+              "    mart_toll_effect[comparison] = \"2025 vs 2024\",",
+              "    mart_toll_effect[scope] = \"all hours\"",
+              ")"
+            ],
+            "formatString": "+0.0%;-0.0%;0.0%",
+            "lineageTag": "beafd14a-c709-48ac-81ff-9e63dee2ad61"
+          },
+          {
+            "name": "Trend-adjusted, 2025",
+            "expression": [
+              "CALCULATE(",
+              "    AVERAGE(mart_toll_effect[speed_effect_pct]),",
+              "    mart_toll_effect[segment] = \"within_zone\",",
+              "    mart_toll_effect[comparison] = \"2025 vs 2024, trend-adjusted\",",
+              "    mart_toll_effect[scope] = \"all hours\"",
+              ")"
+            ],
+            "formatString": "+0.0%;-0.0%;0.0%",
+            "lineageTag": "fab553c3-f7a7-47e4-9416-81ad9b0c17a1"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "mart_toll_effect",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(SourceUrl, [RelativePath = \"mart_toll_effect.csv\"]),",
+                "        [Delimiter = \",\", Columns = 13, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    EmptyAsNull = Table.TransformColumns(Headers, {}, each if _ = \"\" then null else _),",
+                "    Typed = Table.TransformColumnTypes(EmptyAsNull, {{\"comparison\", type text}, {\"method\", type text}, {\"scope\", type text}, {\"segment\", type text}, {\"control_group\", type text}, {\"is_main_estimate\", type logical}, {\"months_compared\", Int64.Type}, {\"treated_days\", Int64.Type}, {\"baseline_days\", Int64.Type}, {\"speed_effect_pct\", type number}, {\"ci95_low_pct\", type number}, {\"ci95_high_pct\", type number}, {\"is_significant\", type logical}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "mart_toll_effect_monthly",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "month_start",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "yyyy-mm-dd",
+            "lineageTag": "e33ea2f1-5a86-4b0a-96be-56ee3b43ab3b",
+            "sourceColumn": "month_start",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "segment",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "69616486-31dc-43ea-8419-31c7007777ca",
+            "sourceColumn": "segment",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "control_group",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "5af407fc-b5ef-4a46-920c-7a8a7e3f00ea",
+            "sourceColumn": "control_group",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "trips",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "lineageTag": "2cbd0170-11c7-4f40-958d-72d1dc44b98e",
+            "sourceColumn": "trips",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "speed_mph",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "f25aea97-ebe5-46c6-959d-da978b24af7a",
+            "sourceColumn": "speed_mph",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "control_speed_mph",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "e3fe04fb-bb84-45b4-a957-3d3e039f11e0",
+            "sourceColumn": "control_speed_mph",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "speed_ratio",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "formatString": "0.0%",
+            "lineageTag": "092b6e15-b991-40f0-9a8e-8ed6ff996e92",
+            "sourceColumn": "speed_ratio",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "baseline_year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "lineageTag": "36a6cc2d-bd27-4163-bc27-8c80a30d435b",
+            "sourceColumn": "baseline_year",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "baseline_speed_ratio",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "252f197a-5600-40ec-886b-1608e4e31701",
+            "sourceColumn": "baseline_speed_ratio",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "speed_effect_pct",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "formatString": "0.0%",
+            "lineageTag": "a636f7f1-d000-4d60-9926-11dfec6282ce",
+            "sourceColumn": "speed_effect_pct",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "trips_change_pct",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "formatString": "0.0%",
+            "lineageTag": "edc5b320-60e1-4570-ad00-2ad3e01ae3c8",
+            "sourceColumn": "trips_change_pct",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "period",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "869992c1-2cfd-4415-b004-29e243b23557",
+            "sourceColumn": "period",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "d45b3a37-268b-4f7e-8250-54ac20e9c6e7",
+        "measures": [
+          {
+            "name": "Zone speed vs rest of city",
+            "expression": "CALCULATE(AVERAGE(mart_toll_effect_monthly[speed_ratio]), mart_toll_effect_monthly[segment] = \"within_zone\")",
+            "formatString": "0.0%",
+            "lineageTag": "0585f1f6-6a5a-4141-afb6-96ac2165b006"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "mart_toll_effect_monthly",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(SourceUrl, [RelativePath = \"mart_toll_effect_monthly.csv\"]),",
+                "        [Delimiter = \",\", Columns = 12, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    EmptyAsNull = Table.TransformColumns(Headers, {}, each if _ = \"\" then null else _),",
+                "    Typed = Table.TransformColumnTypes(EmptyAsNull, {{\"month_start\", type date}, {\"segment\", type text}, {\"control_group\", type text}, {\"trips\", Int64.Type}, {\"speed_mph\", type number}, {\"control_speed_mph\", type number}, {\"speed_ratio\", type number}, {\"baseline_year\", Int64.Type}, {\"baseline_speed_ratio\", type number}, {\"speed_effect_pct\", type number}, {\"trips_change_pct\", type number}, {\"period\", type text}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "mart_speed_by_hour",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "lineageTag": "7be5623a-70f7-4161-924c-16f912a846e7",
+            "sourceColumn": "year",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "day_type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9df0df18-9269-431d-ada2-4f6565bcf1aa",
+            "sourceColumn": "day_type",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "pickup_hour",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "lineageTag": "a0882baf-388e-4e96-a252-fac048904cf0",
+            "sourceColumn": "pickup_hour",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "segment",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "297145c6-d696-4e20-b93f-bc57e61c989f",
+            "sourceColumn": "segment",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "trips",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "lineageTag": "a5c835f7-e4ec-4bcd-a7cb-8658bee2e66f",
+            "sourceColumn": "trips",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "speed_mph",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "9f11cbc7-8621-469e-b72d-3808b4d26e44",
+            "sourceColumn": "speed_mph",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "46ee19e8-1a9a-44f6-8f6c-ea3392d74a43",
+        "measures": [
+          {
+            "name": "Weekday speed in the zone (mph)",
+            "expression": [
+              "CALCULATE(",
+              "    AVERAGE(mart_speed_by_hour[speed_mph]),",
+              "    mart_speed_by_hour[segment] = \"within_zone\",",
+              "    mart_speed_by_hour[day_type] = \"weekday\",",
+              "    KEEPFILTERS(mart_speed_by_hour[year] IN {2024, 2025})",
+              ")"
+            ],
+            "formatString": "0.0",
+            "lineageTag": "7c4207cd-b787-4442-8ac5-df4d0297f1fc"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "mart_speed_by_hour",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(SourceUrl, [RelativePath = \"mart_speed_by_hour.csv\"]),",
+                "        [Delimiter = \",\", Columns = 6, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    EmptyAsNull = Table.TransformColumns(Headers, {}, each if _ = \"\" then null else _),",
+                "    Typed = Table.TransformColumnTypes(EmptyAsNull, {{\"year\", Int64.Type}, {\"day_type\", type text}, {\"pickup_hour\", Int64.Type}, {\"segment\", type text}, {\"trips\", Int64.Type}, {\"speed_mph\", type number}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "mart_data_quality",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "file_month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "yyyy-mm-dd",
+            "lineageTag": "80e0df3a-9101-41a9-8d82-41f586a8acb0",
+            "sourceColumn": "file_month",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "status",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d16cbad0-14f0-4ee7-9bdb-6446b29765ed",
+            "sourceColumn": "status",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "trips",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "lineageTag": "f35ea434-c6eb-401a-adf2-4a32072cfd65",
+            "sourceColumn": "trips",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "675899ce-394c-4675-bafe-3e51ed8c9dda",
+        "measures": [
+          {
+            "name": "Rows kept after checks",
+            "expression": "DIVIDE(CALCULATE(SUM(mart_data_quality[trips]), mart_data_quality[status] = \"kept\"), SUM(mart_data_quality[trips]))",
+            "formatString": "0.0%",
+            "lineageTag": "04780575-5549-4a63-babc-21ba489c0d0b"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "mart_data_quality",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(SourceUrl, [RelativePath = \"mart_data_quality.csv\"]),",
+                "        [Delimiter = \",\", Columns = 3, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    EmptyAsNull = Table.TransformColumns(Headers, {}, each if _ = \"\" then null else _),",
+                "    Typed = Table.TransformColumnTypes(EmptyAsNull, {{\"file_month\", type date}, {\"status\", type text}, {\"trips\", Int64.Type}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_segment",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "segment",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isHidden": true,
+            "lineageTag": "cfcef8c5-654f-4f3f-9691-82327123d051",
+            "sourceColumn": "segment",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "segment_label",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "96a97a2b-9010-4f25-bc66-ea17cc338439",
+            "sortByColumn": "sort_order",
+            "sourceColumn": "segment_label",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "sort_order",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "isHidden": true,
+            "lineageTag": "dd1ee7fd-171b-40e6-b2b0-8ab775063759",
+            "sourceColumn": "sort_order",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "e8154cc8-034f-4dcf-a1c7-45e2193c3c9d",
+        "partitions": [
+          {
+            "name": "dim_segment",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = #table(type table [segment = text, segment_label = text, sort_order = Int64.Type], {{\"within_zone\", \"Within the zone\", 1}, {\"into_zone\", \"Into the zone\", 2}, {\"out_of_zone\", \"Out of the zone\", 3}, {\"outside_zone\", \"Outside the zone\", 4}})",
+                "in",
+                "    Source"
+              ],
+              "type": "m"
+            }
+          }
+        ]
       }
     ]
   }

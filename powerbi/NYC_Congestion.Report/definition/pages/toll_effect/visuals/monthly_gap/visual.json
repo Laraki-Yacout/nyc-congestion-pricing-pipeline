@@ -3,10 +3,10 @@
   "name": "monthly_gap",
   "position": {
     "x": 16,
-    "y": 180,
+    "y": 184,
     "z": 700,
     "width": 820,
-    "height": 300,
+    "height": 296,
     "tabOrder": 700
   },
   "visual": {
@@ -97,6 +97,13 @@
                       "Value": "'#5B6776'"
                     }
                   }
+                }
+              }
+            },
+            "maxMarginFactor": {
+              "expr": {
+                "Literal": {
+                  "Value": "40L"
                 }
               }
             }

@@ -3,10 +3,10 @@
   "name": "title",
   "position": {
     "x": 16,
-    "y": 12,
+    "y": 6,
     "z": 100,
     "width": 1000,
-    "height": 56,
+    "height": 70,
     "tabOrder": 100
   },
   "visual": {
@@ -22,7 +22,7 @@
                     "value": "NYC yellow taxi activity",
                     "textStyle": {
                       "fontWeight": "bold",
-                      "fontSize": "20pt",
+                      "fontSize": "18pt",
                       "color": "#1B2733"
                     }
                   }

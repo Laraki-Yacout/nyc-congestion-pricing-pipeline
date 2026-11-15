@@ -3,10 +3,10 @@
   "name": "data_up_to",
   "position": {
     "x": 1064,
-    "y": 14,
+    "y": 8,
     "z": 200,
     "width": 200,
-    "height": 58,
+    "height": 66,
     "tabOrder": 200
   },
   "visual": {
