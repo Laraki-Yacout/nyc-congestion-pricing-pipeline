@@ -21,9 +21,9 @@ NAVY = "#1F3A5F"
 ORANGE = "#D9822B"
 GREY = "#8A94A6"
 LIGHT = "#C9D3E0"
+STEEL = "#5C7FA8"
 PALE = "#ECEFF3"
 TOLL_START = date(2025, 1, 5)
-MAIN_CONTROL = "all trips outside the zone"
 SOURCE = "Data: NYC Taxi & Limousine Commission, yellow taxi trips"
 
 
@@ -47,7 +47,7 @@ def footer(fig, last_month: str) -> None:
     fig.tight_layout(rect=(0, 0.035, 1, 0.84))
 
 
-def chart_monthly_gap(exports: Path, out: Path, last_month: str) -> None:
+def chart_monthly_gap(exports: Path, out: Path, last_month: str, control: str) -> None:
     rows = [r for r in read_csv(exports / "mart_toll_effect_monthly.csv") if r["segment"] == "within_zone"]
     months = [date.fromisoformat(r["month_start"]) for r in rows]
     ratio = [float(r["speed_ratio"]) * 100 for r in rows]
@@ -56,24 +56,23 @@ def chart_monthly_gap(exports: Path, out: Path, last_month: str) -> None:
     ax.axvspan(TOLL_START, max(months).replace(day=28), color=PALE, zorder=0)
     ax.plot(months, ratio, color=NAVY, linewidth=2, marker="o", markersize=3.5, zorder=3)
 
-    # yearly averages, to make the jump in 2025 easy to read
+    # yearly averages, to make the change after the toll easy to read
     for year in sorted({m.year for m in months}):
         values = [v for m, v in zip(months, ratio) if m.year == year]
         start, end = date(year, 1, 1), max(m for m in months if m.year == year).replace(day=28)
         mean = sum(values) / len(values)
-        ax.hlines(mean, start, end, colors=ORANGE if year >= 2025 else GREY,
-                  linestyles="--", linewidth=1.2, zorder=2)
+        color = ORANGE if year >= TOLL_START.year else GREY
+        ax.hlines(mean, start, end, colors=color, linestyles="--", linewidth=1.2, zorder=2)
         label_x = start.replace(day=20) if year == TOLL_START.year else start
-        ax.text(label_x, mean + 0.35, f"{year}: {mean:.1f}%", fontsize=8.5,
-                color=ORANGE if year >= 2025 else GREY)
+        ax.text(label_x, mean + 0.4, f"{year}: {mean:.1f}%", fontsize=8.5, color=color)
 
     ax.axvline(TOLL_START, color=ORANGE, linewidth=1.5)
-    ax.text(TOLL_START, max(ratio) + 0.6, "  Toll starts, 5 Jan 2025", color=ORANGE, fontsize=9, va="bottom")
-    ax.set_ylim(min(ratio) - 2, max(ratio) + 2.5)
+    ax.text(TOLL_START, max(ratio) + 0.8, "  Toll starts, 5 Jan 2025", color=ORANGE, fontsize=9, va="bottom")
+    ax.set_ylim(min(ratio) - 2, max(ratio) + 3)
     ax.yaxis.set_major_formatter(lambda v, _: f"{v:.0f}%")
     ax.grid(axis="y", color=PALE)
     style(fig, ax, "Taxis inside the toll zone vs the rest of the city",
-          "Average speed of trips within the zone, as a % of the speed of trips that never touch it (monthly)")
+          f"Monthly average speed of trips within the zone, as a % of the speed of the control group ({control})")
     footer(fig, last_month)
     fig.savefig(out / "speed_gap_monthly.png")
     plt.close(fig)
@@ -82,42 +81,63 @@ def chart_monthly_gap(exports: Path, out: Path, last_month: str) -> None:
 def chart_effects(exports: Path, out: Path, last_month: str) -> None:
     rows = read_csv(exports / "mart_toll_effect.csv")
 
-    def find(comparison, scope, control=MAIN_CONTROL):
+    def find(comparison, scope, control=None):
         for r in rows:
-            if (r["comparison"], r["scope"], r["segment"], r["control_group"]) == \
-                    (comparison, scope, "within_zone", control):
+            if (r["comparison"], r["scope"], r["segment"]) != (comparison, scope, "within_zone"):
+                continue
+            if (control is None and r["is_main_estimate"].lower() == "true") or r["control_group"] == control:
                 return r
         return None
 
-    months_2026 = find("2026 vs 2024", "all hours")
-    label_2026 = f"2026 vs 2024 ({months_2026['months_compared']} months), all hours" if months_2026 else None
-    lines = [
+    def values(r):
+        return tuple(float(r[k]) * 100 for k in ("speed_effect_pct", "ci95_low_pct", "ci95_high_pct"))
+
+    def draw(y, r, color, hollow=False):
+        mid, low, high = values(r)
+        ax.plot([low, high], [y, y], color=color, linewidth=2.2, solid_capstyle="round", alpha=0.55 if hollow else 1)
+        ax.plot(mid, y, "o", markersize=7, color=color, markerfacecolor="white" if hollow else color,
+                markeredgewidth=1.8)
+        ax.text(high + 0.3, y, f"{mid:+.1f}%", va="center", fontsize=8.5, color=color)
+
+    r2026 = find("2026 vs 2024", "all hours")
+    main_rows = [
         ("2025 vs 2024, all hours", find("2025 vs 2024", "all hours"), NAVY),
         ("2025 vs 2024, peak hours", find("2025 vs 2024", "peak hours"), NAVY),
         ("2025 vs 2024, overnight", find("2025 vs 2024", "overnight hours"), NAVY),
-        (label_2026, months_2026, NAVY),
+        (f"2026 vs 2024 ({r2026['months_compared']} months)" if r2026 else None, r2026, NAVY),
         ("Placebo: 2024 vs 2023 (no toll)", find("placebo: 2024 vs 2023", "all hours"), GREY),
-        ("Control: no airport trips", find("2025 vs 2024", "all hours", "outside the zone, no airport trips"), "#5C7FA8"),
-        ("Control: Manhattan only", find("2025 vs 2024", "all hours", "outside the zone, Manhattan only"), "#5C7FA8"),
-        ("Control: trips under 3 miles", find("2025 vs 2024", "all hours", "outside the zone, trips under 3 miles"), "#5C7FA8"),
     ]
-    lines = [line for line in lines if line[0] and line[1]]
+    main_rows = [row for row in main_rows if row[0] and row[1]]
+    other_controls = sorted({r["control_group"] for r in rows if r["is_main_estimate"].lower() != "true"})
 
-    fig, ax = plt.subplots(figsize=(10, 5.2), dpi=150)
-    for i, (label, r, color) in enumerate(lines):
-        y = len(lines) - i
-        mid, low, high = (float(r[k]) * 100 for k in ("speed_effect_pct", "ci95_low_pct", "ci95_high_pct"))
-        ax.plot([low, high], [y, y], color=color, linewidth=2.2, solid_capstyle="round")
-        ax.plot(mid, y, "o", color=color, markersize=7)
-        ax.text(high + 0.3, y, f"{mid:+.1f}%", va="center", fontsize=9, color=color)
+    n = len(main_rows) + len(other_controls)
+    fig, ax = plt.subplots(figsize=(10, 5.6), dpi=150)
+    labels, positions = [], []
+    for i, (label, r, color) in enumerate(main_rows):
+        y = n - i + 0.5
+        draw(y, r, color)
+        labels.append(label)
+        positions.append(y)
+    for j, control in enumerate(other_controls):
+        y = n - len(main_rows) - j
+        simple = find("2025 vs 2024", "all hours", control)
+        adjusted = find("2025 vs 2024, trend-adjusted", "all hours", control)
+        if simple:
+            draw(y + 0.17, simple, STEEL)
+        if adjusted:
+            draw(y - 0.17, adjusted, STEEL, hollow=True)
+        labels.append("2025, control: " + control.replace("outside the zone, ", "").replace(" outside the zone", ""))
+        positions.append(y)
+
     ax.axvline(0, color="#4A5565", linewidth=1)
-    ax.set_yticks(range(len(lines), 0, -1), [line[0] for line in lines], fontsize=9)
+    ax.axhline(n - len(main_rows) + 0.75, color=LIGHT, linewidth=0.8)
+    ax.set_yticks(positions, labels, fontsize=9)
     ax.xaxis.set_major_formatter(lambda v, _: f"{v:+.0f}%")
     ax.grid(axis="x", color=PALE)
-    ax.set_xlim(min(-2, ax.get_xlim()[0]), ax.get_xlim()[1] + 1.5)
+    ax.set_xlim(ax.get_xlim()[0] - 0.5, ax.get_xlim()[1] + 1.5)
     style(fig, ax, "How much faster did taxis get inside the zone?",
-          "Difference-in-differences on daily speeds with 95% confidence intervals.\n"
-          "The last three rows repeat the 2025 estimate with a different control group.")
+          "Difference-in-differences on daily speeds, 95% confidence intervals. Top: main control group (short trips outside the zone).\n"
+          "Bottom: other control groups, filled = simple estimate, hollow = adjusted for the 2023-2024 trend.")
     footer(fig, last_month)
     fig.savefig(out / "toll_effect.png")
     plt.close(fig)
@@ -186,7 +206,7 @@ def main() -> None:
     summary = json.loads((args.exports / "summary.json").read_text(encoding="utf-8"))
     last_month = date.fromisoformat(summary["last_month"] + "-01").strftime("%b %Y")
 
-    chart_monthly_gap(args.exports, args.out, last_month)
+    chart_monthly_gap(args.exports, args.out, last_month, summary["main_control_group"])
     chart_effects(args.exports, args.out, last_month)
     chart_zone_map(args.exports, args.raw_dir, args.out)
     print(f"  charts written to {args.out}")

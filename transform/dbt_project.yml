@@ -16,6 +16,9 @@ vars:
   raw_dir: "../data/raw"
   # Congestion pricing started on Sunday 5 January 2025 at midnight
   toll_start: "2025-01-05"
+  # Control group used for the headline estimate. Chosen because it is the one that passes
+  # the placebo test (2024 vs 2023) and its trips are as short as trips inside the zone.
+  main_control: "outside the zone, trips under 3 miles"
 
 models:
   nyc_congestion:

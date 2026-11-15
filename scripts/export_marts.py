@@ -39,15 +39,14 @@ def one(con: duckdb.DuckDBPyConnection, sql: str):
     return row[0] if row else None
 
 
-MAIN_CONTROL = "all trips outside the zone"
-
-
 def effect(con: duckdb.DuckDBPyConnection, comparison: str, scope: str,
-           segment: str = "within_zone", control: str = MAIN_CONTROL):
+           segment: str = "within_zone", control: str | None = None):
+    # control=None means the main control group (is_main_estimate)
     row = con.execute(
         "select speed_effect_pct, ci95_low_pct, ci95_high_pct, months_compared, is_significant "
-        "from mart_toll_effect where comparison = ? and scope = ? and segment = ? and control_group = ?",
-        [comparison, scope, segment, control],
+        "from mart_toll_effect where comparison = ? and scope = ? and segment = ? "
+        "and (control_group = ? or (cast(? as varchar) is null and is_main_estimate))",
+        [comparison, scope, segment, control, control],
     ).fetchone()
     if row is None:
         return None
@@ -75,16 +74,19 @@ def build_summary(con: duckdb.DuckDBPyConnection) -> dict:
                 "from fct_trips_hourly where segment = 'within_zone' group by 1 order by 1"
             ).fetchall()
         },
+        "main_control_group": one(con, "select any_value(control_group) from mart_toll_effect where is_main_estimate"),
         "effect_within_zone": {
             comparison: {scope: effect(con, comparison, scope)
                          for scope in ("all hours", "peak hours", "overnight hours")}
-            for comparison in ("placebo: 2024 vs 2023", "2025 vs 2024", "2026 vs 2024")
+            for comparison in ("placebo: 2024 vs 2023", "2025 vs 2024", "2026 vs 2024",
+                               "2025 vs 2024, trend-adjusted", "2026 vs 2024, trend-adjusted")
         },
         "effect_into_zone_2025": effect(con, "2025 vs 2024", "all hours", "into_zone"),
         "effect_out_of_zone_2025": effect(con, "2025 vs 2024", "all hours", "out_of_zone"),
         "robustness_within_zone_all_hours": {
             control: {comparison: effect(con, comparison, "all hours", "within_zone", control)
-                      for comparison in ("placebo: 2024 vs 2023", "2025 vs 2024", "2026 vs 2024")}
+                      for comparison in ("placebo: 2024 vs 2023", "2025 vs 2024", "2026 vs 2024",
+                                         "2025 vs 2024, trend-adjusted")}
             for (control,) in con.execute(
                 "select distinct control_group from mart_toll_effect order by 1").fetchall()
         },

@@ -48,7 +48,8 @@ models:
   - name: mart_toll_effect
     description: >
       Difference-in-differences estimate of the toll's effect on taxi speeds, by comparison,
-      time of day, segment and control group (is_main_estimate flags the main control).
+      method (simple or trend-adjusted), time of day, segment and control group
+      (is_main_estimate flags the main control group).
     columns:
       - name: speed_effect_pct
         tests: [not_null]
@@ -63,7 +64,7 @@ models:
                   - outside the zone, trips under 3 miles
 
   - name: mart_toll_effect_monthly
-    description: Month-by-month speed effect compared with the same month of the baseline year.
+    description: Month-by-month speed effect (main control group) compared with the same month of the baseline year.
 
   - name: mart_speed_by_hour
     description: Average speed by year, day type, hour and segment.

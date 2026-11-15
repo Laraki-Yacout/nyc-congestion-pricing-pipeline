@@ -1,49 +1,13 @@
-{{ config(materialized='table') }}
-
 -- Daily speed gap between a treated segment and a control group:
 --     log_gap = ln(speed of the segment / speed of the control group)
--- The main control is every trip that never touches the zone. Three narrower controls
--- are kept as robustness checks, because the outside trips are a mixed bag
--- (airport runs on highways, outer-borough streets...).
-with trips as (
-    select * from {{ ref('int_trips_classified') }}
-),
-
-groups as (
-    select pickup_date, toll_period, segment as grp,
-           sum(distance_mi) as distance_mi, sum(duration_min) as duration_min
-    from trips where segment <> 'outside_zone'
-    group by all
-    union all
-    select pickup_date, toll_period, 'all trips outside the zone',
-           sum(distance_mi), sum(duration_min)
-    from trips where segment = 'outside_zone'
-    group by all
-    union all
-    select pickup_date, toll_period, 'outside the zone, no airport trips',
-           sum(distance_mi), sum(duration_min)
-    from trips where segment = 'outside_zone' and not touches_airport
-    group by all
-    union all
-    select pickup_date, toll_period, 'outside the zone, Manhattan only',
-           sum(distance_mi), sum(duration_min)
-    from trips where segment = 'outside_zone'
-                 and pickup_borough = 'Manhattan' and dropoff_borough = 'Manhattan'
-    group by all
-    union all
-    select pickup_date, toll_period, 'outside the zone, trips under 3 miles',
-           sum(distance_mi), sum(duration_min)
-    from trips where segment = 'outside_zone' and distance_mi < 3
-    group by all
-),
-
-scoped as (
+with scoped as (
     select pickup_date, 'all hours' as scope, grp,
            sum(distance_mi) as distance_mi, sum(duration_min) as duration_min
-    from groups group by all
+    from {{ ref('int_speed_groups_daily') }}
+    group by all
     union all
     select pickup_date, toll_period || ' hours', grp, distance_mi, duration_min
-    from groups
+    from {{ ref('int_speed_groups_daily') }}
 ),
 
 speeds as (
