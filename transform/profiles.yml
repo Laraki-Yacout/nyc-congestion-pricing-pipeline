@@ -1,0 +1,10 @@
+nyc_congestion:
+  target: local
+  outputs:
+    local:
+      type: duckdb
+      path: "{{ env_var('NYC_DUCKDB_PATH', '../data/warehouse.duckdb') }}"
+      threads: 4
+      settings:
+        memory_limit: "{{ env_var('NYC_DUCKDB_MEMORY', '4GB') }}"
+        preserve_insertion_order: false

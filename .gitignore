@@ -1,0 +1,15 @@
+# Python
+.venv/
+__pycache__/
+
+# Data is downloaded by the pipeline, never committed (except the small exports/)
+data/
+*.duckdb
+*.duckdb.wal
+
+# dbt
+transform/target/
+transform/dbt_packages/
+transform/logs/
+logs/
+transform/.user.yml

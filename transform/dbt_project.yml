@@ -1,0 +1,27 @@
+name: nyc_congestion
+version: "1.0.0"
+config-version: 2
+profile: nyc_congestion
+
+model-paths: ["models"]
+test-paths: ["tests"]
+target-path: target
+clean-targets: [target, dbt_packages]
+
+flags:
+  send_anonymous_usage_stats: false
+
+vars:
+  # Folder that holds taxi_zone_lookup.csv and yellow/*.parquet (set by scripts/run_pipeline.py)
+  raw_dir: "../data/raw"
+  # Congestion pricing started on Sunday 5 January 2025 at midnight
+  toll_start: "2025-01-05"
+
+models:
+  nyc_congestion:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table

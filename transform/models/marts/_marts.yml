@@ -1,0 +1,61 @@
+version: 2
+
+models:
+  - name: fct_trips_hourly
+    description: Valid yellow taxi trips aggregated by day, hour and segment.
+    columns:
+      - name: pickup_date
+        tests: [not_null]
+      - name: pickup_hour
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                quote: false
+      - name: segment
+        description: Relation of the trip to the Congestion Relief Zone.
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [within_zone, into_zone, out_of_zone, outside_zone]
+      - name: trips
+        tests: [not_null]
+
+  - name: dim_zones
+    description: TLC taxi zones, with the Congestion Relief Zone flag inferred from the fee data.
+    columns:
+      - name: zone_id
+        tests: [unique, not_null]
+      - name: is_crz
+        tests: [not_null]
+
+  - name: dim_date
+    columns:
+      - name: date
+        tests: [unique, not_null]
+
+  - name: fct_zone_monthly
+    columns:
+      - name: zone_id
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_zones')
+                field: zone_id
+
+  - name: mart_toll_effect
+    description: Difference-in-differences estimate of the toll's effect on taxi speeds.
+    columns:
+      - name: speed_effect_pct
+        tests: [not_null]
+
+  - name: mart_toll_effect_monthly
+    description: Month-by-month speed effect compared with the same month of the baseline year.
+
+  - name: mart_speed_by_hour
+    description: Average speed by year, day type, hour and segment.
+
+  - name: mart_data_quality
+    description: Raw rows kept or rejected, by file month and reason.

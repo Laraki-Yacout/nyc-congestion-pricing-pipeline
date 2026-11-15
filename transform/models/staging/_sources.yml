@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: tlc
+    description: Raw files published by the NYC Taxi & Limousine Commission, read in place by DuckDB.
+    tables:
+      - name: yellow_trips
+        description: One row per yellow taxi trip, one Parquet file per month.
+        meta:
+          external_location: "read_parquet('{{ var('raw_dir') }}/yellow/yellow_tripdata_*.parquet', union_by_name = true, filename = true)"
+      - name: taxi_zones
+        description: The 265 TLC taxi zones (id, borough, name).
+        meta:
+          external_location: "read_csv('{{ var('raw_dir') }}/taxi_zone_lookup.csv', header = true)"
