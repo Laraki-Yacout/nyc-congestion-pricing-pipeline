@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-15 20:02 UTC",
+  "generated_at": "2026-11-15 20:15 UTC",
   "first_month": "2023-01",
   "last_month": "2026-09",
   "raw_trips": 161781947,
@@ -118,5 +118,123 @@
     ],
     "months_compared": 12,
     "significant": true
+  },
+  "robustness_within_zone_all_hours": {
+    "all trips outside the zone": {
+      "placebo: 2024 vs 2023": {
+        "speed_effect_pct": 0.0228,
+        "ci95": [
+          0.0098,
+          0.036
+        ],
+        "months_compared": 12,
+        "significant": true
+      },
+      "2025 vs 2024": {
+        "speed_effect_pct": 0.0574,
+        "ci95": [
+          0.0448,
+          0.0702
+        ],
+        "months_compared": 12,
+        "significant": true
+      },
+      "2026 vs 2024": {
+        "speed_effect_pct": 0.0247,
+        "ci95": [
+          0.0097,
+          0.0399
+        ],
+        "months_compared": 9,
+        "significant": true
+      }
+    },
+    "outside the zone, Manhattan only": {
+      "placebo: 2024 vs 2023": {
+        "speed_effect_pct": -0.0202,
+        "ci95": [
+          -0.0326,
+          -0.0077
+        ],
+        "months_compared": 12,
+        "significant": true
+      },
+      "2025 vs 2024": {
+        "speed_effect_pct": 0.0143,
+        "ci95": [
+          0.0017,
+          0.027
+        ],
+        "months_compared": 12,
+        "significant": true
+      },
+      "2026 vs 2024": {
+        "speed_effect_pct": -0.0201,
+        "ci95": [
+          -0.0337,
+          -0.0064
+        ],
+        "months_compared": 9,
+        "significant": true
+      }
+    },
+    "outside the zone, no airport trips": {
+      "placebo: 2024 vs 2023": {
+        "speed_effect_pct": -0.0288,
+        "ci95": [
+          -0.0415,
+          -0.016
+        ],
+        "months_compared": 12,
+        "significant": true
+      },
+      "2025 vs 2024": {
+        "speed_effect_pct": -0.0516,
+        "ci95": [
+          -0.0646,
+          -0.0384
+        ],
+        "months_compared": 12,
+        "significant": true
+      },
+      "2026 vs 2024": {
+        "speed_effect_pct": -0.0922,
+        "ci95": [
+          -0.1055,
+          -0.0787
+        ],
+        "months_compared": 9,
+        "significant": true
+      }
+    },
+    "outside the zone, trips under 3 miles": {
+      "placebo: 2024 vs 2023": {
+        "speed_effect_pct": -0.0101,
+        "ci95": [
+          -0.0224,
+          0.0023
+        ],
+        "months_compared": 12,
+        "significant": false
+      },
+      "2025 vs 2024": {
+        "speed_effect_pct": 0.0364,
+        "ci95": [
+          0.0243,
+          0.0486
+        ],
+        "months_compared": 12,
+        "significant": true
+      },
+      "2026 vs 2024": {
+        "speed_effect_pct": 0.0145,
+        "ci95": [
+          0.0011,
+          0.0281
+        ],
+        "months_compared": 9,
+        "significant": true
+      }
+    }
   }
 }
