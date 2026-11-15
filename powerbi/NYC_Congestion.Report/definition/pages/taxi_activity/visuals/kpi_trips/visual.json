@@ -23,11 +23,11 @@
                       "Entity": "fct_trips_hourly"
                     }
                   },
-                  "Property": "Trips"
+                  "Property": "Total trips"
                 }
               },
-              "queryRef": "fct_trips_hourly.Trips",
-              "nativeQueryRef": "Trips"
+              "queryRef": "fct_trips_hourly.Total trips",
+              "nativeQueryRef": "Total trips"
             }
           ]
         }

@@ -182,7 +182,7 @@
         ],
         "measures": [
           {
-            "name": "Trips",
+            "name": "Total trips",
             "expression": "SUM(fct_trips_hourly[trips])",
             "formatString": "#,0"
           },
@@ -193,7 +193,7 @@
           },
           {
             "name": "Average fare",
-            "expression": "DIVIDE(SUM(fct_trips_hourly[fare_amount]), [Trips])",
+            "expression": "DIVIDE(SUM(fct_trips_hourly[fare_amount]), [Total trips])",
             "formatString": "\"$\"#,0.00"
           },
           {
@@ -203,7 +203,7 @@
           },
           {
             "name": "Average trip time (min)",
-            "expression": "DIVIDE(SUM(fct_trips_hourly[duration_min]), [Trips])",
+            "expression": "DIVIDE(SUM(fct_trips_hourly[duration_min]), [Total trips])",
             "formatString": "0.0"
           },
           {
@@ -214,8 +214,8 @@
           {
             "name": "Trips vs previous year",
             "expression": [
-              "VAR Previous = CALCULATE([Trips], DATEADD(dim_date[date], -1, YEAR))",
-              "RETURN DIVIDE([Trips] - Previous, Previous)"
+              "VAR Previous = CALCULATE([Total trips], DATEADD(dim_date[date], -1, YEAR))",
+              "RETURN DIVIDE([Total trips] - Previous, Previous)"
             ],
             "formatString": "+0.0%;-0.0%;0.0%"
           },
@@ -414,8 +414,7 @@
                 "name": "SummarizationSetBy",
                 "value": "Automatic"
               }
-            ],
-            "sortByColumn": "date"
+            ]
           },
           {
             "name": "month_name",

@@ -19,8 +19,10 @@ on every yellow taxi trip since January 2023, with a pipeline that refreshes its
 - **Main result: taxis inside the zone got about 3.6% faster in 2025** than comparable short trips elsewhere in the city
   (95% confidence interval: +2.4% to +4.9%). The same test run on 2024 vs 2023, when there was no toll, gives −1.0%
   (not significant), which is what you want from a placebo.
-- **The effect is modest and fading.** It drops to +1.5% for the first nine months of 2026. In plain speed, taxis inside
-  the zone went from 7.9 mph in 2024 to 8.1 mph in 2025, then back to 7.8 mph in 2026 so far.
+- **The effect is modest, and may be fading.** It drops to +1.5% for the first nine months of 2026. If I also correct
+  for the small drift seen before the toll (not significant on its own), both years stay around +4%, so the fade is not
+  certain yet: the monthly refresh will tell. In plain speed, taxis inside the zone went from 7.9 mph in 2024
+  to 8.1 mph in 2025, then back to 7.8 mph in 2026 so far.
 - **My first estimate was wrong, and the robustness checks caught it.** Against *all* trips outside the zone, the effect
   looked like +5.7%. But that control group mixes airport runs and highway trips with local streets, and those moved in
   different directions in 2025: trips from JFK got slower (21.6 to 21.0 mph) while longer trips outside the zone got faster,

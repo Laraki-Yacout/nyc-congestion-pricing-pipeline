@@ -98,14 +98,14 @@ def effect(comparison: str, scope: str, main_only: bool = True) -> list[str]:
 PCT = '+0.0%;-0.0%;0.0%'
 MEASURES = {
     "fct_trips_hourly": [
-        ("Trips", ["SUM(fct_trips_hourly[trips])"], "#,0"),
+        ("Total trips", ["SUM(fct_trips_hourly[trips])"], "#,0"),
         ("Revenue", ["SUM(fct_trips_hourly[total_amount])"], '"$"#,0'),
-        ("Average fare", ["DIVIDE(SUM(fct_trips_hourly[fare_amount]), [Trips])"], '"$"#,0.00'),
+        ("Average fare", ["DIVIDE(SUM(fct_trips_hourly[fare_amount]), [Total trips])"], '"$"#,0.00'),
         ("Average speed (mph)", ["DIVIDE(SUM(fct_trips_hourly[distance_mi]), SUM(fct_trips_hourly[duration_min]) / 60)"], "0.0"),
-        ("Average trip time (min)", ["DIVIDE(SUM(fct_trips_hourly[duration_min]), [Trips])"], "0.0"),
+        ("Average trip time (min)", ["DIVIDE(SUM(fct_trips_hourly[duration_min]), [Total trips])"], "0.0"),
         ("Congestion fees paid", ["SUM(fct_trips_hourly[cbd_fee])"], '"$"#,0'),
-        ("Trips vs previous year", ["VAR Previous = CALCULATE([Trips], DATEADD(dim_date[date], -1, YEAR))",
-                                    "RETURN DIVIDE([Trips] - Previous, Previous)"], PCT),
+        ("Trips vs previous year", ["VAR Previous = CALCULATE([Total trips], DATEADD(dim_date[date], -1, YEAR))",
+                                    "RETURN DIVIDE([Total trips] - Previous, Previous)"], PCT),
         ("Data up to", ['FORMAT(CALCULATE(MAX(fct_trips_hourly[pickup_date]), ALL(fct_trips_hourly)), "mmm yyyy")'], None),
     ],
     "mart_toll_effect": [
@@ -150,8 +150,6 @@ def column(table: str, name: str, dtype: str) -> dict:
         col["isHidden"] = True
     if (table, name) == ("dim_date", "date"):
         col["isKey"] = True
-    if (table, name) == ("dim_date", "year_month"):
-        col["sortByColumn"] = "date"
     if (table, name) == ("dim_segment", "segment_label"):
         col["sortByColumn"] = "sort_order"
     return col
@@ -356,14 +354,14 @@ def build_pages(definition: Path) -> list[str]:
     q = Page(pages, "taxi_activity", "Taxi activity")
     q.title("NYC yellow taxi activity", "Trips, revenue and congestion fees, by month and by relation to the toll zone")
     q.slicer("year_filter", 1064, 14, 200, 50, "dim_date", "year", "Year")
-    q.card("kpi_trips", 16, 80, 302, "fct_trips_hourly", "Trips", "Number of valid trips")
+    q.card("kpi_trips", 16, 80, 302, "fct_trips_hourly", "Total trips", "Number of valid trips")
     q.card("kpi_revenue", 330, 80, 302, "fct_trips_hourly", "Revenue", "Total amount paid by passengers")
     q.card("kpi_fare", 644, 80, 302, "fct_trips_hourly", "Average fare", "Average metered fare per trip")
     q.card("kpi_fees", 958, 80, 306, "fct_trips_hourly", "Congestion fees paid",
            "Congestion fees paid by taxi passengers", C["orange"])
     q.chart("trips_by_month", 16, 180, 820, 300, "columnChart", "Trips per month by relation to the toll zone",
             "Monthly trips stacked by segment",
-            pc("dim_date", "year_month", displayName="Month"), [pm("fct_trips_hourly", "Trips")],
+            pc("dim_date", "year_month", displayName="Month"), [pm("fct_trips_hourly", "Total trips")],
             series=pc("dim_segment", "segment_label", displayName="Segment"),
             sort={"field": column_ref("dim_date", "year_month"), "direction": "Ascending"}, labels=False)
     q.chart("speed_by_segment", 848, 180, 416, 300, "clusteredBarChart", "Average speed by segment (mph)",

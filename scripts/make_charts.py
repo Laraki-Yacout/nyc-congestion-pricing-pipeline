@@ -16,6 +16,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 from matplotlib.patches import PathPatch  # noqa: E402
 from matplotlib.path import Path as MplPath  # noqa: E402
+from matplotlib.ticker import MultipleLocator  # noqa: E402
 
 NAVY = "#1F3A5F"
 ORANGE = "#D9822B"
@@ -64,11 +65,13 @@ def chart_monthly_gap(exports: Path, out: Path, last_month: str, control: str) -
         color = ORANGE if year >= TOLL_START.year else GREY
         ax.hlines(mean, start, end, colors=color, linestyles="--", linewidth=1.2, zorder=2)
         label_x = start.replace(day=20) if year == TOLL_START.year else start
-        ax.text(label_x, mean + 0.4, f"{year}: {mean:.1f}%", fontsize=8.5, color=color)
+        ax.text(label_x, min(ratio) - 1.6, f"{year} average: {mean:.1f}%", fontsize=8.5, color=color,
+                va="bottom", zorder=5)
 
     ax.axvline(TOLL_START, color=ORANGE, linewidth=1.5)
     ax.text(TOLL_START, max(ratio) + 0.8, "  Toll starts, 5 Jan 2025", color=ORANGE, fontsize=9, va="bottom")
-    ax.set_ylim(min(ratio) - 2, max(ratio) + 3)
+    ax.set_ylim(min(ratio) - 2.2, max(ratio) + 3)
+    ax.yaxis.set_major_locator(MultipleLocator(2))
     ax.yaxis.set_major_formatter(lambda v, _: f"{v:.0f}%")
     ax.grid(axis="y", color=PALE)
     style(fig, ax, "Taxis inside the toll zone vs the rest of the city",
