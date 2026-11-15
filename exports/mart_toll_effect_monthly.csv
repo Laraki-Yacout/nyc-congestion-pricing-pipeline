@@ -1,136 +1,136 @@
-month_start,segment,trips,speed_mph,control_speed_mph,speed_ratio,baseline_year,baseline_speed_ratio,speed_effect_pct,trips_change_pct,period
-2023-01-01,into_zone,427585,16.4919,17.0155,0.9692,,,,,reference year
-2023-01-01,out_of_zone,525456,14.3535,17.0155,0.8435,,,,,reference year
-2023-01-01,within_zone,1177027,9.2017,17.0155,0.5408,,,,,reference year
-2023-02-01,into_zone,399851,15.9389,16.5653,0.9622,,,,,reference year
-2023-02-01,out_of_zone,503299,14.0464,16.5653,0.8479,,,,,reference year
-2023-02-01,within_zone,1164133,8.8624,16.5653,0.535,,,,,reference year
-2023-03-01,into_zone,482533,15.4409,16.3218,0.946,,,,,reference year
-2023-03-01,out_of_zone,586568,13.6506,16.3218,0.8363,,,,,reference year
-2023-03-01,within_zone,1358742,8.586,16.3218,0.526,,,,,reference year
-2023-04-01,into_zone,479105,15.3122,16.24,0.9429,,,,,reference year
-2023-04-01,out_of_zone,567274,13.7208,16.24,0.8449,,,,,reference year
-2023-04-01,within_zone,1287430,8.6618,16.24,0.5334,,,,,reference year
-2023-05-01,into_zone,521305,14.2168,15.197,0.9355,,,,,reference year
-2023-05-01,out_of_zone,617200,13.0559,15.197,0.8591,,,,,reference year
-2023-05-01,within_zone,1340424,8.3984,15.197,0.5526,,,,,reference year
-2023-06-01,into_zone,482393,14.6376,16.0623,0.9113,,,,,reference year
-2023-06-01,out_of_zone,577907,13.4688,16.0623,0.8385,,,,,reference year
-2023-06-01,within_zone,1295171,8.3556,16.0623,0.5202,,,,,reference year
-2023-07-01,into_zone,416332,15.8525,17.7751,0.8918,,,,,reference year
-2023-07-01,out_of_zone,490287,13.9751,17.7751,0.7862,,,,,reference year
-2023-07-01,within_zone,1198242,8.4999,17.7751,0.4782,,,,,reference year
-2023-08-01,into_zone,400721,15.7974,17.5392,0.9007,,,,,reference year
-2023-08-01,out_of_zone,477823,13.9582,17.5392,0.7958,,,,,reference year
-2023-08-01,within_zone,1152262,8.6778,17.5392,0.4948,,,,,reference year
-2023-09-01,into_zone,396145,13.7946,15.2647,0.9037,,,,,reference year
-2023-09-01,out_of_zone,459330,12.3141,15.2647,0.8067,,,,,reference year
-2023-09-01,within_zone,1114551,7.5809,15.2647,0.4966,,,,,reference year
-2023-10-01,into_zone,496938,14.2792,15.2775,0.9347,,,,,reference year
-2023-10-01,out_of_zone,595287,12.415,15.2775,0.8126,,,,,reference year
-2023-10-01,within_zone,1358263,7.6554,15.2775,0.5011,,,,,reference year
-2023-11-01,into_zone,471975,13.8297,14.8246,0.9329,,,,,reference year
-2023-11-01,out_of_zone,562211,12.1818,14.8246,0.8217,,,,,reference year
-2023-11-01,within_zone,1289695,7.6208,14.8246,0.5141,,,,,reference year
-2023-12-01,into_zone,464357,13.1625,14.9158,0.8825,,,,,reference year
-2023-12-01,out_of_zone,556148,12.3986,14.9158,0.8312,,,,,reference year
-2023-12-01,within_zone,1341794,7.42,14.9158,0.4975,,,,,reference year
-2024-01-01,into_zone,410107,15.6176,16.0372,0.9738,2023,0.9692,0.0048,-0.0409,placebo (no toll)
-2024-01-01,out_of_zone,485461,13.2726,16.0372,0.8276,2023,0.8435,-0.0189,-0.0761,placebo (no toll)
-2024-01-01,within_zone,1149768,8.609,16.0372,0.5368,2023,0.5408,-0.0073,-0.0232,placebo (no toll)
-2024-02-01,into_zone,406998,14.8358,15.4055,0.963,2023,0.9622,0.0009,0.0179,placebo (no toll)
-2024-02-01,out_of_zone,494306,13.0534,15.4055,0.8473,2023,0.8479,-0.0007,-0.0179,placebo (no toll)
-2024-02-01,within_zone,1212152,8.3251,15.4055,0.5404,2023,0.535,0.0101,0.0412,placebo (no toll)
-2024-03-01,into_zone,498584,14.6307,15.3927,0.9505,2023,0.946,0.0047,0.0333,placebo (no toll)
-2024-03-01,out_of_zone,581559,13.1394,15.3927,0.8536,2023,0.8363,0.0206,-0.0085,placebo (no toll)
-2024-03-01,within_zone,1452453,8.2495,15.3927,0.5359,2023,0.526,0.0188,0.069,placebo (no toll)
-2024-04-01,into_zone,513027,14.3878,15.1309,0.9509,2023,0.9429,0.0085,0.0708,placebo (no toll)
-2024-04-01,out_of_zone,577393,12.8844,15.1309,0.8515,2023,0.8449,0.0079,0.0178,placebo (no toll)
-2024-04-01,within_zone,1390373,8.1521,15.1309,0.5388,2023,0.5334,0.0101,0.08,placebo (no toll)
-2024-05-01,into_zone,553688,13.344,14.1711,0.9416,2023,0.9355,0.0066,0.0621,placebo (no toll)
-2024-05-01,out_of_zone,609281,12.2376,14.1711,0.8636,2023,0.8591,0.0052,-0.0128,placebo (no toll)
-2024-05-01,within_zone,1451246,7.8771,14.1711,0.5559,2023,0.5526,0.0058,0.0827,placebo (no toll)
-2024-06-01,into_zone,510134,13.7005,14.821,0.9244,2023,0.9113,0.0144,0.0575,placebo (no toll)
-2024-06-01,out_of_zone,576476,12.7787,14.821,0.8622,2023,0.8385,0.0282,-0.0025,placebo (no toll)
-2024-06-01,within_zone,1437610,8.0484,14.821,0.543,2023,0.5202,0.0439,0.11,placebo (no toll)
-2024-07-01,into_zone,441428,14.9729,16.5787,0.9031,2023,0.8918,0.0127,0.0603,placebo (no toll)
-2024-07-01,out_of_zone,493298,13.1754,16.5787,0.7947,2023,0.7862,0.0108,0.0061,placebo (no toll)
-2024-07-01,within_zone,1275790,8.2099,16.5787,0.4952,2023,0.4782,0.0356,0.0647,placebo (no toll)
-2024-08-01,into_zone,417419,15.0647,16.5391,0.9109,2023,0.9007,0.0113,0.0417,placebo (no toll)
-2024-08-01,out_of_zone,468794,13.4441,16.5391,0.8129,2023,0.7958,0.0214,-0.0189,placebo (no toll)
-2024-08-01,within_zone,1229193,8.3074,16.5391,0.5023,2023,0.4948,0.0152,0.0668,placebo (no toll)
-2024-09-01,into_zone,509376,13.2933,14.4634,0.9191,2023,0.9037,0.0171,0.2858,placebo (no toll)
-2024-09-01,out_of_zone,572842,12.1399,14.4634,0.8394,2023,0.8067,0.0405,0.2471,placebo (no toll)
-2024-09-01,within_zone,1444282,7.6187,14.4634,0.5268,2023,0.4966,0.0607,0.2958,placebo (no toll)
-2024-10-01,into_zone,553633,13.6604,14.5806,0.9369,2023,0.9347,0.0024,0.1141,placebo (no toll)
-2024-10-01,out_of_zone,620355,12.1244,14.5806,0.8315,2023,0.8126,0.0233,0.0421,placebo (no toll)
-2024-10-01,within_zone,1487391,7.5602,14.5806,0.5185,2023,0.5011,0.0348,0.0951,placebo (no toll)
-2024-11-01,into_zone,520551,13.2054,14.2655,0.9257,2023,0.9329,-0.0077,0.1029,placebo (no toll)
-2024-11-01,out_of_zone,583776,12.2345,14.2655,0.8576,2023,0.8217,0.0437,0.0384,placebo (no toll)
-2024-11-01,within_zone,1424977,7.6004,14.2655,0.5328,2023,0.5141,0.0364,0.1049,placebo (no toll)
-2024-12-01,into_zone,501863,12.1422,14.1162,0.8602,2023,0.8825,-0.0253,0.0808,placebo (no toll)
-2024-12-01,out_of_zone,568759,11.8645,14.1162,0.8405,2023,0.8312,0.0111,0.0227,placebo (no toll)
-2024-12-01,within_zone,1439929,7.0144,14.1162,0.4969,2023,0.4975,-0.0011,0.0731,placebo (no toll)
-2025-01-01,into_zone,397390,15.1848,14.9079,1.0186,2024,0.9738,0.0459,-0.031,after toll
-2025-01-01,out_of_zone,463308,13.5553,14.9079,0.9093,2024,0.8276,0.0987,-0.0456,after toll
-2025-01-01,within_zone,1212205,8.8224,14.9079,0.5918,2024,0.5368,0.1024,0.0543,after toll
-2025-02-01,into_zone,445373,14.5336,14.8201,0.9807,2024,0.963,0.0183,0.0943,after toll
-2025-02-01,out_of_zone,516262,13.2879,14.8201,0.8966,2024,0.8473,0.0582,0.0444,after toll
-2025-02-01,within_zone,1409315,8.5616,14.8201,0.5777,2024,0.5404,0.069,0.1627,after toll
-2025-03-01,into_zone,530173,14.7574,15.1371,0.9749,2024,0.9505,0.0257,0.0634,after toll
-2025-03-01,out_of_zone,608700,13.6032,15.1371,0.8987,2024,0.8536,0.0528,0.0467,after toll
-2025-03-01,within_zone,1607213,8.5977,15.1371,0.568,2024,0.5359,0.0598,0.1066,after toll
-2025-04-01,into_zone,534636,14.1603,14.6761,0.9649,2024,0.9509,0.0147,0.0421,after toll
-2025-04-01,out_of_zone,598413,13.0008,14.6761,0.8858,2024,0.8515,0.0403,0.0364,after toll
-2025-04-01,within_zone,1484753,8.2892,14.6761,0.5648,2024,0.5388,0.0483,0.0679,after toll
-2025-05-01,into_zone,613375,13.3664,14.2135,0.9404,2024,0.9416,-0.0013,0.1078,after toll
-2025-05-01,out_of_zone,665220,12.4491,14.2135,0.8759,2024,0.8636,0.0142,0.0918,after toll
-2025-05-01,within_zone,1598714,8.0266,14.2135,0.5647,2024,0.5559,0.0159,0.1016,after toll
-2025-06-01,into_zone,571827,14.0741,14.8383,0.9485,2024,0.9244,0.0261,0.1209,after toll
-2025-06-01,out_of_zone,633834,13.1064,14.8383,0.8833,2024,0.8622,0.0244,0.0995,after toll
-2025-06-01,within_zone,1534898,8.3084,14.8383,0.5599,2024,0.543,0.0311,0.0677,after toll
-2025-07-01,into_zone,510927,14.4132,15.6424,0.9214,2024,0.9031,0.0202,0.1574,after toll
-2025-07-01,out_of_zone,565971,13.3038,15.6424,0.8505,2024,0.7947,0.0702,0.1473,after toll
-2025-07-01,within_zone,1429602,8.3023,15.6424,0.5308,2024,0.4952,0.0718,0.1206,after toll
-2025-08-01,into_zone,466875,15.0176,15.8913,0.945,2024,0.9109,0.0375,0.1185,after toll
-2025-08-01,out_of_zone,518610,13.9038,15.8913,0.8749,2024,0.8129,0.0764,0.1063,after toll
-2025-08-01,within_zone,1283324,8.6841,15.8913,0.5465,2024,0.5023,0.088,0.044,after toll
-2025-09-01,into_zone,566271,13.1444,14.1713,0.9275,2024,0.9191,0.0092,0.1117,after toll
-2025-09-01,out_of_zone,636329,12.3892,14.1713,0.8742,2024,0.8394,0.0416,0.1108,after toll
-2025-09-01,within_zone,1532271,7.7142,14.1713,0.5444,2024,0.5268,0.0334,0.0609,after toll
-2025-10-01,into_zone,600189,12.9054,13.7757,0.9368,2024,0.9369,-0.0001,0.0841,after toll
-2025-10-01,out_of_zone,663121,11.9815,13.7757,0.8698,2024,0.8315,0.046,0.0689,after toll
-2025-10-01,within_zone,1540961,7.5718,13.7757,0.5497,2024,0.5185,0.0601,0.036,after toll
-2025-11-01,into_zone,542784,12.9228,13.8528,0.9329,2024,0.9257,0.0078,0.0427,after toll
-2025-11-01,out_of_zone,610331,11.9763,13.8528,0.8645,2024,0.8576,0.0081,0.0455,after toll
-2025-11-01,within_zone,1415514,7.5326,13.8528,0.5438,2024,0.5328,0.0206,-0.0066,after toll
-2025-12-01,into_zone,605262,12.2714,13.6991,0.8958,2024,0.8602,0.0414,0.206,after toll
-2025-12-01,out_of_zone,650885,11.9788,13.6991,0.8744,2024,0.8405,0.0404,0.1444,after toll
-2025-12-01,within_zone,1552643,7.2228,13.6991,0.5272,2024,0.4969,0.0611,0.0783,after toll
-2026-01-01,into_zone,511189,13.9386,14.0677,0.9908,2024,0.9738,0.0174,0.2465,after toll
-2026-01-01,out_of_zone,566674,12.8819,14.0677,0.9157,2024,0.8276,0.1064,0.1673,after toll
-2026-01-01,within_zone,1329999,8.2275,14.0677,0.5848,2024,0.5368,0.0895,0.1568,after toll
-2026-02-01,into_zone,453571,13.2148,13.5606,0.9745,2024,0.963,0.0119,0.1144,after toll
-2026-02-01,out_of_zone,509914,12.2471,13.5606,0.9031,2024,0.8473,0.0659,0.0316,after toll
-2026-02-01,within_zone,1236079,7.7081,13.5606,0.5684,2024,0.5404,0.0518,0.0197,after toll
-2026-03-01,into_zone,548841,13.7566,14.0019,0.9825,2024,0.9505,0.0337,0.1008,after toll
-2026-03-01,out_of_zone,617493,12.6718,14.0019,0.905,2024,0.8536,0.0602,0.0618,after toll
-2026-03-01,within_zone,1452034,8.2014,14.0019,0.5857,2024,0.5359,0.0929,-0.0003,after toll
-2026-04-01,into_zone,554735,13.0479,13.8037,0.9453,2024,0.9509,-0.0059,0.0813,after toll
-2026-04-01,out_of_zone,615794,12.1893,13.8037,0.883,2024,0.8515,0.037,0.0665,after toll
-2026-04-01,within_zone,1398929,7.7629,13.8037,0.5624,2024,0.5388,0.0438,0.0062,after toll
-2026-05-01,into_zone,598550,12.3164,13.0586,0.9432,2024,0.9416,0.0016,0.081,after toll
-2026-05-01,out_of_zone,660256,11.9363,13.0586,0.9141,2024,0.8636,0.0585,0.0837,after toll
-2026-05-01,within_zone,1457679,7.559,13.0586,0.5788,2024,0.5559,0.0414,0.0044,after toll
-2026-06-01,into_zone,557410,12.7888,14.5167,0.881,2024,0.9244,-0.047,0.0927,after toll
-2026-06-01,out_of_zone,626908,12.4135,14.5167,0.8551,2024,0.8622,-0.0082,0.0875,after toll
-2026-06-01,within_zone,1431655,7.5884,14.5167,0.5227,2024,0.543,-0.0374,-0.0041,after toll
-2026-07-01,into_zone,520236,13.8861,16.0594,0.8647,2024,0.9031,-0.0426,0.1785,after toll
-2026-07-01,out_of_zone,591920,13.2972,16.0594,0.828,2024,0.7947,0.0419,0.1999,after toll
-2026-07-01,within_zone,1360052,7.877,16.0594,0.4905,2024,0.4952,-0.0095,0.066,after toll
-2026-08-01,into_zone,500324,14.3559,16.4265,0.8739,2024,0.9109,-0.0405,0.1986,after toll
-2026-08-01,out_of_zone,582999,13.8898,16.4265,0.8456,2024,0.8129,0.0402,0.2436,after toll
-2026-08-01,within_zone,1252167,8.1464,16.4265,0.4959,2024,0.5023,-0.0127,0.0187,after toll
-2026-09-01,into_zone,591907,12.9868,14.5782,0.8908,2024,0.9191,-0.0308,0.162,after toll
-2026-09-01,out_of_zone,660549,12.7169,14.5782,0.8723,2024,0.8394,0.0393,0.1531,after toll
-2026-09-01,within_zone,1396226,7.4762,14.5782,0.5128,2024,0.5268,-0.0264,-0.0333,after toll
+month_start,segment,control_group,trips,speed_mph,control_speed_mph,speed_ratio,baseline_year,baseline_speed_ratio,speed_effect_pct,trips_change_pct,period
+2023-01-01,into_zone,"outside the zone, trips under 3 miles",427585,16.4919,9.5295,1.7306,,,,,reference year
+2023-01-01,out_of_zone,"outside the zone, trips under 3 miles",525456,14.3535,9.5295,1.5062,,,,,reference year
+2023-01-01,within_zone,"outside the zone, trips under 3 miles",1177027,9.2017,9.5295,0.9656,,,,,reference year
+2023-02-01,into_zone,"outside the zone, trips under 3 miles",399851,15.9389,9.5605,1.6672,,,,,reference year
+2023-02-01,out_of_zone,"outside the zone, trips under 3 miles",503299,14.0464,9.5605,1.4692,,,,,reference year
+2023-02-01,within_zone,"outside the zone, trips under 3 miles",1164133,8.8624,9.5605,0.927,,,,,reference year
+2023-03-01,into_zone,"outside the zone, trips under 3 miles",482533,15.4409,9.3964,1.6433,,,,,reference year
+2023-03-01,out_of_zone,"outside the zone, trips under 3 miles",586568,13.6506,9.3964,1.4528,,,,,reference year
+2023-03-01,within_zone,"outside the zone, trips under 3 miles",1358742,8.586,9.3964,0.9138,,,,,reference year
+2023-04-01,into_zone,"outside the zone, trips under 3 miles",479105,15.3122,9.3085,1.645,,,,,reference year
+2023-04-01,out_of_zone,"outside the zone, trips under 3 miles",567274,13.7208,9.3085,1.474,,,,,reference year
+2023-04-01,within_zone,"outside the zone, trips under 3 miles",1287430,8.6618,9.3085,0.9305,,,,,reference year
+2023-05-01,into_zone,"outside the zone, trips under 3 miles",521305,14.2168,8.6762,1.6386,,,,,reference year
+2023-05-01,out_of_zone,"outside the zone, trips under 3 miles",617200,13.0559,8.6762,1.5048,,,,,reference year
+2023-05-01,within_zone,"outside the zone, trips under 3 miles",1340424,8.3984,8.6762,0.968,,,,,reference year
+2023-06-01,into_zone,"outside the zone, trips under 3 miles",482393,14.6376,9.0816,1.6118,,,,,reference year
+2023-06-01,out_of_zone,"outside the zone, trips under 3 miles",577907,13.4688,9.0816,1.4831,,,,,reference year
+2023-06-01,within_zone,"outside the zone, trips under 3 miles",1295171,8.3556,9.0816,0.9201,,,,,reference year
+2023-07-01,into_zone,"outside the zone, trips under 3 miles",416332,15.8525,9.8543,1.6087,,,,,reference year
+2023-07-01,out_of_zone,"outside the zone, trips under 3 miles",490287,13.9751,9.8543,1.4182,,,,,reference year
+2023-07-01,within_zone,"outside the zone, trips under 3 miles",1198242,8.4999,9.8543,0.8626,,,,,reference year
+2023-08-01,into_zone,"outside the zone, trips under 3 miles",400721,15.7974,9.764,1.6179,,,,,reference year
+2023-08-01,out_of_zone,"outside the zone, trips under 3 miles",477823,13.9582,9.764,1.4296,,,,,reference year
+2023-08-01,within_zone,"outside the zone, trips under 3 miles",1152262,8.6778,9.764,0.8888,,,,,reference year
+2023-09-01,into_zone,"outside the zone, trips under 3 miles",396145,13.7946,8.4895,1.6249,,,,,reference year
+2023-09-01,out_of_zone,"outside the zone, trips under 3 miles",459330,12.3141,8.4895,1.4505,,,,,reference year
+2023-09-01,within_zone,"outside the zone, trips under 3 miles",1114551,7.5809,8.4895,0.893,,,,,reference year
+2023-10-01,into_zone,"outside the zone, trips under 3 miles",496938,14.2792,8.7091,1.6396,,,,,reference year
+2023-10-01,out_of_zone,"outside the zone, trips under 3 miles",595287,12.415,8.7091,1.4255,,,,,reference year
+2023-10-01,within_zone,"outside the zone, trips under 3 miles",1358263,7.6554,8.7091,0.879,,,,,reference year
+2023-11-01,into_zone,"outside the zone, trips under 3 miles",471975,13.8297,8.4493,1.6368,,,,,reference year
+2023-11-01,out_of_zone,"outside the zone, trips under 3 miles",562211,12.1818,8.4493,1.4418,,,,,reference year
+2023-11-01,within_zone,"outside the zone, trips under 3 miles",1289695,7.6208,8.4493,0.902,,,,,reference year
+2023-12-01,into_zone,"outside the zone, trips under 3 miles",464357,13.1625,8.7683,1.5011,,,,,reference year
+2023-12-01,out_of_zone,"outside the zone, trips under 3 miles",556148,12.3986,8.7683,1.414,,,,,reference year
+2023-12-01,within_zone,"outside the zone, trips under 3 miles",1341794,7.42,8.7683,0.8462,,,,,reference year
+2024-01-01,into_zone,"outside the zone, trips under 3 miles",410107,15.6176,9.1019,1.7159,2023,1.7306,-0.0085,-0.0409,placebo (no toll)
+2024-01-01,out_of_zone,"outside the zone, trips under 3 miles",485461,13.2726,9.1019,1.4582,2023,1.5062,-0.0319,-0.0761,placebo (no toll)
+2024-01-01,within_zone,"outside the zone, trips under 3 miles",1149768,8.609,9.1019,0.9459,2023,0.9656,-0.0205,-0.0232,placebo (no toll)
+2024-02-01,into_zone,"outside the zone, trips under 3 miles",406998,14.8358,9.0653,1.6366,2023,1.6672,-0.0184,0.0179,placebo (no toll)
+2024-02-01,out_of_zone,"outside the zone, trips under 3 miles",494306,13.0534,9.0653,1.4399,2023,1.4692,-0.0199,-0.0179,placebo (no toll)
+2024-02-01,within_zone,"outside the zone, trips under 3 miles",1212152,8.3251,9.0653,0.9183,2023,0.927,-0.0093,0.0412,placebo (no toll)
+2024-03-01,into_zone,"outside the zone, trips under 3 miles",498584,14.6307,9.2184,1.5871,2023,1.6433,-0.0342,0.0333,placebo (no toll)
+2024-03-01,out_of_zone,"outside the zone, trips under 3 miles",581559,13.1394,9.2184,1.4253,2023,1.4528,-0.0189,-0.0085,placebo (no toll)
+2024-03-01,within_zone,"outside the zone, trips under 3 miles",1452453,8.2495,9.2184,0.8949,2023,0.9138,-0.0206,0.069,placebo (no toll)
+2024-04-01,into_zone,"outside the zone, trips under 3 miles",513027,14.3878,9.0278,1.5937,2023,1.645,-0.0312,0.0708,placebo (no toll)
+2024-04-01,out_of_zone,"outside the zone, trips under 3 miles",577393,12.8844,9.0278,1.4272,2023,1.474,-0.0318,0.0178,placebo (no toll)
+2024-04-01,within_zone,"outside the zone, trips under 3 miles",1390373,8.1521,9.0278,0.903,2023,0.9305,-0.0296,0.08,placebo (no toll)
+2024-05-01,into_zone,"outside the zone, trips under 3 miles",553688,13.344,8.6073,1.5503,2023,1.6386,-0.0539,0.0621,placebo (no toll)
+2024-05-01,out_of_zone,"outside the zone, trips under 3 miles",609281,12.2376,8.6073,1.4218,2023,1.5048,-0.0552,-0.0128,placebo (no toll)
+2024-05-01,within_zone,"outside the zone, trips under 3 miles",1451246,7.8771,8.6073,0.9152,2023,0.968,-0.0546,0.0827,placebo (no toll)
+2024-06-01,into_zone,"outside the zone, trips under 3 miles",510134,13.7005,9.04,1.5155,2023,1.6118,-0.0597,0.0575,placebo (no toll)
+2024-06-01,out_of_zone,"outside the zone, trips under 3 miles",576476,12.7787,9.04,1.4136,2023,1.4831,-0.0469,-0.0025,placebo (no toll)
+2024-06-01,within_zone,"outside the zone, trips under 3 miles",1437610,8.0484,9.04,0.8903,2023,0.9201,-0.0323,0.11,placebo (no toll)
+2024-07-01,into_zone,"outside the zone, trips under 3 miles",441428,14.9729,9.5016,1.5758,2023,1.6087,-0.0204,0.0603,placebo (no toll)
+2024-07-01,out_of_zone,"outside the zone, trips under 3 miles",493298,13.1754,9.5016,1.3866,2023,1.4182,-0.0222,0.0061,placebo (no toll)
+2024-07-01,within_zone,"outside the zone, trips under 3 miles",1275790,8.2099,9.5016,0.8641,2023,0.8626,0.0017,0.0647,placebo (no toll)
+2024-08-01,into_zone,"outside the zone, trips under 3 miles",417419,15.0647,9.375,1.6069,2023,1.6179,-0.0068,0.0417,placebo (no toll)
+2024-08-01,out_of_zone,"outside the zone, trips under 3 miles",468794,13.4441,9.375,1.434,2023,1.4296,0.0031,-0.0189,placebo (no toll)
+2024-08-01,within_zone,"outside the zone, trips under 3 miles",1229193,8.3074,9.375,0.8861,2023,0.8888,-0.003,0.0668,placebo (no toll)
+2024-09-01,into_zone,"outside the zone, trips under 3 miles",509376,13.2933,8.4274,1.5774,2023,1.6249,-0.0292,0.2858,placebo (no toll)
+2024-09-01,out_of_zone,"outside the zone, trips under 3 miles",572842,12.1399,8.4274,1.4405,2023,1.4505,-0.0069,0.2471,placebo (no toll)
+2024-09-01,within_zone,"outside the zone, trips under 3 miles",1444282,7.6187,8.4274,0.904,2023,0.893,0.0124,0.2958,placebo (no toll)
+2024-10-01,into_zone,"outside the zone, trips under 3 miles",553633,13.6604,8.4209,1.6222,2023,1.6396,-0.0106,0.1141,placebo (no toll)
+2024-10-01,out_of_zone,"outside the zone, trips under 3 miles",620355,12.1244,8.4209,1.4398,2023,1.4255,0.01,0.0421,placebo (no toll)
+2024-10-01,within_zone,"outside the zone, trips under 3 miles",1487391,7.5602,8.4209,0.8978,2023,0.879,0.0214,0.0951,placebo (no toll)
+2024-11-01,into_zone,"outside the zone, trips under 3 miles",520551,13.2054,8.4465,1.5634,2023,1.6368,-0.0448,0.1029,placebo (no toll)
+2024-11-01,out_of_zone,"outside the zone, trips under 3 miles",583776,12.2345,8.4465,1.4485,2023,1.4418,0.0047,0.0384,placebo (no toll)
+2024-11-01,within_zone,"outside the zone, trips under 3 miles",1424977,7.6004,8.4465,0.8998,2023,0.902,-0.0024,0.1049,placebo (no toll)
+2024-12-01,into_zone,"outside the zone, trips under 3 miles",501863,12.1422,8.4193,1.4422,2023,1.5011,-0.0393,0.0808,placebo (no toll)
+2024-12-01,out_of_zone,"outside the zone, trips under 3 miles",568759,11.8645,8.4193,1.4092,2023,1.414,-0.0034,0.0227,placebo (no toll)
+2024-12-01,within_zone,"outside the zone, trips under 3 miles",1439929,7.0144,8.4193,0.8331,2023,0.8462,-0.0155,0.0731,placebo (no toll)
+2025-01-01,into_zone,"outside the zone, trips under 3 miles",397390,15.1848,8.8352,1.7187,2024,1.7159,0.0016,-0.031,after toll
+2025-01-01,out_of_zone,"outside the zone, trips under 3 miles",463308,13.5553,8.8352,1.5342,2024,1.4582,0.0521,-0.0456,after toll
+2025-01-01,within_zone,"outside the zone, trips under 3 miles",1212205,8.8224,8.8352,0.9986,2024,0.9459,0.0557,0.0543,after toll
+2025-02-01,into_zone,"outside the zone, trips under 3 miles",445373,14.5336,8.9417,1.6254,2024,1.6366,-0.0068,0.0943,after toll
+2025-02-01,out_of_zone,"outside the zone, trips under 3 miles",516262,13.2879,8.9417,1.4861,2024,1.4399,0.032,0.0444,after toll
+2025-02-01,within_zone,"outside the zone, trips under 3 miles",1409315,8.5616,8.9417,0.9575,2024,0.9183,0.0426,0.1627,after toll
+2025-03-01,into_zone,"outside the zone, trips under 3 miles",530173,14.7574,9.1265,1.617,2024,1.5871,0.0188,0.0634,after toll
+2025-03-01,out_of_zone,"outside the zone, trips under 3 miles",608700,13.6032,9.1265,1.4905,2024,1.4253,0.0457,0.0467,after toll
+2025-03-01,within_zone,"outside the zone, trips under 3 miles",1607213,8.5977,9.1265,0.9421,2024,0.8949,0.0527,0.1066,after toll
+2025-04-01,into_zone,"outside the zone, trips under 3 miles",534636,14.1603,8.8674,1.5969,2024,1.5937,0.002,0.0421,after toll
+2025-04-01,out_of_zone,"outside the zone, trips under 3 miles",598413,13.0008,8.8674,1.4661,2024,1.4272,0.0273,0.0364,after toll
+2025-04-01,within_zone,"outside the zone, trips under 3 miles",1484753,8.2892,8.8674,0.9348,2024,0.903,0.0352,0.0679,after toll
+2025-05-01,into_zone,"outside the zone, trips under 3 miles",613375,13.3664,8.5008,1.5724,2024,1.5503,0.0142,0.1078,after toll
+2025-05-01,out_of_zone,"outside the zone, trips under 3 miles",665220,12.4491,8.5008,1.4645,2024,1.4218,0.03,0.0918,after toll
+2025-05-01,within_zone,"outside the zone, trips under 3 miles",1598714,8.0266,8.5008,0.9442,2024,0.9152,0.0317,0.1016,after toll
+2025-06-01,into_zone,"outside the zone, trips under 3 miles",571827,14.0741,8.9948,1.5647,2024,1.5155,0.0324,0.1209,after toll
+2025-06-01,out_of_zone,"outside the zone, trips under 3 miles",633834,13.1064,8.9948,1.4571,2024,1.4136,0.0308,0.0995,after toll
+2025-06-01,within_zone,"outside the zone, trips under 3 miles",1534898,8.3084,8.9948,0.9237,2024,0.8903,0.0375,0.0677,after toll
+2025-07-01,into_zone,"outside the zone, trips under 3 miles",510927,14.4132,9.2993,1.5499,2024,1.5758,-0.0164,0.1574,after toll
+2025-07-01,out_of_zone,"outside the zone, trips under 3 miles",565971,13.3038,9.2993,1.4306,2024,1.3866,0.0317,0.1473,after toll
+2025-07-01,within_zone,"outside the zone, trips under 3 miles",1429602,8.3023,9.2993,0.8928,2024,0.8641,0.0333,0.1206,after toll
+2025-08-01,into_zone,"outside the zone, trips under 3 miles",466875,15.0176,9.3942,1.5986,2024,1.6069,-0.0052,0.1185,after toll
+2025-08-01,out_of_zone,"outside the zone, trips under 3 miles",518610,13.9038,9.3942,1.48,2024,1.434,0.0321,0.1063,after toll
+2025-08-01,within_zone,"outside the zone, trips under 3 miles",1283324,8.6841,9.3942,0.9244,2024,0.8861,0.0432,0.044,after toll
+2025-09-01,into_zone,"outside the zone, trips under 3 miles",566271,13.1444,8.3853,1.5676,2024,1.5774,-0.0062,0.1117,after toll
+2025-09-01,out_of_zone,"outside the zone, trips under 3 miles",636329,12.3892,8.3853,1.4775,2024,1.4405,0.0257,0.1108,after toll
+2025-09-01,within_zone,"outside the zone, trips under 3 miles",1532271,7.7142,8.3853,0.92,2024,0.904,0.0176,0.0609,after toll
+2025-10-01,into_zone,"outside the zone, trips under 3 miles",600189,12.9054,8.2126,1.5714,2024,1.6222,-0.0313,0.0841,after toll
+2025-10-01,out_of_zone,"outside the zone, trips under 3 miles",663121,11.9815,8.2126,1.4589,2024,1.4398,0.0133,0.0689,after toll
+2025-10-01,within_zone,"outside the zone, trips under 3 miles",1540961,7.5718,8.2126,0.922,2024,0.8978,0.0269,0.036,after toll
+2025-11-01,into_zone,"outside the zone, trips under 3 miles",542784,12.9228,8.2467,1.567,2024,1.5634,0.0023,0.0427,after toll
+2025-11-01,out_of_zone,"outside the zone, trips under 3 miles",610331,11.9763,8.2467,1.4523,2024,1.4485,0.0026,0.0455,after toll
+2025-11-01,within_zone,"outside the zone, trips under 3 miles",1415514,7.5326,8.2467,0.9134,2024,0.8998,0.0151,-0.0066,after toll
+2025-12-01,into_zone,"outside the zone, trips under 3 miles",605262,12.2714,8.3761,1.4651,2024,1.4422,0.0159,0.206,after toll
+2025-12-01,out_of_zone,"outside the zone, trips under 3 miles",650885,11.9788,8.3761,1.4301,2024,1.4092,0.0148,0.1444,after toll
+2025-12-01,within_zone,"outside the zone, trips under 3 miles",1552643,7.2228,8.3761,0.8623,2024,0.8331,0.035,0.0783,after toll
+2026-01-01,into_zone,"outside the zone, trips under 3 miles",511189,13.9386,8.2429,1.691,2024,1.7159,-0.0145,0.2465,after toll
+2026-01-01,out_of_zone,"outside the zone, trips under 3 miles",566674,12.8819,8.2429,1.5628,2024,1.4582,0.0717,0.1673,after toll
+2026-01-01,within_zone,"outside the zone, trips under 3 miles",1329999,8.2275,8.2429,0.9981,2024,0.9459,0.0553,0.1568,after toll
+2026-02-01,into_zone,"outside the zone, trips under 3 miles",453571,13.2148,7.9826,1.6555,2024,1.6366,0.0116,0.1144,after toll
+2026-02-01,out_of_zone,"outside the zone, trips under 3 miles",509914,12.2471,7.9826,1.5342,2024,1.4399,0.0655,0.0316,after toll
+2026-02-01,within_zone,"outside the zone, trips under 3 miles",1236079,7.7081,7.9826,0.9656,2024,0.9183,0.0515,0.0197,after toll
+2026-03-01,into_zone,"outside the zone, trips under 3 miles",548841,13.7566,8.6428,1.5917,2024,1.5871,0.0029,0.1008,after toll
+2026-03-01,out_of_zone,"outside the zone, trips under 3 miles",617493,12.6718,8.6428,1.4662,2024,1.4253,0.0286,0.0618,after toll
+2026-03-01,within_zone,"outside the zone, trips under 3 miles",1452034,8.2014,8.6428,0.9489,2024,0.8949,0.0604,-0.0003,after toll
+2026-04-01,into_zone,"outside the zone, trips under 3 miles",554735,13.0479,8.4595,1.5424,2024,1.5937,-0.0322,0.0813,after toll
+2026-04-01,out_of_zone,"outside the zone, trips under 3 miles",615794,12.1893,8.4595,1.4409,2024,1.4272,0.0096,0.0665,after toll
+2026-04-01,within_zone,"outside the zone, trips under 3 miles",1398929,7.7629,8.4595,0.9177,2024,0.903,0.0162,0.0062,after toll
+2026-05-01,into_zone,"outside the zone, trips under 3 miles",598550,12.3164,8.1694,1.5076,2024,1.5503,-0.0275,0.081,after toll
+2026-05-01,out_of_zone,"outside the zone, trips under 3 miles",660256,11.9363,8.1694,1.4611,2024,1.4218,0.0277,0.0837,after toll
+2026-05-01,within_zone,"outside the zone, trips under 3 miles",1457679,7.559,8.1694,0.9253,2024,0.9152,0.011,0.0044,after toll
+2026-06-01,into_zone,"outside the zone, trips under 3 miles",557410,12.7888,8.696,1.4707,2024,1.5155,-0.0296,0.0927,after toll
+2026-06-01,out_of_zone,"outside the zone, trips under 3 miles",626908,12.4135,8.696,1.4275,2024,1.4136,0.0098,0.0875,after toll
+2026-06-01,within_zone,"outside the zone, trips under 3 miles",1431655,7.5884,8.696,0.8726,2024,0.8903,-0.0199,-0.0041,after toll
+2026-07-01,into_zone,"outside the zone, trips under 3 miles",520236,13.8861,9.2172,1.5065,2024,1.5758,-0.044,0.1785,after toll
+2026-07-01,out_of_zone,"outside the zone, trips under 3 miles",591920,13.2972,9.2172,1.4427,2024,1.3866,0.0404,0.1999,after toll
+2026-07-01,within_zone,"outside the zone, trips under 3 miles",1360052,7.877,9.2172,0.8546,2024,0.8641,-0.0109,0.066,after toll
+2026-08-01,into_zone,"outside the zone, trips under 3 miles",500324,14.3559,9.3424,1.5366,2024,1.6069,-0.0437,0.1986,after toll
+2026-08-01,out_of_zone,"outside the zone, trips under 3 miles",582999,13.8898,9.3424,1.4867,2024,1.434,0.0368,0.2436,after toll
+2026-08-01,within_zone,"outside the zone, trips under 3 miles",1252167,8.1464,9.3424,0.872,2024,0.8861,-0.0159,0.0187,after toll
+2026-09-01,into_zone,"outside the zone, trips under 3 miles",591907,12.9868,8.2206,1.5798,2024,1.5774,0.0015,0.162,after toll
+2026-09-01,out_of_zone,"outside the zone, trips under 3 miles",660549,12.7169,8.2206,1.547,2024,1.4405,0.0739,0.1531,after toll
+2026-09-01,within_zone,"outside the zone, trips under 3 miles",1396226,7.4762,8.2206,0.9095,2024,0.904,0.006,-0.0333,after toll

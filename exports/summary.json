@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-15 20:15 UTC",
+  "generated_at": "2026-11-15 20:43 UTC",
   "first_month": "2023-01",
   "last_month": "2026-09",
   "raw_trips": 161781947,
@@ -12,60 +12,61 @@
     "2025": 8.08,
     "2026": 7.82
   },
+  "main_control_group": "outside the zone, trips under 3 miles",
   "effect_within_zone": {
     "placebo: 2024 vs 2023": {
       "all hours": {
-        "speed_effect_pct": 0.0228,
+        "speed_effect_pct": -0.0101,
         "ci95": [
-          0.0098,
-          0.036
-        ],
-        "months_compared": 12,
-        "significant": true
-      },
-      "peak hours": {
-        "speed_effect_pct": 0.0211,
-        "ci95": [
-          0.0067,
-          0.0358
-        ],
-        "months_compared": 12,
-        "significant": true
-      },
-      "overnight hours": {
-        "speed_effect_pct": -0.0049,
-        "ci95": [
-          -0.0152,
-          0.0056
+          -0.0224,
+          0.0023
         ],
         "months_compared": 12,
         "significant": false
+      },
+      "peak hours": {
+        "speed_effect_pct": -0.0142,
+        "ci95": [
+          -0.0283,
+          0.0001
+        ],
+        "months_compared": 12,
+        "significant": false
+      },
+      "overnight hours": {
+        "speed_effect_pct": -0.0113,
+        "ci95": [
+          -0.022,
+          -0.0004
+        ],
+        "months_compared": 12,
+        "significant": true
       }
     },
     "2025 vs 2024": {
       "all hours": {
-        "speed_effect_pct": 0.0574,
+        "speed_effect_pct": 0.0364,
         "ci95": [
-          0.0448,
-          0.0702
+          0.0243,
+          0.0486
         ],
         "months_compared": 12,
         "significant": true
       },
       "peak hours": {
-        "speed_effect_pct": 0.0605,
+        "speed_effect_pct": 0.0383,
         "ci95": [
-          0.0464,
-          0.0749
+          0.0243,
+          0.0524
         ],
         "months_compared": 12,
         "significant": true
       },
       "overnight hours": {
-        "speed_effect_pct": 0.0763,
+        "speed_effect_pct": 0.0439,
         "ci95": [
-          0.0658,
-          0.0869
+          0.0331,
+          0.0548
         ],
         "months_compared": 12,
         "significant": true
@@ -73,28 +74,86 @@
     },
     "2026 vs 2024": {
       "all hours": {
-        "speed_effect_pct": 0.0247,
+        "speed_effect_pct": 0.0145,
         "ci95": [
-          0.0097,
-          0.0399
+          0.0011,
+          0.0281
         ],
         "months_compared": 9,
         "significant": true
       },
       "peak hours": {
-        "speed_effect_pct": 0.0224,
+        "speed_effect_pct": 0.0146,
         "ci95": [
-          0.006,
-          0.039
+          -0.0009,
+          0.0305
+        ],
+        "months_compared": 9,
+        "significant": false
+      },
+      "overnight hours": {
+        "speed_effect_pct": 0.0101,
+        "ci95": [
+          -0.0013,
+          0.0216
+        ],
+        "months_compared": 9,
+        "significant": false
+      }
+    },
+    "2025 vs 2024, trend-adjusted": {
+      "all hours": {
+        "speed_effect_pct": 0.047,
+        "ci95": [
+          0.0251,
+          0.0694
+        ],
+        "months_compared": 12,
+        "significant": true
+      },
+      "peak hours": {
+        "speed_effect_pct": 0.0532,
+        "ci95": [
+          0.0277,
+          0.0794
+        ],
+        "months_compared": 12,
+        "significant": true
+      },
+      "overnight hours": {
+        "speed_effect_pct": 0.0558,
+        "ci95": [
+          0.0366,
+          0.0754
+        ],
+        "months_compared": 12,
+        "significant": true
+      }
+    },
+    "2026 vs 2024, trend-adjusted": {
+      "all hours": {
+        "speed_effect_pct": 0.0425,
+        "ci95": [
+          0.0068,
+          0.0795
+        ],
+        "months_compared": 9,
+        "significant": true
+      },
+      "peak hours": {
+        "speed_effect_pct": 0.0536,
+        "ci95": [
+          0.0112,
+          0.0977
         ],
         "months_compared": 9,
         "significant": true
       },
       "overnight hours": {
-        "speed_effect_pct": 0.043,
+        "speed_effect_pct": 0.0414,
         "ci95": [
-          0.0313,
-          0.0549
+          0.0114,
+          0.0723
         ],
         "months_compared": 9,
         "significant": true
@@ -102,19 +161,19 @@
     }
   },
   "effect_into_zone_2025": {
-    "speed_effect_pct": 0.0235,
+    "speed_effect_pct": 0.0032,
     "ci95": [
-      0.0146,
-      0.0325
+      -0.0094,
+      0.0159
     ],
     "months_compared": 12,
-    "significant": true
+    "significant": false
   },
   "effect_out_of_zone_2025": {
-    "speed_effect_pct": 0.0491,
+    "speed_effect_pct": 0.0283,
     "ci95": [
-      0.0414,
-      0.0569
+      0.02,
+      0.0366
     ],
     "months_compared": 12,
     "significant": true
@@ -147,6 +206,15 @@
         ],
         "months_compared": 9,
         "significant": true
+      },
+      "2025 vs 2024, trend-adjusted": {
+        "speed_effect_pct": 0.0339,
+        "ci95": [
+          0.0116,
+          0.0566
+        ],
+        "months_compared": 12,
+        "significant": true
       }
     },
     "outside the zone, Manhattan only": {
@@ -175,6 +243,15 @@
           -0.0064
         ],
         "months_compared": 9,
+        "significant": true
+      },
+      "2025 vs 2024, trend-adjusted": {
+        "speed_effect_pct": 0.0352,
+        "ci95": [
+          0.0128,
+          0.0582
+        ],
+        "months_compared": 12,
         "significant": true
       }
     },
@@ -205,6 +282,15 @@
         ],
         "months_compared": 9,
         "significant": true
+      },
+      "2025 vs 2024, trend-adjusted": {
+        "speed_effect_pct": -0.0234,
+        "ci95": [
+          -0.0461,
+          -0.0003
+        ],
+        "months_compared": 12,
+        "significant": true
       }
     },
     "outside the zone, trips under 3 miles": {
@@ -233,6 +319,15 @@
           0.0281
         ],
         "months_compared": 9,
+        "significant": true
+      },
+      "2025 vs 2024, trend-adjusted": {
+        "speed_effect_pct": 0.047,
+        "ci95": [
+          0.0251,
+          0.0694
+        ],
+        "months_compared": 12,
         "significant": true
       }
     }
