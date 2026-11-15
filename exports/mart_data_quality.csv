@@ -1,0 +1,316 @@
+file_month,status,trips
+2023-01-01,implausible distance,24120
+2023-01-01,implausible duration,32061
+2023-01-01,implausible speed,859
+2023-01-01,kept,2932225
+2023-01-01,negative amount,19210
+2023-01-01,pickup date outside file month,48
+2023-01-01,unknown zone,58243
+2023-02-01,implausible distance,20707
+2023-02-01,implausible duration,30567
+2023-02-01,implausible speed,698
+2023-02-01,kept,2789596
+2023-02-01,negative amount,18902
+2023-02-01,pickup date outside file month,55
+2023-02-01,unknown zone,53430
+2023-03-01,implausible distance,24244
+2023-03-01,implausible duration,37129
+2023-03-01,implausible speed,1152
+2023-03-01,kept,3265072
+2023-03-01,negative amount,22577
+2023-03-01,pickup date outside file month,189
+2023-03-01,unknown zone,53403
+2023-04-01,implausible distance,16707
+2023-04-01,implausible duration,35939
+2023-04-01,implausible speed,1022
+2023-04-01,kept,3156625
+2023-04-01,negative amount,23136
+2023-04-01,pickup date outside file month,95
+2023-04-01,unknown zone,54726
+2023-05-01,implausible distance,20868
+2023-05-01,implausible duration,38572
+2023-05-01,implausible speed,1330
+2023-05-01,kept,3369401
+2023-05-01,negative amount,24829
+2023-05-01,pickup date outside file month,50
+2023-05-01,unknown zone,58599
+2023-06-01,implausible distance,22612
+2023-06-01,implausible duration,35983
+2023-06-01,implausible speed,1322
+2023-06-01,kept,3165322
+2023-06-01,negative amount,24832
+2023-06-01,pickup date outside file month,41
+2023-06-01,unknown zone,57122
+2023-07-01,implausible distance,26252
+2023-07-01,implausible duration,33577
+2023-07-01,implausible speed,1030
+2023-07-01,kept,2768647
+2023-07-01,negative amount,24919
+2023-07-01,pickup date outside file month,59
+2023-07-01,unknown zone,52624
+2023-08-01,implausible distance,33653
+2023-08-01,implausible duration,31964
+2023-08-01,implausible speed,991
+2023-08-01,kept,2682253
+2023-08-01,negative amount,25320
+2023-08-01,pickup date outside file month,34
+2023-08-01,unknown zone,49994
+2023-09-01,implausible distance,75546
+2023-09-01,implausible duration,31917
+2023-09-01,implausible speed,2174
+2023-09-01,kept,2663920
+2023-09-01,negative amount,23437
+2023-09-01,pickup date outside file month,32
+2023-09-01,unknown zone,49696
+2023-10-01,implausible distance,93661
+2023-10-01,implausible duration,39036
+2023-10-01,implausible speed,2538
+2023-10-01,kept,3300792
+2023-10-01,negative amount,29685
+2023-10-01,pickup date outside file month,53
+2023-10-01,unknown zone,56520
+2023-11-01,implausible distance,77451
+2023-11-01,implausible duration,37826
+2023-11-01,implausible speed,2740
+2023-11-01,kept,3141766
+2023-11-01,negative amount,29690
+2023-11-01,pickup date outside file month,31
+2023-11-01,unknown zone,50211
+2023-12-01,implausible distance,48724
+2023-12-01,implausible duration,39455
+2023-12-01,implausible speed,3052
+2023-12-01,kept,3210962
+2023-12-01,negative amount,35352
+2023-12-01,pickup date outside file month,43
+2023-12-01,unknown zone,38979
+2024-01-01,implausible distance,38104
+2024-01-01,implausible duration,33952
+2024-01-01,implausible speed,932
+2024-01-01,kept,2828928
+2024-01-01,negative amount,31166
+2024-01-01,pickup date outside file month,18
+2024-01-01,unknown zone,31524
+2024-02-01,implausible distance,47077
+2024-02-01,implausible duration,32927
+2024-02-01,implausible speed,938
+2024-02-01,kept,2863163
+2024-02-01,negative amount,34433
+2024-02-01,pickup date outside file month,15
+2024-02-01,unknown zone,28973
+2024-03-01,implausible distance,62223
+2024-03-01,implausible duration,39469
+2024-03-01,implausible speed,1443
+2024-03-01,kept,3393179
+2024-03-01,negative amount,50917
+2024-03-01,pickup date outside file month,23
+2024-03-01,unknown zone,35374
+2024-04-01,implausible distance,20999
+2024-04-01,implausible duration,39148
+2024-04-01,implausible speed,1339
+2024-04-01,kept,3367143
+2024-04-01,negative amount,49892
+2024-04-01,pickup date outside file month,9
+2024-04-01,unknown zone,35759
+2024-05-01,implausible distance,23314
+2024-05-01,implausible duration,42295
+2024-05-01,implausible speed,1617
+2024-05-01,kept,3566360
+2024-05-01,negative amount,51489
+2024-05-01,pickup date outside file month,33
+2024-05-01,unknown zone,38725
+2024-06-01,implausible distance,28046
+2024-06-01,implausible duration,41150
+2024-06-01,implausible speed,1771
+2024-06-01,kept,3376429
+2024-06-01,negative amount,53235
+2024-06-01,pickup date outside file month,51
+2024-06-01,unknown zone,38511
+2024-07-01,implausible distance,22762
+2024-07-01,implausible duration,40067
+2024-07-01,implausible speed,1396
+2024-07-01,kept,2926258
+2024-07-01,negative amount,50287
+2024-07-01,pickup date outside file month,47
+2024-07-01,unknown zone,36086
+2024-08-01,implausible distance,32693
+2024-08-01,implausible duration,40854
+2024-08-01,implausible speed,1593
+2024-08-01,kept,2819786
+2024-08-01,negative amount,49773
+2024-08-01,pickup date outside file month,51
+2024-08-01,unknown zone,34433
+2024-09-01,implausible distance,60939
+2024-09-01,implausible duration,43885
+2024-09-01,implausible speed,3230
+2024-09-01,kept,3427392
+2024-09-01,negative amount,62157
+2024-09-01,pickup date outside file month,49
+2024-09-01,unknown zone,35378
+2024-10-01,implausible distance,59822
+2024-10-01,implausible duration,44474
+2024-10-01,implausible speed,2538
+2024-10-01,kept,3619674
+2024-10-01,negative amount,64615
+2024-10-01,pickup date outside file month,40
+2024-10-01,unknown zone,42608
+2024-11-01,implausible distance,47910
+2024-11-01,implausible duration,43502
+2024-11-01,implausible speed,2415
+2024-11-01,kept,3457873
+2024-11-01,negative amount,61635
+2024-11-01,pickup date outside file month,50
+2024-11-01,unknown zone,32984
+2024-12-01,implausible distance,53055
+2024-12-01,implausible duration,46563
+2024-12-01,implausible speed,5727
+2024-12-01,kept,3460168
+2024-12-01,negative amount,67529
+2024-12-01,pickup date outside file month,34
+2024-12-01,unknown zone,35295
+2025-01-01,implausible distance,77344
+2025-01-01,implausible duration,39372
+2025-01-01,implausible speed,1336
+2025-01-01,kept,3205225
+2025-01-01,negative amount,123570
+2025-01-01,pickup date outside file month,22
+2025-01-01,unknown zone,28357
+2025-02-01,implausible distance,91985
+2025-02-01,implausible duration,39707
+2025-02-01,implausible speed,1860
+2025-02-01,kept,3259426
+2025-02-01,negative amount,159526
+2025-02-01,pickup date outside file month,31
+2025-02-01,unknown zone,25008
+2025-03-01,implausible distance,92083
+2025-03-01,implausible duration,64743
+2025-03-01,implausible speed,2094
+2025-03-01,kept,3773602
+2025-03-01,negative amount,184287
+2025-03-01,pickup date outside file month,33
+2025-03-01,unknown zone,28415
+2025-04-01,implausible distance,75704
+2025-04-01,implausible duration,78003
+2025-04-01,implausible speed,1847
+2025-04-01,kept,3620832
+2025-04-01,negative amount,165060
+2025-04-01,pickup date outside file month,7
+2025-04-01,unknown zone,29100
+2025-05-01,implausible distance,132400
+2025-05-01,implausible duration,112517
+2025-05-01,implausible speed,2884
+2025-05-01,kept,4026840
+2025-05-01,negative amount,282409
+2025-05-01,pickup date outside file month,24
+2025-05-01,unknown zone,34771
+2025-06-01,implausible distance,126504
+2025-06-01,implausible duration,115150
+2025-06-01,implausible speed,3059
+2025-06-01,kept,3804501
+2025-06-01,negative amount,240711
+2025-06-01,pickup date outside file month,20
+2025-06-01,unknown zone,33015
+2025-07-01,implausible distance,113043
+2025-07-01,implausible duration,100527
+2025-07-01,implausible speed,2454
+2025-07-01,kept,3435584
+2025-07-01,negative amount,215434
+2025-07-01,pickup date outside file month,7
+2025-07-01,unknown zone,31914
+2025-08-01,implausible distance,88878
+2025-08-01,implausible duration,93403
+2025-08-01,implausible speed,1888
+2025-08-01,kept,3126122
+2025-08-01,negative amount,231694
+2025-08-01,pickup date outside file month,17
+2025-08-01,unknown zone,32089
+2025-09-01,implausible distance,112354
+2025-09-01,implausible duration,106689
+2025-09-01,implausible speed,4460
+2025-09-01,kept,3774091
+2025-09-01,negative amount,221340
+2025-09-01,pickup date outside file month,7
+2025-09-01,unknown zone,32074
+2025-10-01,implausible distance,112268
+2025-10-01,implausible duration,117633
+2025-10-01,implausible speed,3500
+2025-10-01,kept,3882262
+2025-10-01,negative amount,279478
+2025-10-01,pickup date outside file month,13
+2025-10-01,unknown zone,33545
+2025-11-01,implausible distance,96518
+2025-11-01,implausible duration,106247
+2025-11-01,implausible speed,3309
+2025-11-01,kept,3589320
+2025-11-01,negative amount,354936
+2025-11-01,pickup date outside file month,24
+2025-11-01,unknown zone,31090
+2025-12-01,implausible distance,145786
+2025-12-01,implausible duration,104978
+2025-12-01,implausible speed,7070
+2025-12-01,kept,3973557
+2025-12-01,negative amount,41329
+2025-12-01,pickup date outside file month,9
+2025-12-01,unknown zone,32277
+2026-01-01,implausible distance,121611
+2026-01-01,implausible duration,83717
+2026-01-01,implausible speed,3536
+2026-01-01,kept,3456832
+2026-01-01,negative amount,33937
+2026-01-01,pickup date outside file month,7
+2026-01-01,unknown zone,25249
+2026-02-01,implausible distance,124617
+2026-02-01,implausible duration,73505
+2026-02-01,implausible speed,3204
+2026-02-01,kept,3153987
+2026-02-01,negative amount,22650
+2026-02-01,pickup date outside file month,16
+2026-02-01,unknown zone,21887
+2026-03-01,implausible distance,113626
+2026-03-01,implausible duration,88435
+2026-03-01,implausible speed,3277
+2026-03-01,kept,3705985
+2026-03-01,negative amount,17244
+2026-03-01,pickup date outside file month,19
+2026-03-01,unknown zone,23865
+2026-04-01,implausible distance,80752
+2026-04-01,implausible duration,87696
+2026-04-01,implausible speed,2994
+2026-04-01,kept,3624500
+2026-04-01,negative amount,11663
+2026-04-01,pickup date outside file month,12
+2026-04-01,unknown zone,23623
+2026-05-01,implausible distance,102063
+2026-05-01,implausible duration,92669
+2026-05-01,implausible speed,4057
+2026-05-01,kept,3855379
+2026-05-01,negative amount,11395
+2026-05-01,pickup date outside file month,14
+2026-05-01,unknown zone,25259
+2026-06-01,implausible distance,120546
+2026-06-01,implausible duration,90147
+2026-06-01,implausible speed,4296
+2026-06-01,kept,3584393
+2026-06-01,negative amount,10883
+2026-06-01,pickup date outside file month,17
+2026-06-01,unknown zone,26966
+2026-07-01,implausible distance,119657
+2026-07-01,implausible duration,80319
+2026-07-01,implausible speed,3921
+2026-07-01,kept,3286799
+2026-07-01,negative amount,11508
+2026-07-01,pickup date outside file month,46
+2026-07-01,unknown zone,27859
+2026-08-01,implausible distance,107029
+2026-08-01,implausible duration,76428
+2026-08-01,implausible speed,3111
+2026-08-01,kept,3111892
+2026-08-01,negative amount,11468
+2026-08-01,pickup date outside file month,15
+2026-08-01,unknown zone,26773
+2026-09-01,implausible distance,143360
+2026-09-01,implausible duration,83221
+2026-09-01,implausible speed,5572
+2026-09-01,kept,3606343
+2026-09-01,negative amount,11587
+2026-09-01,pickup date outside file month,22
+2026-09-01,unknown zone,25939

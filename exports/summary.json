@@ -1,0 +1,122 @@
+{
+  "generated_at": "2026-11-15 20:02 UTC",
+  "first_month": "2023-01",
+  "last_month": "2026-09",
+  "raw_trips": 161781947,
+  "kept_trips": 150410406,
+  "crz_zones": 38,
+  "cbd_fees_collected_usd": 41104373.5,
+  "speed_mph_within_zone": {
+    "2023": 8.25,
+    "2024": 7.91,
+    "2025": 8.08,
+    "2026": 7.82
+  },
+  "effect_within_zone": {
+    "placebo: 2024 vs 2023": {
+      "all hours": {
+        "speed_effect_pct": 0.0228,
+        "ci95": [
+          0.0098,
+          0.036
+        ],
+        "months_compared": 12,
+        "significant": true
+      },
+      "peak hours": {
+        "speed_effect_pct": 0.0211,
+        "ci95": [
+          0.0067,
+          0.0358
+        ],
+        "months_compared": 12,
+        "significant": true
+      },
+      "overnight hours": {
+        "speed_effect_pct": -0.0049,
+        "ci95": [
+          -0.0152,
+          0.0056
+        ],
+        "months_compared": 12,
+        "significant": false
+      }
+    },
+    "2025 vs 2024": {
+      "all hours": {
+        "speed_effect_pct": 0.0574,
+        "ci95": [
+          0.0448,
+          0.0702
+        ],
+        "months_compared": 12,
+        "significant": true
+      },
+      "peak hours": {
+        "speed_effect_pct": 0.0605,
+        "ci95": [
+          0.0464,
+          0.0749
+        ],
+        "months_compared": 12,
+        "significant": true
+      },
+      "overnight hours": {
+        "speed_effect_pct": 0.0763,
+        "ci95": [
+          0.0658,
+          0.0869
+        ],
+        "months_compared": 12,
+        "significant": true
+      }
+    },
+    "2026 vs 2024": {
+      "all hours": {
+        "speed_effect_pct": 0.0247,
+        "ci95": [
+          0.0097,
+          0.0399
+        ],
+        "months_compared": 9,
+        "significant": true
+      },
+      "peak hours": {
+        "speed_effect_pct": 0.0224,
+        "ci95": [
+          0.006,
+          0.039
+        ],
+        "months_compared": 9,
+        "significant": true
+      },
+      "overnight hours": {
+        "speed_effect_pct": 0.043,
+        "ci95": [
+          0.0313,
+          0.0549
+        ],
+        "months_compared": 9,
+        "significant": true
+      }
+    }
+  },
+  "effect_into_zone_2025": {
+    "speed_effect_pct": 0.0235,
+    "ci95": [
+      0.0146,
+      0.0325
+    ],
+    "months_compared": 12,
+    "significant": true
+  },
+  "effect_out_of_zone_2025": {
+    "speed_effect_pct": 0.0491,
+    "ci95": [
+      0.0414,
+      0.0569
+    ],
+    "months_compared": 12,
+    "significant": true
+  }
+}
