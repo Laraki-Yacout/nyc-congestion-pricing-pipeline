@@ -1,181 +1,181 @@
 comparison,method,scope,segment,control_group,is_main_estimate,months_compared,treated_days,baseline_days,speed_effect_pct,ci95_low_pct,ci95_high_pct,is_significant
-2025 vs 2024,simple,all hours,within_zone,all trips outside the zone,false,12,361,366,0.0574,0.0448,0.0702,true
+2025 vs 2024,simple,all hours,within_zone,"outside the zone, no airport trips",false,12,361,366,-0.0516,-0.0646,-0.0384,true
 2025 vs 2024,simple,all hours,into_zone,"outside the zone, no airport trips",false,12,361,366,-0.082,-0.094,-0.0699,true
 2025 vs 2024,simple,all hours,into_zone,all trips outside the zone,false,12,361,366,0.0235,0.0146,0.0325,true
+2025 vs 2024,simple,all hours,within_zone,"outside the zone, Manhattan only",false,12,361,366,0.0143,0.0017,0.027,true
+2025 vs 2024,simple,all hours,into_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.0032,-0.0094,0.0159,false
 2025 vs 2024,simple,all hours,out_of_zone,all trips outside the zone,false,12,361,366,0.0491,0.0414,0.0569,true
 2025 vs 2024,simple,all hours,within_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.0364,0.0243,0.0486,true
-2025 vs 2024,simple,all hours,within_zone,"outside the zone, Manhattan only",false,12,361,366,0.0143,0.0017,0.027,true
-2025 vs 2024,simple,all hours,within_zone,"outside the zone, no airport trips",false,12,361,366,-0.0516,-0.0646,-0.0384,true
-2025 vs 2024,simple,all hours,into_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.0032,-0.0094,0.0159,false
-2025 vs 2024,simple,all hours,out_of_zone,"outside the zone, Manhattan only",false,12,361,366,0.0064,-0.0019,0.0146,false
-2025 vs 2024,simple,all hours,out_of_zone,"outside the zone, no airport trips",false,12,361,366,-0.059,-0.0668,-0.0511,true
 2025 vs 2024,simple,all hours,out_of_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.0283,0.02,0.0366,true
+2025 vs 2024,simple,all hours,out_of_zone,"outside the zone, Manhattan only",false,12,361,366,0.0064,-0.0019,0.0146,false
+2025 vs 2024,simple,all hours,within_zone,all trips outside the zone,false,12,361,366,0.0574,0.0448,0.0702,true
+2025 vs 2024,simple,all hours,out_of_zone,"outside the zone, no airport trips",false,12,361,366,-0.059,-0.0668,-0.0511,true
 2025 vs 2024,simple,all hours,into_zone,"outside the zone, Manhattan only",false,12,361,366,-0.0182,-0.0309,-0.0053,true
-2025 vs 2024,simple,overnight hours,into_zone,"outside the zone, Manhattan only",false,12,361,366,-0.057,-0.0733,-0.0404,true
-2025 vs 2024,simple,overnight hours,out_of_zone,"outside the zone, Manhattan only",false,12,361,366,0.016,0.008,0.0241,true
-2025 vs 2024,simple,overnight hours,out_of_zone,"outside the zone, no airport trips",false,12,361,366,-0.0472,-0.0545,-0.0399,true
-2025 vs 2024,simple,overnight hours,within_zone,"outside the zone, Manhattan only",false,12,361,366,0.0027,-0.0082,0.0137,false
-2025 vs 2024,simple,overnight hours,within_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.0439,0.0331,0.0548,true
-2025 vs 2024,simple,overnight hours,out_of_zone,all trips outside the zone,false,12,361,366,0.0906,0.0786,0.1027,true
-2025 vs 2024,simple,overnight hours,into_zone,"outside the zone, trips under 3 miles",true,12,361,366,-0.0182,-0.0347,-0.0014,true
 2025 vs 2024,simple,overnight hours,out_of_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.0578,0.0478,0.0679,true
-2025 vs 2024,simple,overnight hours,into_zone,all trips outside the zone,false,12,361,366,0.0122,0.0027,0.0218,true
-2025 vs 2024,simple,overnight hours,into_zone,"outside the zone, no airport trips",false,12,361,366,-0.1157,-0.1287,-0.1025,true
-2025 vs 2024,simple,overnight hours,within_zone,all trips outside the zone,false,12,361,366,0.0763,0.0658,0.0869,true
+2025 vs 2024,simple,overnight hours,into_zone,"outside the zone, trips under 3 miles",true,12,361,366,-0.0182,-0.0347,-0.0014,true
+2025 vs 2024,simple,overnight hours,into_zone,"outside the zone, Manhattan only",false,12,361,366,-0.057,-0.0733,-0.0404,true
+2025 vs 2024,simple,overnight hours,out_of_zone,all trips outside the zone,false,12,361,366,0.0906,0.0786,0.1027,true
+2025 vs 2024,simple,overnight hours,out_of_zone,"outside the zone, no airport trips",false,12,361,366,-0.0472,-0.0545,-0.0399,true
 2025 vs 2024,simple,overnight hours,within_zone,"outside the zone, no airport trips",false,12,361,366,-0.0597,-0.07,-0.0493,true
-2025 vs 2024,simple,peak hours,out_of_zone,"outside the zone, no airport trips",false,12,361,366,-0.05,-0.0587,-0.0411,true
-2025 vs 2024,simple,peak hours,out_of_zone,"outside the zone, Manhattan only",false,12,361,366,-0.0003,-0.0099,0.0094,false
-2025 vs 2024,simple,peak hours,into_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.007,-0.0053,0.0195,false
-2025 vs 2024,simple,peak hours,within_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.0383,0.0243,0.0524,true
+2025 vs 2024,simple,overnight hours,into_zone,"outside the zone, no airport trips",false,12,361,366,-0.1157,-0.1287,-0.1025,true
+2025 vs 2024,simple,overnight hours,within_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.0439,0.0331,0.0548,true
+2025 vs 2024,simple,overnight hours,into_zone,all trips outside the zone,false,12,361,366,0.0122,0.0027,0.0218,true
+2025 vs 2024,simple,overnight hours,out_of_zone,"outside the zone, Manhattan only",false,12,361,366,0.016,0.008,0.0241,true
+2025 vs 2024,simple,overnight hours,within_zone,"outside the zone, Manhattan only",false,12,361,366,0.0027,-0.0082,0.0137,false
+2025 vs 2024,simple,overnight hours,within_zone,all trips outside the zone,false,12,361,366,0.0763,0.0658,0.0869,true
 2025 vs 2024,simple,peak hours,into_zone,"outside the zone, Manhattan only",false,12,361,366,-0.0112,-0.0236,0.0014,false
-2025 vs 2024,simple,peak hours,out_of_zone,all trips outside the zone,false,12,361,366,0.04,0.0318,0.0483,true
-2025 vs 2024,simple,peak hours,out_of_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.0181,0.0083,0.0281,true
-2025 vs 2024,simple,peak hours,within_zone,"outside the zone, no airport trips",false,12,361,366,-0.0312,-0.0447,-0.0175,true
-2025 vs 2024,simple,peak hours,into_zone,"outside the zone, no airport trips",false,12,361,366,-0.0603,-0.0717,-0.0488,true
-2025 vs 2024,simple,peak hours,within_zone,all trips outside the zone,false,12,361,366,0.0605,0.0464,0.0749,true
 2025 vs 2024,simple,peak hours,within_zone,"outside the zone, Manhattan only",false,12,361,366,0.0195,0.0053,0.0339,true
+2025 vs 2024,simple,peak hours,out_of_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.0181,0.0083,0.0281,true
+2025 vs 2024,simple,peak hours,within_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.0383,0.0243,0.0524,true
 2025 vs 2024,simple,peak hours,into_zone,all trips outside the zone,false,12,361,366,0.0286,0.0193,0.038,true
-"2025 vs 2024, trend-adjusted",trend-adjusted,all hours,out_of_zone,all trips outside the zone,false,12,361,366,0.0314,0.0176,0.0454,true
-"2025 vs 2024, trend-adjusted",trend-adjusted,all hours,out_of_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.0445,0.0293,0.0599,true
-"2025 vs 2024, trend-adjusted",trend-adjusted,all hours,into_zone,"outside the zone, Manhattan only",false,12,361,366,0.0183,-0.0049,0.042,false
+2025 vs 2024,simple,peak hours,out_of_zone,"outside the zone, Manhattan only",false,12,361,366,-0.0003,-0.0099,0.0094,false
+2025 vs 2024,simple,peak hours,within_zone,all trips outside the zone,false,12,361,366,0.0605,0.0464,0.0749,true
+2025 vs 2024,simple,peak hours,out_of_zone,all trips outside the zone,false,12,361,366,0.04,0.0318,0.0483,true
+2025 vs 2024,simple,peak hours,within_zone,"outside the zone, no airport trips",false,12,361,366,-0.0312,-0.0447,-0.0175,true
+2025 vs 2024,simple,peak hours,out_of_zone,"outside the zone, no airport trips",false,12,361,366,-0.05,-0.0587,-0.0411,true
+2025 vs 2024,simple,peak hours,into_zone,"outside the zone, no airport trips",false,12,361,366,-0.0603,-0.0717,-0.0488,true
+2025 vs 2024,simple,peak hours,into_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.007,-0.0053,0.0195,false
+"2025 vs 2024, trend-adjusted",trend-adjusted,all hours,into_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.0299,0.0069,0.0533,true
 "2025 vs 2024, trend-adjusted",trend-adjusted,all hours,into_zone,"outside the zone, no airport trips",false,12,361,366,-0.0394,-0.0608,-0.0175,true
-"2025 vs 2024, trend-adjusted",trend-adjusted,all hours,within_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.047,0.0251,0.0694,true
+"2025 vs 2024, trend-adjusted",trend-adjusted,all hours,out_of_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.0445,0.0293,0.0599,true
 "2025 vs 2024, trend-adjusted",trend-adjusted,all hours,within_zone,"outside the zone, no airport trips",false,12,361,366,-0.0234,-0.0461,-0.0003,true
 "2025 vs 2024, trend-adjusted",trend-adjusted,all hours,within_zone,"outside the zone, Manhattan only",false,12,361,366,0.0352,0.0128,0.0582,true
-"2025 vs 2024, trend-adjusted",trend-adjusted,all hours,into_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.0299,0.0069,0.0533,true
-"2025 vs 2024, trend-adjusted",trend-adjusted,all hours,into_zone,all trips outside the zone,false,12,361,366,0.017,0.0012,0.0329,true
+"2025 vs 2024, trend-adjusted",trend-adjusted,all hours,within_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.047,0.0251,0.0694,true
 "2025 vs 2024, trend-adjusted",trend-adjusted,all hours,out_of_zone,"outside the zone, Manhattan only",false,12,361,366,0.0328,0.0176,0.0482,true
 "2025 vs 2024, trend-adjusted",trend-adjusted,all hours,out_of_zone,"outside the zone, no airport trips",false,12,361,366,-0.0257,-0.0393,-0.012,true
 "2025 vs 2024, trend-adjusted",trend-adjusted,all hours,within_zone,all trips outside the zone,false,12,361,366,0.0339,0.0116,0.0566,true
+"2025 vs 2024, trend-adjusted",trend-adjusted,all hours,into_zone,"outside the zone, Manhattan only",false,12,361,366,0.0183,-0.0049,0.042,false
+"2025 vs 2024, trend-adjusted",trend-adjusted,all hours,out_of_zone,all trips outside the zone,false,12,361,366,0.0314,0.0176,0.0454,true
+"2025 vs 2024, trend-adjusted",trend-adjusted,all hours,into_zone,all trips outside the zone,false,12,361,366,0.017,0.0012,0.0329,true
+"2025 vs 2024, trend-adjusted",trend-adjusted,overnight hours,into_zone,"outside the zone, no airport trips",false,12,361,366,-0.0688,-0.0921,-0.0448,true
+"2025 vs 2024, trend-adjusted",trend-adjusted,overnight hours,within_zone,all trips outside the zone,false,12,361,366,0.0815,0.0627,0.1007,true
+"2025 vs 2024, trend-adjusted",trend-adjusted,overnight hours,within_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.0558,0.0366,0.0754,true
+"2025 vs 2024, trend-adjusted",trend-adjusted,overnight hours,into_zone,"outside the zone, Manhattan only",false,12,361,366,-0.0345,-0.0635,-0.0046,true
+"2025 vs 2024, trend-adjusted",trend-adjusted,overnight hours,out_of_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.0605,0.0435,0.0778,true
 "2025 vs 2024, trend-adjusted",trend-adjusted,overnight hours,within_zone,"outside the zone, no airport trips",false,12,361,366,-0.0083,-0.027,0.0108,false
 "2025 vs 2024, trend-adjusted",trend-adjusted,overnight hours,out_of_zone,"outside the zone, Manhattan only",false,12,361,366,0.0328,0.018,0.0479,true
-"2025 vs 2024, trend-adjusted",trend-adjusted,overnight hours,into_zone,all trips outside the zone,false,12,361,366,0.0155,-0.0005,0.0318,false
-"2025 vs 2024, trend-adjusted",trend-adjusted,overnight hours,within_zone,all trips outside the zone,false,12,361,366,0.0815,0.0627,0.1007,true
-"2025 vs 2024, trend-adjusted",trend-adjusted,overnight hours,out_of_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.0605,0.0435,0.0778,true
-"2025 vs 2024, trend-adjusted",trend-adjusted,overnight hours,into_zone,"outside the zone, no airport trips",false,12,361,366,-0.0688,-0.0921,-0.0448,true
 "2025 vs 2024, trend-adjusted",trend-adjusted,overnight hours,into_zone,"outside the zone, trips under 3 miles",true,12,361,366,-0.0086,-0.0377,0.0214,false
-"2025 vs 2024, trend-adjusted",trend-adjusted,overnight hours,within_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.0558,0.0366,0.0754,true
-"2025 vs 2024, trend-adjusted",trend-adjusted,overnight hours,within_zone,"outside the zone, Manhattan only",false,12,361,366,0.0283,0.0088,0.0481,true
 "2025 vs 2024, trend-adjusted",trend-adjusted,overnight hours,out_of_zone,all trips outside the zone,false,12,361,366,0.0863,0.0665,0.1065,true
-"2025 vs 2024, trend-adjusted",trend-adjusted,overnight hours,into_zone,"outside the zone, Manhattan only",false,12,361,366,-0.0345,-0.0635,-0.0046,true
+"2025 vs 2024, trend-adjusted",trend-adjusted,overnight hours,into_zone,all trips outside the zone,false,12,361,366,0.0155,-0.0005,0.0318,false
 "2025 vs 2024, trend-adjusted",trend-adjusted,overnight hours,out_of_zone,"outside the zone, no airport trips",false,12,361,366,-0.0039,-0.0174,0.0098,false
-"2025 vs 2024, trend-adjusted",trend-adjusted,peak hours,out_of_zone,all trips outside the zone,false,12,361,366,0.0242,0.0097,0.0388,true
-"2025 vs 2024, trend-adjusted",trend-adjusted,peak hours,into_zone,"outside the zone, Manhattan only",false,12,361,366,0.0272,0.0045,0.0504,true
-"2025 vs 2024, trend-adjusted",trend-adjusted,peak hours,within_zone,"outside the zone, Manhattan only",false,12,361,366,0.045,0.0193,0.0713,true
-"2025 vs 2024, trend-adjusted",trend-adjusted,peak hours,into_zone,all trips outside the zone,false,12,361,366,0.0209,0.0043,0.0378,true
+"2025 vs 2024, trend-adjusted",trend-adjusted,overnight hours,within_zone,"outside the zone, Manhattan only",false,12,361,366,0.0283,0.0088,0.0481,true
 "2025 vs 2024, trend-adjusted",trend-adjusted,peak hours,within_zone,all trips outside the zone,false,12,361,366,0.0386,0.0137,0.0641,true
-"2025 vs 2024, trend-adjusted",trend-adjusted,peak hours,into_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.0353,0.0127,0.0584,true
 "2025 vs 2024, trend-adjusted",trend-adjusted,peak hours,into_zone,"outside the zone, no airport trips",false,12,361,366,-0.0214,-0.042,-0.0004,true
-"2025 vs 2024, trend-adjusted",trend-adjusted,peak hours,out_of_zone,"outside the zone, no airport trips",false,12,361,366,-0.0183,-0.0337,-0.0027,true
-"2025 vs 2024, trend-adjusted",trend-adjusted,peak hours,out_of_zone,"outside the zone, Manhattan only",false,12,361,366,0.0305,0.0129,0.0483,true
-"2025 vs 2024, trend-adjusted",trend-adjusted,peak hours,within_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.0532,0.0277,0.0794,true
+"2025 vs 2024, trend-adjusted",trend-adjusted,peak hours,within_zone,"outside the zone, Manhattan only",false,12,361,366,0.045,0.0193,0.0713,true
 "2025 vs 2024, trend-adjusted",trend-adjusted,peak hours,out_of_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.0386,0.0208,0.0567,true
 "2025 vs 2024, trend-adjusted",trend-adjusted,peak hours,within_zone,"outside the zone, no airport trips",false,12,361,366,-0.0045,-0.0286,0.0201,false
-2026 vs 2024,simple,all hours,within_zone,all trips outside the zone,false,9,273,274,0.0247,0.0097,0.0399,true
+"2025 vs 2024, trend-adjusted",trend-adjusted,peak hours,out_of_zone,"outside the zone, Manhattan only",false,12,361,366,0.0305,0.0129,0.0483,true
+"2025 vs 2024, trend-adjusted",trend-adjusted,peak hours,into_zone,all trips outside the zone,false,12,361,366,0.0209,0.0043,0.0378,true
+"2025 vs 2024, trend-adjusted",trend-adjusted,peak hours,out_of_zone,all trips outside the zone,false,12,361,366,0.0242,0.0097,0.0388,true
+"2025 vs 2024, trend-adjusted",trend-adjusted,peak hours,into_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.0353,0.0127,0.0584,true
+"2025 vs 2024, trend-adjusted",trend-adjusted,peak hours,within_zone,"outside the zone, trips under 3 miles",true,12,361,366,0.0532,0.0277,0.0794,true
+"2025 vs 2024, trend-adjusted",trend-adjusted,peak hours,out_of_zone,"outside the zone, no airport trips",false,12,361,366,-0.0183,-0.0337,-0.0027,true
+"2025 vs 2024, trend-adjusted",trend-adjusted,peak hours,into_zone,"outside the zone, Manhattan only",false,12,361,366,0.0272,0.0045,0.0504,true
 2026 vs 2024,simple,all hours,out_of_zone,all trips outside the zone,false,9,273,274,0.0455,0.0363,0.0548,true
-2026 vs 2024,simple,all hours,within_zone,"outside the zone, trips under 3 miles",true,9,273,274,0.0145,0.0011,0.0281,true
-2026 vs 2024,simple,all hours,out_of_zone,"outside the zone, no airport trips",false,9,273,274,-0.0737,-0.0812,-0.0662,true
-2026 vs 2024,simple,all hours,into_zone,all trips outside the zone,false,9,273,274,-0.0112,-0.0216,-0.0007,true
-2026 vs 2024,simple,all hours,within_zone,"outside the zone, Manhattan only",false,9,273,274,-0.0201,-0.0337,-0.0064,true
 2026 vs 2024,simple,all hours,within_zone,"outside the zone, no airport trips",false,9,273,274,-0.0922,-0.1055,-0.0787,true
+2026 vs 2024,simple,all hours,within_zone,all trips outside the zone,false,9,273,274,0.0247,0.0097,0.0399,true
+2026 vs 2024,simple,all hours,out_of_zone,"outside the zone, no airport trips",false,9,273,274,-0.0737,-0.0812,-0.0662,true
+2026 vs 2024,simple,all hours,within_zone,"outside the zone, Manhattan only",false,9,273,274,-0.0201,-0.0337,-0.0064,true
 2026 vs 2024,simple,all hours,into_zone,"outside the zone, no airport trips",false,9,273,274,-0.1239,-0.1359,-0.1118,true
 2026 vs 2024,simple,all hours,into_zone,"outside the zone, Manhattan only",false,9,273,274,-0.0544,-0.0681,-0.0405,true
-2026 vs 2024,simple,all hours,out_of_zone,"outside the zone, trips under 3 miles",true,9,273,274,0.0352,0.0259,0.0445,true
-2026 vs 2024,simple,all hours,into_zone,"outside the zone, trips under 3 miles",true,9,273,274,-0.021,-0.035,-0.0067,true
+2026 vs 2024,simple,all hours,within_zone,"outside the zone, trips under 3 miles",true,9,273,274,0.0145,0.0011,0.0281,true
 2026 vs 2024,simple,all hours,out_of_zone,"outside the zone, Manhattan only",false,9,273,274,-0.0002,-0.0091,0.0089,false
-2026 vs 2024,simple,overnight hours,within_zone,"outside the zone, no airport trips",false,9,273,274,-0.099,-0.1096,-0.0882,true
-2026 vs 2024,simple,overnight hours,out_of_zone,"outside the zone, trips under 3 miles",true,9,273,274,0.0629,0.0522,0.0736,true
-2026 vs 2024,simple,overnight hours,within_zone,"outside the zone, Manhattan only",false,9,273,274,-0.0518,-0.0629,-0.0405,true
-2026 vs 2024,simple,overnight hours,within_zone,all trips outside the zone,false,9,273,274,0.043,0.0313,0.0549,true
-2026 vs 2024,simple,overnight hours,into_zone,"outside the zone, Manhattan only",false,9,273,274,-0.1285,-0.1453,-0.1113,true
-2026 vs 2024,simple,overnight hours,out_of_zone,"outside the zone, no airport trips",false,9,273,274,-0.0519,-0.0599,-0.0437,true
-2026 vs 2024,simple,overnight hours,into_zone,"outside the zone, trips under 3 miles",true,9,273,274,-0.0717,-0.0893,-0.0537,true
-2026 vs 2024,simple,overnight hours,out_of_zone,"outside the zone, Manhattan only",false,9,273,274,-0.0022,-0.0104,0.0062,false
-2026 vs 2024,simple,overnight hours,into_zone,all trips outside the zone,false,9,273,274,-0.0414,-0.0511,-0.0315,true
-2026 vs 2024,simple,overnight hours,within_zone,"outside the zone, trips under 3 miles",true,9,273,274,0.0101,-0.0013,0.0216,false
+2026 vs 2024,simple,all hours,out_of_zone,"outside the zone, trips under 3 miles",true,9,273,274,0.0352,0.0259,0.0445,true
+2026 vs 2024,simple,all hours,into_zone,all trips outside the zone,false,9,273,274,-0.0112,-0.0216,-0.0007,true
+2026 vs 2024,simple,all hours,into_zone,"outside the zone, trips under 3 miles",true,9,273,274,-0.021,-0.035,-0.0067,true
 2026 vs 2024,simple,overnight hours,into_zone,"outside the zone, no airport trips",false,9,273,274,-0.1719,-0.1852,-0.1584,true
+2026 vs 2024,simple,overnight hours,within_zone,"outside the zone, Manhattan only",false,9,273,274,-0.0518,-0.0629,-0.0405,true
+2026 vs 2024,simple,overnight hours,within_zone,"outside the zone, trips under 3 miles",true,9,273,274,0.0101,-0.0013,0.0216,false
+2026 vs 2024,simple,overnight hours,into_zone,all trips outside the zone,false,9,273,274,-0.0414,-0.0511,-0.0315,true
 2026 vs 2024,simple,overnight hours,out_of_zone,all trips outside the zone,false,9,273,274,0.0976,0.0841,0.1112,true
-2026 vs 2024,simple,peak hours,within_zone,"outside the zone, trips under 3 miles",true,9,273,274,0.0146,-0.0009,0.0305,false
-2026 vs 2024,simple,peak hours,within_zone,all trips outside the zone,false,9,273,274,0.0224,0.006,0.039,true
-2026 vs 2024,simple,peak hours,out_of_zone,"outside the zone, trips under 3 miles",true,9,273,274,0.0095,-0.0011,0.0203,false
-2026 vs 2024,simple,peak hours,into_zone,"outside the zone, Manhattan only",false,9,273,274,-0.0389,-0.0525,-0.0251,true
-2026 vs 2024,simple,peak hours,into_zone,"outside the zone, trips under 3 miles",true,9,273,274,-0.0117,-0.0257,0.0025,false
-2026 vs 2024,simple,peak hours,out_of_zone,"outside the zone, no airport trips",false,9,273,274,-0.0777,-0.086,-0.0693,true
+2026 vs 2024,simple,overnight hours,out_of_zone,"outside the zone, trips under 3 miles",true,9,273,274,0.0629,0.0522,0.0736,true
+2026 vs 2024,simple,overnight hours,within_zone,all trips outside the zone,false,9,273,274,0.043,0.0313,0.0549,true
+2026 vs 2024,simple,overnight hours,into_zone,"outside the zone, trips under 3 miles",true,9,273,274,-0.0717,-0.0893,-0.0537,true
+2026 vs 2024,simple,overnight hours,within_zone,"outside the zone, no airport trips",false,9,273,274,-0.099,-0.1096,-0.0882,true
+2026 vs 2024,simple,overnight hours,out_of_zone,"outside the zone, no airport trips",false,9,273,274,-0.0519,-0.0599,-0.0437,true
+2026 vs 2024,simple,overnight hours,into_zone,"outside the zone, Manhattan only",false,9,273,274,-0.1285,-0.1453,-0.1113,true
+2026 vs 2024,simple,overnight hours,out_of_zone,"outside the zone, Manhattan only",false,9,273,274,-0.0022,-0.0104,0.0062,false
 2026 vs 2024,simple,peak hours,within_zone,"outside the zone, no airport trips",false,9,273,274,-0.073,-0.0865,-0.0593,true
-2026 vs 2024,simple,peak hours,out_of_zone,"outside the zone, Manhattan only",false,9,273,274,-0.0182,-0.0284,-0.008,true
-2026 vs 2024,simple,peak hours,within_zone,"outside the zone, Manhattan only",false,9,273,274,-0.0133,-0.0286,0.0023,false
-2026 vs 2024,simple,peak hours,into_zone,all trips outside the zone,false,9,273,274,-0.0042,-0.015,0.0068,false
-2026 vs 2024,simple,peak hours,out_of_zone,all trips outside the zone,false,9,273,274,0.0172,0.008,0.0265,true
 2026 vs 2024,simple,peak hours,into_zone,"outside the zone, no airport trips",false,9,273,274,-0.0971,-0.1085,-0.0856,true
+2026 vs 2024,simple,peak hours,out_of_zone,all trips outside the zone,false,9,273,274,0.0172,0.008,0.0265,true
+2026 vs 2024,simple,peak hours,into_zone,"outside the zone, trips under 3 miles",true,9,273,274,-0.0117,-0.0257,0.0025,false
+2026 vs 2024,simple,peak hours,into_zone,"outside the zone, Manhattan only",false,9,273,274,-0.0389,-0.0525,-0.0251,true
+2026 vs 2024,simple,peak hours,within_zone,"outside the zone, trips under 3 miles",true,9,273,274,0.0146,-0.0009,0.0305,false
+2026 vs 2024,simple,peak hours,out_of_zone,"outside the zone, trips under 3 miles",true,9,273,274,0.0095,-0.0011,0.0203,false
+2026 vs 2024,simple,peak hours,out_of_zone,"outside the zone, Manhattan only",false,9,273,274,-0.0182,-0.0284,-0.008,true
+2026 vs 2024,simple,peak hours,out_of_zone,"outside the zone, no airport trips",false,9,273,274,-0.0777,-0.086,-0.0693,true
+2026 vs 2024,simple,peak hours,within_zone,all trips outside the zone,false,9,273,274,0.0224,0.006,0.039,true
+2026 vs 2024,simple,peak hours,into_zone,all trips outside the zone,false,9,273,274,-0.0042,-0.015,0.0068,false
+2026 vs 2024,simple,peak hours,within_zone,"outside the zone, Manhattan only",false,9,273,274,-0.0133,-0.0286,0.0023,false
 "2026 vs 2024, trend-adjusted",trend-adjusted,all hours,into_zone,"outside the zone, no airport trips",false,9,273,274,-0.0565,-0.091,-0.0208,true
-"2026 vs 2024, trend-adjusted",trend-adjusted,all hours,into_zone,all trips outside the zone,false,9,273,274,-0.0351,-0.0601,-0.0094,true
-"2026 vs 2024, trend-adjusted",trend-adjusted,all hours,within_zone,"outside the zone, trips under 3 miles",true,9,273,274,0.0425,0.0068,0.0795,true
-"2026 vs 2024, trend-adjusted",trend-adjusted,all hours,within_zone,"outside the zone, no airport trips",false,9,273,274,-0.0426,-0.078,-0.0058,true
 "2026 vs 2024, trend-adjusted",trend-adjusted,all hours,into_zone,"outside the zone, trips under 3 miles",true,9,273,274,0.0273,-0.0111,0.0672,false
 "2026 vs 2024, trend-adjusted",trend-adjusted,all hours,out_of_zone,all trips outside the zone,false,9,273,274,0.017,-0.0067,0.0412,false
-"2026 vs 2024, trend-adjusted",trend-adjusted,all hours,into_zone,"outside the zone, Manhattan only",false,9,273,274,0.0144,-0.0244,0.0548,false
-"2026 vs 2024, trend-adjusted",trend-adjusted,all hours,within_zone,all trips outside the zone,false,9,273,274,-0.0208,-0.0564,0.0162,false
-"2026 vs 2024, trend-adjusted",trend-adjusted,all hours,out_of_zone,"outside the zone, Manhattan only",false,9,273,274,0.0691,0.0427,0.0962,true
-"2026 vs 2024, trend-adjusted",trend-adjusted,all hours,within_zone,"outside the zone, Manhattan only",false,9,273,274,0.0294,-0.0071,0.0672,false
 "2026 vs 2024, trend-adjusted",trend-adjusted,all hours,out_of_zone,"outside the zone, no airport trips",false,9,273,274,-0.0056,-0.0278,0.0171,false
+"2026 vs 2024, trend-adjusted",trend-adjusted,all hours,within_zone,"outside the zone, trips under 3 miles",true,9,273,274,0.0425,0.0068,0.0795,true
+"2026 vs 2024, trend-adjusted",trend-adjusted,all hours,into_zone,all trips outside the zone,false,9,273,274,-0.0351,-0.0601,-0.0094,true
+"2026 vs 2024, trend-adjusted",trend-adjusted,all hours,within_zone,"outside the zone, Manhattan only",false,9,273,274,0.0294,-0.0071,0.0672,false
+"2026 vs 2024, trend-adjusted",trend-adjusted,all hours,into_zone,"outside the zone, Manhattan only",false,9,273,274,0.0144,-0.0244,0.0548,false
 "2026 vs 2024, trend-adjusted",trend-adjusted,all hours,out_of_zone,"outside the zone, trips under 3 miles",true,9,273,274,0.0827,0.0562,0.1099,true
-"2026 vs 2024, trend-adjusted",trend-adjusted,overnight hours,into_zone,"outside the zone, no airport trips",false,9,273,274,-0.0909,-0.128,-0.0522,true
-"2026 vs 2024, trend-adjusted",trend-adjusted,overnight hours,out_of_zone,all trips outside the zone,false,9,273,274,0.1005,0.0671,0.135,true
-"2026 vs 2024, trend-adjusted",trend-adjusted,overnight hours,out_of_zone,"outside the zone, Manhattan only",false,9,273,274,0.0415,0.0181,0.0654,true
-"2026 vs 2024, trend-adjusted",trend-adjusted,overnight hours,within_zone,"outside the zone, trips under 3 miles",true,9,273,274,0.0414,0.0114,0.0723,true
+"2026 vs 2024, trend-adjusted",trend-adjusted,all hours,out_of_zone,"outside the zone, Manhattan only",false,9,273,274,0.0691,0.0427,0.0962,true
+"2026 vs 2024, trend-adjusted",trend-adjusted,all hours,within_zone,"outside the zone, no airport trips",false,9,273,274,-0.0426,-0.078,-0.0058,true
+"2026 vs 2024, trend-adjusted",trend-adjusted,all hours,within_zone,all trips outside the zone,false,9,273,274,-0.0208,-0.0564,0.0162,false
 "2026 vs 2024, trend-adjusted",trend-adjusted,overnight hours,into_zone,all trips outside the zone,false,9,273,274,-0.0334,-0.0572,-0.009,true
-"2026 vs 2024, trend-adjusted",trend-adjusted,overnight hours,within_zone,all trips outside the zone,false,9,273,274,0.0618,0.0308,0.0937,true
-"2026 vs 2024, trend-adjusted",trend-adjusted,overnight hours,into_zone,"outside the zone, Manhattan only",false,9,273,274,-0.0852,-0.1311,-0.037,true
-"2026 vs 2024, trend-adjusted",trend-adjusted,overnight hours,into_zone,"outside the zone, trips under 3 miles",true,9,273,274,-0.0519,-0.0981,-0.0033,true
-"2026 vs 2024, trend-adjusted",trend-adjusted,overnight hours,out_of_zone,"outside the zone, no airport trips",false,9,273,274,0.0351,0.0121,0.0586,true
-"2026 vs 2024, trend-adjusted",trend-adjusted,overnight hours,within_zone,"outside the zone, no airport trips",false,9,273,274,-0.0014,-0.0311,0.0292,false
 "2026 vs 2024, trend-adjusted",trend-adjusted,overnight hours,within_zone,"outside the zone, Manhattan only",false,9,273,274,0.0048,-0.0255,0.036,false
+"2026 vs 2024, trend-adjusted",trend-adjusted,overnight hours,into_zone,"outside the zone, trips under 3 miles",true,9,273,274,-0.0519,-0.0981,-0.0033,true
+"2026 vs 2024, trend-adjusted",trend-adjusted,overnight hours,into_zone,"outside the zone, no airport trips",false,9,273,274,-0.0909,-0.128,-0.0522,true
+"2026 vs 2024, trend-adjusted",trend-adjusted,overnight hours,out_of_zone,"outside the zone, Manhattan only",false,9,273,274,0.0415,0.0181,0.0654,true
+"2026 vs 2024, trend-adjusted",trend-adjusted,overnight hours,out_of_zone,all trips outside the zone,false,9,273,274,0.1005,0.0671,0.135,true
 "2026 vs 2024, trend-adjusted",trend-adjusted,overnight hours,out_of_zone,"outside the zone, trips under 3 miles",true,9,273,274,0.0795,0.0522,0.1074,true
-"2026 vs 2024, trend-adjusted",trend-adjusted,peak hours,out_of_zone,"outside the zone, no airport trips",false,9,273,274,-0.0101,-0.0354,0.0158,false
-"2026 vs 2024, trend-adjusted",trend-adjusted,peak hours,into_zone,all trips outside the zone,false,9,273,274,-0.0328,-0.0592,-0.0056,true
-"2026 vs 2024, trend-adjusted",trend-adjusted,peak hours,within_zone,"outside the zone, no airport trips",false,9,273,274,-0.0215,-0.06,0.0186,false
-"2026 vs 2024, trend-adjusted",trend-adjusted,peak hours,into_zone,"outside the zone, Manhattan only",false,9,273,274,0.0308,-0.0078,0.0709,false
-"2026 vs 2024, trend-adjusted",trend-adjusted,peak hours,out_of_zone,"outside the zone, trips under 3 miles",true,9,273,274,0.0658,0.035,0.0975,true
+"2026 vs 2024, trend-adjusted",trend-adjusted,overnight hours,within_zone,"outside the zone, no airport trips",false,9,273,274,-0.0014,-0.0311,0.0292,false
+"2026 vs 2024, trend-adjusted",trend-adjusted,overnight hours,into_zone,"outside the zone, Manhattan only",false,9,273,274,-0.0852,-0.1311,-0.037,true
+"2026 vs 2024, trend-adjusted",trend-adjusted,overnight hours,within_zone,"outside the zone, trips under 3 miles",true,9,273,274,0.0414,0.0114,0.0723,true
+"2026 vs 2024, trend-adjusted",trend-adjusted,overnight hours,within_zone,all trips outside the zone,false,9,273,274,0.0618,0.0308,0.0937,true
+"2026 vs 2024, trend-adjusted",trend-adjusted,overnight hours,out_of_zone,"outside the zone, no airport trips",false,9,273,274,0.0351,0.0121,0.0586,true
 "2026 vs 2024, trend-adjusted",trend-adjusted,peak hours,within_zone,"outside the zone, trips under 3 miles",true,9,273,274,0.0536,0.0112,0.0977,true
-"2026 vs 2024, trend-adjusted",trend-adjusted,peak hours,within_zone,all trips outside the zone,false,9,273,274,-0.0172,-0.0569,0.0242,false
-"2026 vs 2024, trend-adjusted",trend-adjusted,peak hours,into_zone,"outside the zone, trips under 3 miles",true,9,273,274,0.0368,-0.0014,0.0764,false
-"2026 vs 2024, trend-adjusted",trend-adjusted,peak hours,out_of_zone,all trips outside the zone,false,9,273,274,-0.0058,-0.0294,0.0185,false
-"2026 vs 2024, trend-adjusted",trend-adjusted,peak hours,into_zone,"outside the zone, no airport trips",false,9,273,274,-0.037,-0.0705,-0.0023,true
+"2026 vs 2024, trend-adjusted",trend-adjusted,peak hours,into_zone,all trips outside the zone,false,9,273,274,-0.0328,-0.0592,-0.0056,true
+"2026 vs 2024, trend-adjusted",trend-adjusted,peak hours,into_zone,"outside the zone, Manhattan only",false,9,273,274,0.0308,-0.0078,0.0709,false
 "2026 vs 2024, trend-adjusted",trend-adjusted,peak hours,within_zone,"outside the zone, Manhattan only",false,9,273,274,0.0475,0.0049,0.0919,true
+"2026 vs 2024, trend-adjusted",trend-adjusted,peak hours,within_zone,all trips outside the zone,false,9,273,274,-0.0172,-0.0569,0.0242,false
+"2026 vs 2024, trend-adjusted",trend-adjusted,peak hours,out_of_zone,all trips outside the zone,false,9,273,274,-0.0058,-0.0294,0.0185,false
+"2026 vs 2024, trend-adjusted",trend-adjusted,peak hours,out_of_zone,"outside the zone, no airport trips",false,9,273,274,-0.0101,-0.0354,0.0158,false
+"2026 vs 2024, trend-adjusted",trend-adjusted,peak hours,into_zone,"outside the zone, no airport trips",false,9,273,274,-0.037,-0.0705,-0.0023,true
+"2026 vs 2024, trend-adjusted",trend-adjusted,peak hours,into_zone,"outside the zone, trips under 3 miles",true,9,273,274,0.0368,-0.0014,0.0764,false
+"2026 vs 2024, trend-adjusted",trend-adjusted,peak hours,within_zone,"outside the zone, no airport trips",false,9,273,274,-0.0215,-0.06,0.0186,false
 "2026 vs 2024, trend-adjusted",trend-adjusted,peak hours,out_of_zone,"outside the zone, Manhattan only",false,9,273,274,0.0596,0.0293,0.0909,true
-placebo: 2024 vs 2023,simple,all hours,into_zone,all trips outside the zone,false,12,366,365,0.0065,-0.0027,0.0157,false
+"2026 vs 2024, trend-adjusted",trend-adjusted,peak hours,out_of_zone,"outside the zone, trips under 3 miles",true,9,273,274,0.0658,0.035,0.0975,true
+placebo: 2024 vs 2023,simple,all hours,within_zone,"outside the zone, no airport trips",false,12,366,365,-0.0288,-0.0415,-0.016,true
 placebo: 2024 vs 2023,simple,all hours,into_zone,"outside the zone, trips under 3 miles",true,12,366,365,-0.0259,-0.0385,-0.0132,true
 placebo: 2024 vs 2023,simple,all hours,out_of_zone,all trips outside the zone,false,12,366,365,0.0172,0.009,0.0255,true
+placebo: 2024 vs 2023,simple,all hours,into_zone,all trips outside the zone,false,12,366,365,0.0065,-0.0027,0.0157,false
 placebo: 2024 vs 2023,simple,all hours,within_zone,"outside the zone, Manhattan only",false,12,366,365,-0.0202,-0.0326,-0.0077,true
-placebo: 2024 vs 2023,simple,all hours,within_zone,"outside the zone, no airport trips",false,12,366,365,-0.0288,-0.0415,-0.016,true
+placebo: 2024 vs 2023,simple,all hours,out_of_zone,"outside the zone, Manhattan only",false,12,366,365,-0.0256,-0.034,-0.0171,true
 placebo: 2024 vs 2023,simple,all hours,into_zone,"outside the zone, Manhattan only",false,12,366,365,-0.0359,-0.0485,-0.0231,true
 placebo: 2024 vs 2023,simple,all hours,into_zone,"outside the zone, no airport trips",false,12,366,365,-0.0443,-0.0564,-0.0321,true
-placebo: 2024 vs 2023,simple,all hours,out_of_zone,"outside the zone, Manhattan only",false,12,366,365,-0.0256,-0.034,-0.0171,true
 placebo: 2024 vs 2023,simple,all hours,within_zone,all trips outside the zone,false,12,366,365,0.0228,0.0098,0.036,true
 placebo: 2024 vs 2023,simple,all hours,out_of_zone,"outside the zone, trips under 3 miles",true,12,366,365,-0.0155,-0.024,-0.007,true
 placebo: 2024 vs 2023,simple,all hours,within_zone,"outside the zone, trips under 3 miles",true,12,366,365,-0.0101,-0.0224,0.0023,false
 placebo: 2024 vs 2023,simple,all hours,out_of_zone,"outside the zone, no airport trips",false,12,366,365,-0.0341,-0.0417,-0.0265,true
-placebo: 2024 vs 2023,simple,overnight hours,out_of_zone,"outside the zone, trips under 3 miles",true,12,366,365,-0.0026,-0.0116,0.0066,false
+placebo: 2024 vs 2023,simple,overnight hours,within_zone,"outside the zone, trips under 3 miles",true,12,366,365,-0.0113,-0.022,-0.0004,true
 placebo: 2024 vs 2023,simple,overnight hours,into_zone,"outside the zone, trips under 3 miles",true,12,366,365,-0.0097,-0.0266,0.0074,false
+placebo: 2024 vs 2023,simple,overnight hours,out_of_zone,"outside the zone, trips under 3 miles",true,12,366,365,-0.0026,-0.0116,0.0066,false
 placebo: 2024 vs 2023,simple,overnight hours,out_of_zone,all trips outside the zone,false,12,366,365,0.0039,-0.0061,0.0141,false
 placebo: 2024 vs 2023,simple,overnight hours,into_zone,all trips outside the zone,false,12,366,365,-0.0033,-0.0123,0.0059,false
-placebo: 2024 vs 2023,simple,overnight hours,within_zone,"outside the zone, trips under 3 miles",true,12,366,365,-0.0113,-0.022,-0.0004,true
-placebo: 2024 vs 2023,simple,overnight hours,out_of_zone,"outside the zone, Manhattan only",false,12,366,365,-0.0163,-0.0246,-0.0079,true
 placebo: 2024 vs 2023,simple,overnight hours,within_zone,"outside the zone, no airport trips",false,12,366,365,-0.0519,-0.0619,-0.0418,true
+placebo: 2024 vs 2023,simple,overnight hours,out_of_zone,"outside the zone, Manhattan only",false,12,366,365,-0.0163,-0.0246,-0.0079,true
 placebo: 2024 vs 2023,simple,overnight hours,into_zone,"outside the zone, Manhattan only",false,12,366,365,-0.0233,-0.0403,-0.0061,true
-placebo: 2024 vs 2023,simple,overnight hours,out_of_zone,"outside the zone, no airport trips",false,12,366,365,-0.0435,-0.0508,-0.0362,true
-placebo: 2024 vs 2023,simple,overnight hours,within_zone,"outside the zone, Manhattan only",false,12,366,365,-0.0249,-0.0357,-0.0139,true
-placebo: 2024 vs 2023,simple,overnight hours,into_zone,"outside the zone, no airport trips",false,12,366,365,-0.0504,-0.0642,-0.0364,true
 placebo: 2024 vs 2023,simple,overnight hours,within_zone,all trips outside the zone,false,12,366,365,-0.0049,-0.0152,0.0056,false
+placebo: 2024 vs 2023,simple,overnight hours,into_zone,"outside the zone, no airport trips",false,12,366,365,-0.0504,-0.0642,-0.0364,true
+placebo: 2024 vs 2023,simple,overnight hours,within_zone,"outside the zone, Manhattan only",false,12,366,365,-0.0249,-0.0357,-0.0139,true
+placebo: 2024 vs 2023,simple,overnight hours,out_of_zone,"outside the zone, no airport trips",false,12,366,365,-0.0435,-0.0508,-0.0362,true
 placebo: 2024 vs 2023,simple,peak hours,out_of_zone,all trips outside the zone,false,12,366,365,0.0154,0.007,0.024,true
-placebo: 2024 vs 2023,simple,peak hours,within_zone,"outside the zone, no airport trips",false,12,366,365,-0.0268,-0.0404,-0.013,true
-placebo: 2024 vs 2023,simple,peak hours,within_zone,"outside the zone, trips under 3 miles",true,12,366,365,-0.0142,-0.0283,0.0001,false
-placebo: 2024 vs 2023,simple,peak hours,out_of_zone,"outside the zone, Manhattan only",false,12,366,365,-0.0299,-0.0395,-0.0201,true
 placebo: 2024 vs 2023,simple,peak hours,into_zone,all trips outside the zone,false,12,366,365,0.0076,-0.0021,0.0173,false
+placebo: 2024 vs 2023,simple,peak hours,out_of_zone,"outside the zone, Manhattan only",false,12,366,365,-0.0299,-0.0395,-0.0201,true
+placebo: 2024 vs 2023,simple,peak hours,within_zone,"outside the zone, no airport trips",false,12,366,365,-0.0268,-0.0404,-0.013,true
+placebo: 2024 vs 2023,simple,peak hours,out_of_zone,"outside the zone, trips under 3 miles",true,12,366,365,-0.0197,-0.0295,-0.0098,true
 placebo: 2024 vs 2023,simple,peak hours,out_of_zone,"outside the zone, no airport trips",false,12,366,365,-0.0322,-0.0408,-0.0236,true
 placebo: 2024 vs 2023,simple,peak hours,within_zone,"outside the zone, Manhattan only",false,12,366,365,-0.0244,-0.0384,-0.0102,true
-placebo: 2024 vs 2023,simple,peak hours,out_of_zone,"outside the zone, trips under 3 miles",true,12,366,365,-0.0197,-0.0295,-0.0098,true
 placebo: 2024 vs 2023,simple,peak hours,into_zone,"outside the zone, trips under 3 miles",true,12,366,365,-0.0273,-0.0395,-0.015,true
+placebo: 2024 vs 2023,simple,peak hours,within_zone,"outside the zone, trips under 3 miles",true,12,366,365,-0.0142,-0.0283,0.0001,false
 placebo: 2024 vs 2023,simple,peak hours,into_zone,"outside the zone, no airport trips",false,12,366,365,-0.0397,-0.0512,-0.0281,true
 placebo: 2024 vs 2023,simple,peak hours,into_zone,"outside the zone, Manhattan only",false,12,366,365,-0.0374,-0.0496,-0.025,true
 placebo: 2024 vs 2023,simple,peak hours,within_zone,all trips outside the zone,false,12,366,365,0.0211,0.0067,0.0358,true
